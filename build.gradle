@@ -1,0 +1,187 @@
+buildscript {
+    repositories {
+        maven { url = 'https://maven.minecraftforge.net' }
+        mavenCentral()
+        maven { url = 'https://repo.spongepowered.org/repository/maven-public' }
+    }
+    dependencies {
+        classpath "org.spongepowered:mixingradle:${mixingradle_version}"
+        classpath 'org.parchmentmc:librarian:1.+'
+    }
+}
+
+plugins {
+    id 'net.minecraftforge.gradle' version '[6.0,6.2)'
+    id 'net.darkhax.curseforgegradle' version '[1.1.24,)'
+    id "at.stnwtr.gradle-secrets-plugin" version "1.0.1"
+    id "com.modrinth.minotaur" version "2.+"
+}
+
+apply plugin: 'maven-publish'
+apply plugin: 'org.spongepowered.mixin'
+apply plugin: 'org.parchmentmc.librarian.forgegradle'
+
+version = "${ll_version}"
+group = "net.kayn.${modid}"
+archivesBaseName = "${modid}"
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+minecraft {
+    mappings channel: 'official', version: "${minecraft_version}"
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+    runs {
+        client {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'info'
+            mods {
+                "${modid}" {
+                    source sourceSets.main
+                }
+            }
+        }
+        server {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'info'
+            mods {
+                "${modid}" {
+                    source sourceSets.main
+                }
+            }
+        }
+        data {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'info'
+            args '--mod', "${modid}", '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            mods {
+                "${modid}" {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+}
+
+sourceSets.main.resources { srcDir 'src/generated/resources' }
+
+mixin {
+    add sourceSets.main, "${modid}.refmap.json"
+    config "${modid}.mixins.json"
+}
+
+jar {
+    manifest {
+        attributes([
+                "Specification-Title"     : "${modid}",
+                "Specification-Vendor"    : "kayn",
+                "Specification-Version"   : "1",
+                "Implementation-Title"    : project.name,
+                "Implementation-Version"  : project.jar.archiveVersion,
+                "Implementation-Vendor"   : "kayn",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+        ])
+    }
+}
+
+java {
+    withSourcesJar()
+}
+
+jar.finalizedBy('reobfJar')
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifact jar
+        }
+    }
+    repositories {
+        maven {
+            url "file://${project.projectDir}/mcmodsrepo"
+        }
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+dependencies {
+    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+
+    compileOnly fg.deobf(annotationProcessor("com.github.llamalad7.mixinextras:mixinextras-common:${mixin_extras_version}"))
+    implementation fg.deobf("com.github.llamalad7.mixinextras:mixinextras-forge:${mixin_extras_version}")
+    annotationProcessor "org.spongepowered:mixin:${mixin_version}:processor"
+
+    compileOnly fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
+
+    implementation fg.deobf("dev.xkmc.l2library:l2library:${l2library_version}-slim")
+    implementation fg.deobf("dev.xkmc.l2serial:l2serial:1.2.2")
+    implementation fg.deobf("dev.xkmc.l2complements:l2complements:2.5.5-slim")
+    implementation fg.deobf("dev.xkmc.l2tabs:l2tabs:0.3.3")
+    implementation fg.deobf("dev.xkmc.l2hostility:l2hostility:2.5.6-slim")
+
+    implementation fg.deobf("io.redspace.ironsspellbooks:irons_spellbooks:${irons_spells_version}")
+    compileOnly fg.deobf("io.redspace.ironsspellbooks:irons_spellbooks:${irons_spells_version}:api")
+    runtimeOnly fg.deobf("io.redspace.ironsspellbooks:irons_spellbooks:${irons_spells_version}")
+
+    implementation fg.deobf("mezz.jei:jei-${jei_minecraft_version}:${jei_version}")
+    runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
+    compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}:api")
+
+    runtimeOnly fg.deobf("dev.kosmx.player-anim:player-animation-lib-forge:${project.player_anim_version}")
+    runtimeOnly fg.deobf("software.bernie.geckolib:geckolib-forge-${geckolib_version}")
+    runtimeOnly fg.deobf("top.theillusivec4.caelus:caelus-forge:${caelus_version}")
+
+    runtimeOnly fg.deobf("curse.maven:bookshelf-228525:4581675")
+    runtimeOnly fg.deobf("curse.maven:enchantment-descriptions-250419:4587429")
+    runtimeOnly fg.deobf("curse.maven:patchouli-306770:4636277")
+    runtimeOnly fg.deobf("curse.maven:just-enough-effect-descriptions-jeed-532286:4599236")
+    runtimeOnly fg.deobf("curse.maven:attributefix-280510:4911084")
+    runtimeOnly fg.deobf("curse.maven:cataclysm-551586:6501448")
+    runtimeOnly fg.deobf("curse.maven:lionfish-api-1001614:5922047")
+}
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+    maven { url = 'https://jitpack.io' }
+    maven {
+        name = 'Progwml6 maven'
+        url = 'https://dvs1.progwml6.com/files/maven'
+    }
+    maven {
+        url = 'https://maven.blamejared.com'
+        content {
+            includeGroup "vazkii.patchouli"
+            includeGroupByRegex "net\\.darkhax.*"
+            includeGroupByRegex "com\\.blamejared.*"
+            includeGroup "org.openzen.zencode"
+            includeGroup "mezz.jei"
+        }
+    }
+    maven { url = 'https://www.cursemaven.com' }
+    maven { url = 'https://maven.tterrag.com/' } // Registrate
+    maven { url = "https://maven.theillusivec4.top/" }
+    maven {
+        url = "https://maven.shadowsoffire.dev/releases"
+        content {
+            includeGroup "dev.shadowsoffire"
+        }
+    }
+    maven { url = 'https://maven.shedaniel.me/' }
+    maven { url = 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
+    maven { url = 'https://maven.kosmx.dev/' }
+    maven {
+        name = "Iron's Maven - Release"
+        url = "https://code.redspace.io/releases"
+    }
+    maven {
+        name = "Iron's Maven - Snapshots"
+        url = "https://code.redspace.io/snapshots"
+    }
+}
