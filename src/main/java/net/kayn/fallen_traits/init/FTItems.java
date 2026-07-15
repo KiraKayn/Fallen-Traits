@@ -15,7 +15,7 @@ public class FTItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, FallenTraits.MOD_ID);
 
     public static final RegistryObject<TraitSymbol> RAGE_SYMBOL = ITEMS.register("rage",
-            () -> new TraitSymbol(new Item.Properties().stacksTo(16).rarity(Rarity.RARE)));
+            () -> new TraitSymbol(new Item.Properties().stacksTo(64).rarity(Rarity.RARE)));
 
     public static final RegistryObject<RageGlove> RAGE_GLOVE = ITEMS.register("rage_glove",
             () -> new RageGlove(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant()));
