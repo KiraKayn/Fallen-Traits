@@ -1,6 +1,7 @@
 package net.kayn.fallen_traits;
 
 import net.kayn.fallen_traits.init.FTConfig;
+import net.kayn.fallen_traits.init.FTCreativeTab;
 import net.kayn.fallen_traits.init.FTItems;
 import net.kayn.fallen_traits.init.FTTraits;
 import net.minecraft.resources.ResourceLocation;
@@ -17,7 +18,7 @@ import org.jetbrains.annotations.NotNull;
 
 @Mod(FallenTraits.MOD_ID)
 public class FallenTraits {
-    public static final String MOD_ID = "fallen_traits";
+    public static final String MOD_ID = "assets/fallen_traits";
     private static final Logger LOGGER = LogManager.getLogger();
 
     public FallenTraits(FMLJavaModLoadingContext context) {
@@ -27,6 +28,7 @@ public class FallenTraits {
 
         FTTraits.TRAITS.register(modEventBus);
         FTItems.ITEMS.register(modEventBus);
+        FTCreativeTab.register(modEventBus);
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, FTConfig.COMMON_SPEC);
 
