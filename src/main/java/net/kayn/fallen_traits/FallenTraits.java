@@ -18,7 +18,7 @@ import org.jetbrains.annotations.NotNull;
 
 @Mod(FallenTraits.MOD_ID)
 public class FallenTraits {
-    public static final String MOD_ID = "assets/fallen_traits";
+    public static final String MOD_ID = "fallen_traits";
     private static final Logger LOGGER = LogManager.getLogger();
 
     public FallenTraits(FMLJavaModLoadingContext context) {
