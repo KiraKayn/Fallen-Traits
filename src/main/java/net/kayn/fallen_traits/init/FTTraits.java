@@ -1,0 +1,22 @@
+package net.kayn.fallen_traits.init;
+
+import dev.xkmc.l2hostility.content.traits.base.MobTrait;
+import dev.xkmc.l2hostility.init.registrate.LHTraits;
+import net.kayn.fallen_traits.FallenTraits;
+import net.kayn.fallen_traits.content.traits.RageTrait;
+import net.minecraft.ChatFormatting;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.RegistryObject;
+
+public class FTTraits {
+
+    public static final DeferredRegister<MobTrait> TRAITS =
+            DeferredRegister.create(LHTraits.TRAITS.key(), FallenTraits.MOD_ID);
+
+    public static final RegistryObject<RageTrait> RAGE = TRAITS.register("rage",
+            () -> new RageTrait(ChatFormatting.RED));
+
+    public static void register() {
+    }
+
+}

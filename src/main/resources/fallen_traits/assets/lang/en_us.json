@@ -1,0 +1,7 @@
+{
+  "trait.fallen_traits.rage": "Rage",
+  "trait.fallen_traits.rage.desc": "Landing consecutive hits on the same target increases damage dealt. Stacks reset if the target hits back.",
+  "item.fallen_traits.rage": "Rage",
+  "item.fallen_traits.rage_glove": "Rage Glove",
+  "item.fallen_traits.rage_glove.desc": "Melee attacks deal %s more damage per consecutive hit, up to %s total. Resets on being hit or after 10s of inactivity."
+}
