@@ -22,24 +22,36 @@ public class FTConfig {
         public Common(ForgeConfigSpec.Builder builder) {
             builder.push("rage_trait");
 
-            // extra damage per hit, per trait level (0.1 = +10% per level)
-            rageDamageIncreasePerHitPerLevel = builder.defineInRange("rageDamageIncreasePerHitPerLevel", 0.1, 0, 10);
-            // damage cap, per trait level (1.0 = up to +100% per level)
-            rageMaxBonusPerLevel = builder.defineInRange("rageMaxBonusPerLevel", 1.0, 0, 100);
+            rageDamageIncreasePerHitPerLevel = builder
+                    .comment("extra damage per hit, per trait level (0.1 = +10% per level)")
+                    .defineInRange("rageDamageIncreasePerHitPerLevel", 0.1, 0, 10);
+
+            rageMaxBonusPerLevel = builder
+                    .comment("damage cap, per trait level (1.0 = up to +100% per level)")
+                    .defineInRange("rageMaxBonusPerLevel", 1.0, 0, 100);
 
             builder.pop();
             builder.push("rage_glove");
 
-            // extra damage per hit while stacking
-            furyDamageIncreasePerHit = builder.defineInRange("furyDamageIncreasePerHit", 0.25, 0, 10);
-            // damage multiplier cap, 5.0 = 5x damage
-            furyMaxDamageMultiplier = builder.defineInRange("furyMaxDamageMultiplier", 5.0, 1, 100);
-            // stacks reset if no hit lands within this many ticks
-            furyStackTimeoutTicks = builder.defineInRange("furyStackTimeoutTicks", 200, 1, 72000);
-            // extra mob difficulty while worn
-            furyExtraDifficulty = builder.defineInRange("furyExtraDifficulty", 50, 0, 10000);
-            // bonus chance for spawned mobs to roll a legendary trait
-            furyLegendaryChanceBonus = builder.defineInRange("furyLegendaryChanceBonus", 0.02, 0, 1);
+            furyDamageIncreasePerHit = builder
+                    .comment("extra damage per hit while stacking")
+                    .defineInRange("furyDamageIncreasePerHit", 0.25, 0, 10);
+
+            furyMaxDamageMultiplier = builder
+                    .comment("damage multiplier cap, 5.0 = 5x damage")
+                    .defineInRange("furyMaxDamageMultiplier", 5.0, 1, 100);
+
+            furyStackTimeoutTicks = builder
+                    .comment("stacks reset if no hit lands within this many ticks")
+                    .defineInRange("furyStackTimeoutTicks", 200, 1, 72000);
+
+            furyExtraDifficulty = builder
+                    .comment("extra mob difficulty while worn")
+                    .defineInRange("furyExtraDifficulty", 50, 0, 10000);
+
+            furyLegendaryChanceBonus = builder
+                    .comment("bonus chance for spawned mobs to roll a legendary trait")
+                    .defineInRange("furyLegendaryChanceBonus", 0.02, 0, 1);
 
             builder.pop();
         }
