@@ -129,6 +129,12 @@ dependencies {
     compileOnly fg.deobf("io.redspace:irons_spellbooks:${irons_spells_version}:api")
     runtimeOnly fg.deobf("io.redspace:irons_spellbooks:${irons_spells_version}")
 
+    runtimeOnly fg.deobf("curse.maven:mmmmmmmmmmmm-225738:6608233")
+    implementation fg.deobf("curse.maven:spark-361579:4738952")
+    runtimeOnly fg.deobf("curse.maven:embeddium-908741:5681725")
+    runtimeOnly fg.deobf("curse.maven:modernfix-790626:7515215")
+    implementation fg.deobf("curse.maven:jade-324717:${jade_file_id}")
+
     implementation fg.deobf("mezz.jei:jei-${jei_minecraft_version}:${jei_version}")
     runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
     compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}:api")
