@@ -4,7 +4,13 @@
   "item.fallen_traits.rage": "Rage",
   "item.fallen_traits.rage_glove": "Rage Glove",
   "item.fallen_traits.rage_glove.desc": "Melee attacks deal %s more damage per consecutive hit, up to %s total. Resets on being hit or after 10s of inactivity.",
-  "itemGroup.fallen_traits_tab": "Fallen Traits"
+  "itemGroup.fallen_traits_tab": "Fallen Traits",
 
+  "trait.fallen_traits.mimic": "Mimic",
+  "trait.fallen_traits.mimic.desc": "Mob will wear the same equipment as the nearest player within %s blocks instead of randomly generated gear.",
+  "item.fallen_traits.mimic": "Mimic",
 
+  "trait.fallen_traits.clone": "Cloning",
+  "trait.fallen_traits.clone.desc": "While engaged in combat, periodically creates illusion clones of itself. Clones die in one hit and explode when killed.",
+  "item.fallen_traits.clone": "Cloning"
 }

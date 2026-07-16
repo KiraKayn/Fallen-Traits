@@ -21,6 +21,8 @@ public class FTCreativeTab {
                     .displayItems((parameters, output) -> {
                         output.accept(FTItems.RAGE_SYMBOL.get());
                         output.accept(FTItems.RAGE_GLOVE.get());
+                        output.accept(FTItems.MIMIC_SYMBOL.get());
+                        output.accept(FTItems.CLONE_SYMBOL.get());
                     })
                     .build());
 
