@@ -16,5 +16,11 @@
 
   "trait.fallen_traits.cleanse": "Cleanse",
   "trait.fallen_traits.cleanse.desc": "Periodically purges its own harmful effects and inflicts them on its current target instead.",
-  "item.fallen_traits.cleanse": "Cleanse"
+  "item.fallen_traits.cleanse": "Cleanse",
+
+  "trait.fallen_traits.daywalker": "Daywalker",
+  "trait.fallen_traits.daywalker.desc": "Grows stronger under daylight.",
+
+  "trait.fallen_traits.nightcrawler": "Nightcrawler",
+  "trait.fallen_traits.nightcrawler.desc": "Grows stronger in darkness."
 }
