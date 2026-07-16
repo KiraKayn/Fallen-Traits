@@ -25,6 +25,9 @@ public class FTItems {
     public static final RegistryObject<TraitSymbol> CLONE_SYMBOL = ITEMS.register("clone",
             () -> new TraitSymbol(new Item.Properties().stacksTo(64)));
 
+    public static final RegistryObject<TraitSymbol> CLEANSE_SYMBOL = ITEMS.register("cleanse",
+            () -> new TraitSymbol(new Item.Properties().stacksTo(64)));
+
     public static void register() {
     }
 

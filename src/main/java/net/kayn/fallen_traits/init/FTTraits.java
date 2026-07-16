@@ -3,6 +3,7 @@ package net.kayn.fallen_traits.init;
 import dev.xkmc.l2hostility.content.traits.base.MobTrait;
 import dev.xkmc.l2hostility.init.registrate.LHTraits;
 import net.kayn.fallen_traits.FallenTraits;
+import net.kayn.fallen_traits.content.traits.CleanseTrait;
 import net.kayn.fallen_traits.content.traits.CloneTrait;
 import net.kayn.fallen_traits.content.traits.MimicTrait;
 import net.kayn.fallen_traits.content.traits.RageTrait;
@@ -23,6 +24,9 @@ public class FTTraits {
 
     public static final RegistryObject<CloneTrait> CLONE = TRAITS.register("clone",
             () -> new CloneTrait(ChatFormatting.AQUA));
+
+    public static final RegistryObject<CleanseTrait> CLEANSE = TRAITS.register("cleanse",
+            () -> new CleanseTrait(ChatFormatting.YELLOW));
 
     public static void register() {
     }

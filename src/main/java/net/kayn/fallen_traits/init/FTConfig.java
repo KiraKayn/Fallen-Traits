@@ -24,6 +24,10 @@ public class FTConfig {
         public final ForgeConfigSpec.BooleanValue cloneGlowEnabled;
         public final ForgeConfigSpec.IntValue cloneLifetimeTicks;
 
+        public final ForgeConfigSpec.IntValue cleanseIntervalBase;
+        public final ForgeConfigSpec.IntValue cleanseIntervalStep;
+        public final ForgeConfigSpec.IntValue cleanseIntervalMin;
+
         public final ForgeConfigSpec.DoubleValue furyDamageIncreasePerHit;
         public final ForgeConfigSpec.DoubleValue furyMaxDamageMultiplier;
         public final ForgeConfigSpec.IntValue furyStackTimeoutTicks;
@@ -89,6 +93,21 @@ public class FTConfig {
                 cloneLifetimeTicks = builder
                         .comment("clones are force-removed after this many ticks even if not killed, 0 disables this and relies on normal despawn rules")
                         .defineInRange("cloneLifetimeTicks", 1200, 0, 72000);
+
+                builder.pop();
+                builder.push("cleanse_trait");
+
+                cleanseIntervalBase = builder
+                        .comment("seconds between cleanses at trait level 1")
+                        .defineInRange("cleanseIntervalBase", 15, 1, 3600);
+
+                cleanseIntervalStep = builder
+                        .comment("seconds the interval shrinks by per additional trait level")
+                        .defineInRange("cleanseIntervalStep", 5, 0, 3600);
+
+                cleanseIntervalMin = builder
+                        .comment("lowest possible interval regardless of trait level")
+                        .defineInRange("cleanseIntervalMin", 5, 1, 3600);
 
                 builder.pop();
             }

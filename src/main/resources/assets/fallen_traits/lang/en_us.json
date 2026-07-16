@@ -12,5 +12,9 @@
 
   "trait.fallen_traits.clone": "Cloning",
   "trait.fallen_traits.clone.desc": "While engaged in combat, periodically creates illusion clones of itself. Clones die in one hit and explode when killed.",
-  "item.fallen_traits.clone": "Cloning"
+  "item.fallen_traits.clone": "Cloning",
+
+  "trait.fallen_traits.cleanse": "Cleanse",
+  "trait.fallen_traits.cleanse.desc": "Periodically purges its own harmful effects and inflicts them on its current target instead.",
+  "item.fallen_traits.cleanse": "Cleanse"
 }

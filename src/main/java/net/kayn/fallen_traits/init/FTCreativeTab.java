@@ -23,6 +23,7 @@ public class FTCreativeTab {
                         output.accept(FTItems.RAGE_GLOVE.get());
                         output.accept(FTItems.MIMIC_SYMBOL.get());
                         output.accept(FTItems.CLONE_SYMBOL.get());
+                        output.accept(FTItems.CLEANSE_SYMBOL.get());
                     })
                     .build());
 
