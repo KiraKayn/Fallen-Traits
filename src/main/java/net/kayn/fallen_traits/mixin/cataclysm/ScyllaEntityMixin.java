@@ -13,17 +13,28 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(value = Scylla_Entity.class, remap = false)
 public abstract class ScyllaEntityMixin {
 
-    @Shadow private int anchor_pull_cooldown;
-    @Shadow private int back_step_cooldown;
-    @Shadow private int explosion_cooldown;
-    @Shadow private int flying_cooldown;
-    @Shadow private int parry_cooldown;
-    @Shadow private int spear_cooldown;
-    @Shadow private int spin_cooldown;
-    @Shadow private int summon_snake_cooldown;
-    @Shadow private int thundercloud_cooldown;
-    @Shadow private int wave_cooldown;
-    @Shadow private int whip_cooldown;
+    @Shadow
+    private int anchor_pull_cooldown;
+    @Shadow
+    private int back_step_cooldown;
+    @Shadow
+    private int explosion_cooldown;
+    @Shadow
+    private int flying_cooldown;
+    @Shadow
+    private int parry_cooldown;
+    @Shadow
+    private int spear_cooldown;
+    @Shadow
+    private int spin_cooldown;
+    @Shadow
+    private int summon_snake_cooldown;
+    @Shadow
+    private int thundercloud_cooldown;
+    @Shadow
+    private int wave_cooldown;
+    @Shadow
+    private int whip_cooldown;
 
     @Inject(method = "tick", at = @At("HEAD"))
     private void fallen_traits$berserk(CallbackInfo ci) {
