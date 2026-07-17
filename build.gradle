@@ -69,7 +69,7 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 mixin {
     add sourceSets.main, "${modid}.refmap.json"
-    config "${modid}.mixins.json"
+//    config "${modid}.mixins.json"
 }
 
 jar {
