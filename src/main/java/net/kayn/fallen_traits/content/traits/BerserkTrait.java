@@ -36,7 +36,7 @@ public class BerserkTrait extends LegendaryTrait {
         list.add(Component.translatable(getDescriptionId() + ".desc").withStyle(ChatFormatting.GRAY));
         list.add(mapLevel(e -> {
             int interval = getIntervalTicks(e);
-            String desc = interval <= 0 ? "Instant" : String.format("%.1fx faster", 20.0 / interval);
+            String desc = interval <= 0 ? "Instant" : String.format("%.1fx Faster", 20.0 / interval);
             return Component.literal(desc).withStyle(ChatFormatting.RED);
         }));
     }
