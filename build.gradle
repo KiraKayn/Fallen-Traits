@@ -148,8 +148,8 @@ dependencies {
     runtimeOnly fg.deobf("curse.maven:patchouli-306770:4636277")
     runtimeOnly fg.deobf("curse.maven:just-enough-effect-descriptions-jeed-532286:4599236")
     runtimeOnly fg.deobf("curse.maven:attributefix-280510:4911084")
-    runtimeOnly fg.deobf("curse.maven:cataclysm-551586:6501448")
-    runtimeOnly fg.deobf("curse.maven:lionfish-api-1001614:5922047")
+    implementation fg.deobf("curse.maven:lendercataclysm-551586:6769185")
+    implementation fg.deobf("curse.maven:lionfish-api-1001614:5922047")
     implementation fg.deobf("curse.maven:irons-lib-1492763:8364892")
     runtimeOnly fg.deobf("curse.maven:selene-499980:6611244")
 }

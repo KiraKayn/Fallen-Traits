@@ -4,6 +4,9 @@
     "fallen_traits:rage",
     "fallen_traits:mimic",
     "fallen_traits:clone",
-    "fallen_traits:cleanse"
+    "fallen_traits:cleanse",
+    "fallen_traits:berserk",
+    "fallen_traits:nightcrawler",
+    "fallen_traits:daywalker"
   ]
 }

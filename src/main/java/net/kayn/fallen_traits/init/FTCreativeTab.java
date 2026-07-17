@@ -24,6 +24,9 @@ public class FTCreativeTab {
                         output.accept(FTItems.MIMIC_SYMBOL.get());
                         output.accept(FTItems.CLONE_SYMBOL.get());
                         output.accept(FTItems.CLEANSE_SYMBOL.get());
+                        output.accept(FTItems.NIGHTCRAWLER_SYMBOL.get());
+                        output.accept(FTItems.DAYWALKER_SYMBOL.get());
+                        output.accept(FTItems.BERSERK_SYMBOL.get());
                     })
                     .build());
 

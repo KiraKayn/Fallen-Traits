@@ -4,6 +4,15 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "fallen_traits.refmap.json",
   "mixins": [
+    "MeleeAttackGoalMixin",
+    "RangedAttackGoalMixin",
+    "cataclysm.AncientRemnantEntityMixin",
+    "cataclysm.EnderGuardianEntityMixin",
+    "cataclysm.IgnisEntityMixin",
+    "cataclysm.MaledictusEntityMixin",
+    "cataclysm.NetheriteMonstrosityEntityMixin",
+    "cataclysm.ScyllaEntityMixin",
+    "cataclysm.TheLeviathanEntityMixin"
   ],
   "client": [
   ],

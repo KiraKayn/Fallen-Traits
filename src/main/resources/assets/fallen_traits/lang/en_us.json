@@ -22,5 +22,9 @@
   "trait.fallen_traits.daywalker.desc": "Grows stronger under daylight.",
 
   "trait.fallen_traits.nightcrawler": "Nightcrawler",
-  "trait.fallen_traits.nightcrawler.desc": "Grows stronger in darkness."
+  "trait.fallen_traits.nightcrawler.desc": "Grows stronger in darkness.",
+
+  "trait.fallen_traits.berserk": "Berserk",
+  "trait.fallen_traits.berserk.desc": "Boss attacks far more frequently and aggressively.",
+  "item.fallen_traits.berserk": "Berserk"
 }

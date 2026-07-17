@@ -28,6 +28,15 @@ public class FTItems {
     public static final RegistryObject<TraitSymbol> CLEANSE_SYMBOL = ITEMS.register("cleanse",
             () -> new TraitSymbol(new Item.Properties().stacksTo(64)));
 
+    public static final RegistryObject<TraitSymbol> DAYWALKER_SYMBOL = ITEMS.register("daywalker",
+            () -> new TraitSymbol(new Item.Properties().stacksTo(64)));
+
+    public static final RegistryObject<TraitSymbol> NIGHTCRAWLER_SYMBOL = ITEMS.register("nightcrawler",
+            () -> new TraitSymbol(new Item.Properties().stacksTo(64)));
+
+    public static final RegistryObject<TraitSymbol> BERSERK_SYMBOL = ITEMS.register("berserk",
+            () -> new TraitSymbol(new Item.Properties().stacksTo(64)));
+
     public static void register() {
     }
 

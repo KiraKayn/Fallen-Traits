@@ -28,6 +28,12 @@ public class FTConfig {
         public final ForgeConfigSpec.IntValue cleanseIntervalStep;
         public final ForgeConfigSpec.IntValue cleanseIntervalMin;
 
+        public final ForgeConfigSpec.DoubleValue daywalkerDamageBonusPerLevel;
+        public final ForgeConfigSpec.DoubleValue daywalkerSpeedBonusPerLevel;
+
+        public final ForgeConfigSpec.DoubleValue nightcrawlerDamageBonusPerLevel;
+        public final ForgeConfigSpec.DoubleValue nightcrawlerSpeedBonusPerLevel;
+
         public final ForgeConfigSpec.DoubleValue furyDamageIncreasePerHit;
         public final ForgeConfigSpec.DoubleValue furyMaxDamageMultiplier;
         public final ForgeConfigSpec.IntValue furyStackTimeoutTicks;
@@ -36,6 +42,8 @@ public class FTConfig {
 
         public final ForgeConfigSpec.DoubleValue mimicEquipmentDropChance;
         public final ForgeConfigSpec.BooleanValue allowLustToDropMimicEquipment;
+
+        public final ForgeConfigSpec.IntValue berserkCataclysmDecrementPerLevel;
 
         public Common(ForgeConfigSpec.Builder builder) {
 
@@ -110,6 +118,32 @@ public class FTConfig {
                         .defineInRange("cleanseIntervalMin", 5, 1, 3600);
 
                 builder.pop();
+                builder.push("daywalker_trait");
+
+                daywalkerDamageBonusPerLevel = builder
+                        .comment("attack damage multiplier per level while it is day (0.1 = +10%)")
+                        .defineInRange("daywalkerDamageBonusPerLevel", 0.1, 0, 10);
+
+                daywalkerSpeedBonusPerLevel = builder
+                        .comment("movement speed multiplier per level while it is day (0.1 = +10%)")
+                        .defineInRange("daywalkerSpeedBonusPerLevel", 0.05, 0, 10);
+
+                builder.pop();
+                builder.push("nightcrawler_trait");
+
+                nightcrawlerDamageBonusPerLevel = builder
+                        .comment("attack damage multiplier per level while it is night (0.1 = +10%)")
+                        .defineInRange("nightcrawlerDamageBonusPerLevel", 0.1, 0, 10);
+
+                nightcrawlerSpeedBonusPerLevel = builder
+                        .comment("movement speed multiplier per level while it is night (0.1 = +10%)")
+                        .defineInRange("nightcrawlerSpeedBonusPerLevel", 0.05, 0, 10);
+
+                builder.push("berserk_trait");
+
+                berserkCataclysmDecrementPerLevel = builder
+                        .comment("extra cooldown ticks burned per game tick, per trait level, for Cataclysm boss cooldowns")
+                        .defineInRange("berserkCataclysmDecrementPerLevel", 60, 0, 10000);
             }
             builder.pop();
 
