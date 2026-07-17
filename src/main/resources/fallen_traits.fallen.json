@@ -1,0 +1,5 @@
+{
+  "required": true,
+  "min_version": "1.3.2",
+  "mixin_connector": "net.kayn.fallen_traits.FTMixinConnector"
+}

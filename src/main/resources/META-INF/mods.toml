@@ -15,7 +15,7 @@ logoFile="logo.png"
 credits="me"
 authors="Kayn"
 description='''
-  An L2 Hostility addon which intergrates a bunch of other mods with it
+  An L2 Hostility addon which integrates a bunch of other mods with it
   '''
 displayTest="MATCH_VERSION"
 

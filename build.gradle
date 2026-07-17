@@ -150,7 +150,7 @@ dependencies {
     compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}:api")
 
     runtimeOnly fg.deobf("dev.kosmx.player-anim:player-animation-lib-forge:${project.player_anim_version}")
-    runtimeOnly fg.deobf("curse.maven:geckolib-388172:7025129")
+    runtimeOnly fg.deobf("curse.maven:geckolib-388172:8285794")
     runtimeOnly fg.deobf("top.theillusivec4.caelus:caelus-forge:${caelus_version}")
 
     runtimeOnly fg.deobf("curse.maven:bookshelf-228525:4581675")
@@ -188,6 +188,7 @@ repositories {
     maven { url = 'https://www.cursemaven.com' }
     maven { url = 'https://maven.tterrag.com/' } // Registrate
     maven { url = "https://maven.theillusivec4.top/" }
+    maven { url "https://rtxyd.github.io/maven-repo" }
     maven {
         url = "https://maven.shadowsoffire.dev/releases"
         content {
