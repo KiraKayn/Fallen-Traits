@@ -110,14 +110,16 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 dependencies {
+    //mc
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
+    //mixin
     compileOnly fg.deobf(annotationProcessor("com.github.llamalad7.mixinextras:mixinextras-common:${mixin_extras_version}"))
     implementation fg.deobf("com.github.llamalad7.mixinextras:mixinextras-forge:${mixin_extras_version}")
     annotationProcessor "org.spongepowered:mixin:${mixin_version}:processor"
-
     compileOnly fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
 
+    //l2 mods (required)
     implementation fg.deobf("dev.xkmc.l2library:l2library:${l2library_version}-slim")
     implementation fg.deobf("dev.xkmc.l2serial:l2serial:1.2.2")
     implementation fg.deobf("dev.xkmc.l2complements:l2complements:2.5.5-slim")
@@ -125,17 +127,25 @@ dependencies {
     implementation fg.deobf("dev.xkmc.l2hostility:l2hostility:2.5.6-slim")
     implementation fg.deobf("dev.xkmc.l2damagetracker:l2damagetracker:0.4.3")
 
+    //iss
     implementation fg.deobf("io.redspace:irons_spellbooks:${irons_spells_version}")
     compileOnly fg.deobf("io.redspace:irons_spellbooks:${irons_spells_version}:api")
     runtimeOnly fg.deobf("io.redspace:irons_spellbooks:${irons_spells_version}")
 
+    //dev env mods
     runtimeOnly fg.deobf("curse.maven:mmmmmmmmmmmm-225738:6608233")
     implementation fg.deobf("curse.maven:spark-361579:4738952")
     runtimeOnly fg.deobf("curse.maven:embeddium-908741:5681725")
     runtimeOnly fg.deobf("curse.maven:modernfix-790626:7515215")
     implementation fg.deobf("curse.maven:jade-324717:${jade_file_id}")
-
     implementation fg.deobf("mezz.jei:jei-${jei_minecraft_version}:${jei_version}")
+
+    //integrations
+    implementation fg.deobf("curse.maven:lendercataclysm-551586:6769185")
+    implementation fg.deobf("curse.maven:lionfish-api-1001614:5922047")
+    implementation fg.deobf("curse.maven:mariums-soulslike-weaponry-632066:8302956")
+
+    //libs
     runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
     compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}:api")
 
@@ -148,10 +158,12 @@ dependencies {
     runtimeOnly fg.deobf("curse.maven:patchouli-306770:4636277")
     runtimeOnly fg.deobf("curse.maven:just-enough-effect-descriptions-jeed-532286:4599236")
     runtimeOnly fg.deobf("curse.maven:attributefix-280510:4911084")
-    implementation fg.deobf("curse.maven:lendercataclysm-551586:6769185")
-    implementation fg.deobf("curse.maven:lionfish-api-1001614:5922047")
     implementation fg.deobf("curse.maven:irons-lib-1492763:8364892")
     runtimeOnly fg.deobf("curse.maven:selene-499980:6611244")
+    //fallen lib
+    implementation fg.deobf("io.github.rtxyd:fallen-lib:${fallen_lib_version}:core")
+    implementation fg.deobf("io.github.rtxyd:fallen-lib:${fallen_lib_version}:runtime")
+
 }
 
 repositories {
