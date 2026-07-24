@@ -44,6 +44,7 @@ public class FTConfig {
         public final ForgeConfigSpec.BooleanValue allowLustToDropMimicEquipment;
 
         public final ForgeConfigSpec.IntValue berserkCataclysmDecrementPerLevel;
+        public final ForgeConfigSpec.DoubleValue berserkISSFactorPerLevel;
 
         public Common(ForgeConfigSpec.Builder builder) {
 
@@ -144,6 +145,10 @@ public class FTConfig {
                 berserkCataclysmDecrementPerLevel = builder
                         .comment("extra cooldown ticks burned per game tick, per trait level, for Cataclysm boss cooldowns")
                         .defineInRange("berserkCataclysmDecrementPerLevel", 60, 0, 10000);
+
+                berserkISSFactorPerLevel = builder
+                        .comment("attack actions cooldown reduce factor, per trait level, for ISS boss cooldowns")
+                        .defineInRange("berserkCataclysmDecrementPerLevel", 0.2, 0, 1.0);
             }
             builder.pop();
 

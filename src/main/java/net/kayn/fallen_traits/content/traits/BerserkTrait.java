@@ -27,6 +27,10 @@ public class BerserkTrait extends LegendaryTrait {
         return Math.max(1, getIntervalTicks(level));
     }
 
+    public static double getCooldownMultiplier(int level) {
+        return Math.max(1d - level * FTConfig.COMMON.berserkISSFactorPerLevel.get(), 0.1);
+    }
+
     @Override
     public void addDetail(List<Component> list) {
         list.add(Component.translatable(getDescriptionId() + ".desc").withStyle(ChatFormatting.GRAY));

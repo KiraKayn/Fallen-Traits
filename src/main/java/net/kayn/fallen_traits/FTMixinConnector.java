@@ -14,11 +14,18 @@ public class FTMixinConnector implements IMixinConnector {
 
         boolean isSoulsWeaponryLoaded = getClass().getClassLoader().getResource(
                 "net/soulsweaponry/SoulsWeaponry.class") != null;
+
+        boolean isISSLoaded = getClass().getClassLoader().getResource(
+                "io/redspace/ironsspellbooks/IronsSpellbooks") != null;
+
         if (isCataclysmLoaded) {
             Mixins.addConfiguration("fallen_traits.cataclysm.mixins.json");
         }
         if (isSoulsWeaponryLoaded) {
             Mixins.addConfiguration("fallen_traits.soulsweaponry.mixins.json");
+        }
+        if (isSoulsWeaponryLoaded) {
+            Mixins.addConfiguration("fallen_traits.irons_spellbooks.mixins.json");
         }
     }
 }
