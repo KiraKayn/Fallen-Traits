@@ -147,8 +147,8 @@ public class FTConfig {
                         .defineInRange("berserkCataclysmDecrementPerLevel", 60, 0, 10000);
 
                 berserkISSFactorPerLevel = builder
-                        .comment("attack actions cooldown reduce factor, per trait level, for ISS boss cooldowns")
-                        .defineInRange("berserkCataclysmDecrementPerLevel", 0.2, 0, 1.0);
+                        .comment("attack actions cooldown reduction factor, per trait level, for ISS boss cooldowns")
+                        .defineInRange("berserkISSFactorPerLevel", 0.2, 0, 1.0);
             }
             builder.pop();
 

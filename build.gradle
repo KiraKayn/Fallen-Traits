@@ -139,6 +139,7 @@ dependencies {
     runtimeOnly fg.deobf("curse.maven:modernfix-790626:7515215")
     implementation fg.deobf("curse.maven:jade-324717:${jade_file_id}")
     implementation fg.deobf("mezz.jei:jei-${jei_minecraft_version}:${jei_version}")
+    implementation fg.deobf("curse.maven:dungeons-and-combat-1128235:7193486")
 
     //integrations
     implementation fg.deobf("curse.maven:lendercataclysm-551586:6769185")
