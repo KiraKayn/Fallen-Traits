@@ -16,7 +16,7 @@ public class FTMixinConnector implements IMixinConnector {
                 "net/soulsweaponry/SoulsWeaponry.class") != null;
 
         boolean isISSLoaded = getClass().getClassLoader().getResource(
-                "io/redspace/ironsspellbooks/IronsSpellbooks") != null;
+                "io/redspace/ironsspellbooks/IronsSpellbooks.class") != null;
 
         if (isCataclysmLoaded) {
             Mixins.addConfiguration("fallen_traits.cataclysm.mixins.json");
@@ -24,7 +24,7 @@ public class FTMixinConnector implements IMixinConnector {
         if (isSoulsWeaponryLoaded) {
             Mixins.addConfiguration("fallen_traits.soulsweaponry.mixins.json");
         }
-        if (isSoulsWeaponryLoaded) {
+        if (isISSLoaded) {
             Mixins.addConfiguration("fallen_traits.irons_spellbooks.mixins.json");
         }
     }
