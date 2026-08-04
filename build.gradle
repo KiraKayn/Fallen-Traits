@@ -143,6 +143,10 @@ dependencies {
     //integrations
     implementation fg.deobf("curse.maven:lendercataclysm-551586:6769185")
     implementation fg.deobf("curse.maven:lionfish-api-1001614:5922047")
+    implementation fg.deobf("curse.maven:to-tweaks-irons-spells-1046916:7424522")
+    implementation fg.deobf("curse.maven:alexs-caves-924854:5848216")
+    implementation fg.deobf("curse.maven:apothic-attributes-898963:5634071")
+    implementation fg.deobf("curse.maven:placebo-283644:6274231")
 
     //soulslike weaponry
     implementation fg.deobf("net.fabric_extras:ranged_weapon_api-forge:1.1.4+1.20.1")
@@ -165,6 +169,7 @@ dependencies {
     runtimeOnly fg.deobf("curse.maven:attributefix-280510:4911084")
     implementation fg.deobf("curse.maven:irons-lib-1492763:8364892")
     runtimeOnly fg.deobf("curse.maven:selene-499980:6611244")
+    implementation fg.deobf("curse.maven:citadel-331936:7476570")
     //fallen lib
     implementation fg.deobf("io.github.rtxyd:fallen-lib:${fallen_lib_version}:core")
     implementation fg.deobf("io.github.rtxyd:fallen-lib:${fallen_lib_version}:runtime")
