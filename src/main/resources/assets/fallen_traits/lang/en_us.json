@@ -26,5 +26,8 @@
 
   "trait.fallen_traits.berserk": "Berserk",
   "trait.fallen_traits.berserk.desc": "Boss attacks far more frequently and aggressively.",
-  "item.fallen_traits.berserk": "Berserk"
+  "item.fallen_traits.berserk": "Berserk",
+
+  "item.fallen_traits.invulnerability_breaker": "Invulnerability Breaker",
+  "item.fallen_traits.invulnerability_breaker.desc": "Reduces hit targets' i-frames %s ticks. Increases your own by %s ticks when hurt."
 }

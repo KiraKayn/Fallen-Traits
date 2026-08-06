@@ -70,5 +70,13 @@ public class FTEvents {
             entity.discard();
         }
     }
+    @SubscribeEvent
+    public static void onWearerHurt(LivingHurtEvent event) {
+        if (event.getAmount() <= 0) return;
+        LivingEntity entity = event.getEntity();
+        if (CurioCompat.hasItemInCurio(entity, FTItems.INVULNERABILITY_BREAKER.get())) {
+            FTItems.INVULNERABILITY_BREAKER.get().onWearerHurt(entity);
+        }
+    }
 
 }

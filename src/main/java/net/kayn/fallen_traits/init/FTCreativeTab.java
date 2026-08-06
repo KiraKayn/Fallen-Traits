@@ -27,6 +27,7 @@ public class FTCreativeTab {
                         output.accept(FTItems.NIGHTCRAWLER_SYMBOL.get());
                         output.accept(FTItems.DAYWALKER_SYMBOL.get());
                         output.accept(FTItems.BERSERK_SYMBOL.get());
+                        output.accept(FTItems.INVULNERABILITY_BREAKER.get());
                     })
                     .build());
 

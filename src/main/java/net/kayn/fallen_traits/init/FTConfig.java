@@ -46,6 +46,10 @@ public class FTConfig {
         public final ForgeConfigSpec.IntValue berserkCataclysmDecrementPerLevel;
         public final ForgeConfigSpec.DoubleValue berserkISSFactorPerLevel;
 
+        public final ForgeConfigSpec.IntValue invulnBreakerTargetInvulnReductionTicks;
+        public final ForgeConfigSpec.IntValue invulnBreakerWearerInvulnBonusTicks;
+        public final ForgeConfigSpec.IntValue invulnBreakerExtraDifficulty;
+
         public Common(ForgeConfigSpec.Builder builder) {
 
             // traits (behavior granted directly by the trait itself)
@@ -178,6 +182,22 @@ public class FTConfig {
                         .defineInRange("furyLegendaryChanceBonus", 0.02, 0, 1);
 
                 builder.pop();
+                builder.push("invulnerability_breaker");
+
+                invulnBreakerTargetInvulnReductionTicks = builder
+                        .comment("ticks shaved off the hit target's post-hit invulnerability window per hit")
+                        .defineInRange("invulnBreakerTargetInvulnReductionTicks", 5, 0, 20);
+
+                invulnBreakerWearerInvulnBonusTicks = builder
+                        .comment("extra ticks added to the wearer's own post-hit invulnerability window when hurt")
+                        .defineInRange("invulnBreakerWearerInvulnBonusTicks", 5, 0, 20);
+
+                invulnBreakerExtraDifficulty = builder
+                        .comment("extra mob difficulty while worn")
+                        .defineInRange("invulnBreakerExtraDifficulty", 100, 0, 10000);
+
+                builder.pop();
+
                 builder.push("mimic_equipment");
 
                 mimicEquipmentDropChance = builder
