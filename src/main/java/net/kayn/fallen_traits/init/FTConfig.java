@@ -40,6 +40,19 @@ public class FTConfig {
         public final ForgeConfigSpec.IntValue furyExtraDifficulty;
         public final ForgeConfigSpec.DoubleValue furyLegendaryChanceBonus;
 
+        public final ForgeConfigSpec.IntValue infernalTriggerDistanceBase;
+        public final ForgeConfigSpec.IntValue infernalTriggerDistancePerLevel;
+        public final ForgeConfigSpec.IntValue infernalTriggerDurationBaseTicks;
+        public final ForgeConfigSpec.IntValue infernalTriggerDurationPerLevelTicks;
+        public final ForgeConfigSpec.IntValue infernalEnrageDurationTicks;
+        public final ForgeConfigSpec.IntValue infernalCooldownBaseTicks;
+        public final ForgeConfigSpec.IntValue infernalCooldownPerLevelTicks;
+        public final ForgeConfigSpec.DoubleValue infernalDamageBonusPerLevel;
+        public final ForgeConfigSpec.DoubleValue infernalSpeedBonusPerLevel;
+        public final ForgeConfigSpec.IntValue infernalLungeIntervalTicks;
+        public final ForgeConfigSpec.DoubleValue infernalLungeStrength;
+        public final ForgeConfigSpec.IntValue infernalActionbarRadius;
+
         public final ForgeConfigSpec.DoubleValue mimicEquipmentDropChance;
         public final ForgeConfigSpec.BooleanValue allowLustToDropMimicEquipment;
 
@@ -153,6 +166,58 @@ public class FTConfig {
                 berserkISSFactorPerLevel = builder
                         .comment("attack actions cooldown reduction factor, per trait level, for ISS boss cooldowns")
                         .defineInRange("berserkISSFactorPerLevel", 0.2, 0, 1.0);
+
+                builder.push("infernal_trait");
+
+                infernalTriggerDistanceBase = builder
+                        .comment("distance (blocks) the player must exceed to start charging enrage at level 1, reduced per level by infernalTriggerDistancePerLevel")
+                        .defineInRange("infernalTriggerDistanceBase", 60, 1, 512);
+
+                infernalTriggerDistancePerLevel = builder
+                        .comment("blocks subtracted from the trigger distance per trait level")
+                        .defineInRange("infernalTriggerDistancePerLevel", 10, 0, 256);
+
+                infernalTriggerDurationBaseTicks = builder
+                        .comment("base ticks the player must stay past the trigger distance before enrage starts")
+                        .defineInRange("infernalTriggerDurationBaseTicks", 20, 1, 72000);
+
+                infernalTriggerDurationPerLevelTicks = builder
+                        .comment("extra ticks required per trait level on top of the base duration")
+                        .defineInRange("infernalTriggerDurationPerLevelTicks", 0, 0, 72000);
+
+                infernalEnrageDurationTicks = builder
+                        .comment("how long enrage lasts once triggered, regardless of trait level")
+                        .defineInRange("infernalEnrageDurationTicks", 300, 20, 72000);
+
+                infernalCooldownBaseTicks = builder
+                        .comment("cooldown at level 1 after enrage ends before it can trigger again")
+                        .defineInRange("infernalCooldownBaseTicks", 200, 0, 72000);
+
+                infernalCooldownPerLevelTicks = builder
+                        .comment("ticks subtracted from the cooldown per trait level above 1")
+                        .defineInRange("infernalCooldownPerLevelTicks", 50, 0, 72000);
+
+                infernalDamageBonusPerLevel = builder
+                        .comment("bonus damage dealt while enraged, per trait level (1.0 = +100% per level)")
+                        .defineInRange("infernalDamageBonusPerLevel", 1.0, 0, 10);
+
+                infernalSpeedBonusPerLevel = builder
+                        .comment("bonus movement speed while enraged, per trait level (1.0 = +100% per level)")
+                        .defineInRange("infernalSpeedBonusPerLevel", 1.0, 0, 10);
+
+                infernalLungeIntervalTicks = builder
+                        .comment("ticks between forward lunges toward the target while enraged")
+                        .defineInRange("infernalLungeIntervalTicks", 60, 1, 72000);
+
+                infernalLungeStrength = builder
+                        .comment("horizontal velocity impulse applied on each lunge")
+                        .defineInRange("infernalLungeStrength", 1.5, 0, 20);
+
+                infernalActionbarRadius = builder
+                        .comment("radius in blocks in which players see the enrage actionbar warning")
+                        .defineInRange("infernalActionbarRadius", 128, 1, 512);
+
+                builder.pop();
             }
             builder.pop();
 

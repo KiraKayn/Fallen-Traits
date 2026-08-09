@@ -26,13 +26,16 @@ public class FTTraits {
             () -> new CleanseTrait(ChatFormatting.YELLOW));
 
     public static final RegistryObject<DaywalkerTrait> DAYWALKER = TRAITS.register("daywalker",
-            () -> new DaywalkerTrait(ChatFormatting.GOLD));
+            () -> new DaywalkerTrait(ChatFormatting.BLUE));
 
     public static final RegistryObject<NightcrawlerTrait> NIGHTCRAWLER = TRAITS.register("nightcrawler",
             () -> new NightcrawlerTrait(ChatFormatting.DARK_PURPLE));
 
     public static final RegistryObject<BerserkTrait> BERSERK = TRAITS.register("berserk",
             () -> new BerserkTrait(ChatFormatting.DARK_RED));
+
+    public static final RegistryObject<InfernalTrait> INFERNAL = TRAITS.register("infernal",
+            () -> new InfernalTrait(ChatFormatting.GOLD));
 
     public static void register() {
     }

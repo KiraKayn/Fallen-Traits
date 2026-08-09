@@ -29,5 +29,14 @@
   "item.fallen_traits.berserk": "Berserk",
 
   "item.fallen_traits.invulnerability_breaker": "Invulnerability Breaker",
-  "item.fallen_traits.invulnerability_breaker.desc": "Reduces hit targets' i-frames %s ticks. Increases your own by %s ticks when hurt."
+  "item.fallen_traits.invulnerability_breaker.desc": "Reduces hit targets' i-frames %s ticks. Increases your own by %s ticks when hurt.",
+
+  "trait.fallen_traits.infernal": "Infernal",
+  "trait.fallen_traits.infernal.desc": "If a target strays too far for too long, the boss becomes Enraged: hitting harder, moving faster, and lunging at its target.",
+  "trait.fallen_traits.infernal.duration": "Duration",
+  "trait.fallen_traits.infernal.cooldown": "Cooldown",
+  "trait.fallen_traits.infernal.trigger_range": "Trigger Range",
+  "trait.fallen_traits.infernal.enrage_suffix": " has become Enraged!",
+  "item.fallen_traits.infernal": "Infernal",
+  "trait.fallen_traits.infernal.enraged_name": "Enraged %s"
 }

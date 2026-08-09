@@ -38,6 +38,9 @@ public class FTItems {
     public static final RegistryObject<TraitSymbol> BERSERK_SYMBOL = ITEMS.register("berserk",
             () -> new TraitSymbol(new Item.Properties().stacksTo(64)));
 
+    public static final RegistryObject<TraitSymbol> INFERNAL_SYMBOL = ITEMS.register("infernal",
+            () -> new TraitSymbol(new Item.Properties().stacksTo(64)));
+
     public static final RegistryObject<InvulnerabilityBreaker> INVULNERABILITY_BREAKER = ITEMS.register("invulnerability_breaker",
             () -> new InvulnerabilityBreaker(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant()));
 

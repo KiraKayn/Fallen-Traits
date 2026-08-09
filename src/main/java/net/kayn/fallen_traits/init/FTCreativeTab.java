@@ -28,6 +28,7 @@ public class FTCreativeTab {
                         output.accept(FTItems.DAYWALKER_SYMBOL.get());
                         output.accept(FTItems.BERSERK_SYMBOL.get());
                         output.accept(FTItems.INVULNERABILITY_BREAKER.get());
+                        output.accept(FTItems.INFERNAL_SYMBOL.get());
                     })
                     .build());
 
