@@ -1,0 +1,216 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:ender_dragon",
+    "minecraft:wither",
+    "minecraft:warden",
+    {
+      "id": "#forge:bosses",
+      "required": false
+    },
+    {
+      "id": "#c:bosses",
+      "required": false
+    },
+    {
+      "id": "irons_spellbooks:dead_king",
+      "required": false
+    },
+    {
+      "id": "irons_spellbooks:dead_king_corpse",
+      "required": false
+    },
+    {
+      "id": "irons_spellbooks:fire_boss",
+      "required": false
+    },
+    {
+      "id": "traveloptics:the_nightwarden",
+      "required": false
+    },
+    {
+      "id": "soulsweapons:old_champions_remains",
+      "required": false
+    },
+    {
+      "id": "soulsweapons:frenzied_shade",
+      "required": false
+    },
+    {
+      "id": "soulsweapons:returning_knight",
+      "required": false
+    },
+    {
+      "id": "soulsweapons:monarch_of_chaos",
+      "required": false
+    },
+    {
+      "id": "soulsweapons:decaying_king",
+      "required": false
+    },
+    {
+      "id": "soulsweapons:fallen_icon",
+      "required": false
+    },
+    {
+      "id": "soulsweapons:moonknight",
+      "required": false
+    },
+    {
+      "id": "soulsweapons:draugr_boss",
+      "required": false
+    },
+    {
+      "id": "twilightforest:naga",
+      "required": false
+    },
+    {
+      "id": "twilightforest:lich",
+      "required": false
+    },
+    {
+      "id": "twilightforest:minoshroom",
+      "required": false
+    },
+    {
+      "id": "twilightforest:hydra",
+      "required": false
+    },
+    {
+      "id": "twilightforest:knight_phantom",
+      "required": false
+    },
+    {
+      "id": "twilightforest:ur_ghast",
+      "required": false
+    },
+    {
+      "id": "twilightforest:alpha_yeti",
+      "required": false
+    },
+    {
+      "id": "twilightforest:snow_queen",
+      "required": false
+    },
+    {
+      "id": "cataclysm:netherite_monstrosity",
+      "required": false
+    },
+    {
+      "id": "cataclysm:ender_guardian",
+      "required": false
+    },
+    {
+      "id": "cataclysm:the_harbinger",
+      "required": false
+    },
+    {
+      "id": "cataclysm:ancient_remnant",
+      "required": false
+    },
+    {
+      "id": "cataclysm:the_leviathan",
+      "required": false
+    },
+    {
+      "id": "cataclysm:ignis",
+      "required": false
+    },
+    {
+      "id": "cataclysm:maledictus",
+      "required": false
+    },
+    {
+      "id": "cataclysm:scylla",
+      "required": false
+    },
+    {
+      "id": "mowziesmobs:ferrous_wroughtnaut",
+      "required": false
+    },
+    {
+      "id": "mowziesmobs:barako",
+      "required": false
+    },
+    {
+      "id": "mowziesmobs:frostmaw",
+      "required": false
+    },
+    {
+      "id": "mowziesmobs:umvuthi",
+      "required": false
+    },
+    {
+      "id": "alexsmobs:void_worm",
+      "required": false
+    },
+    {
+      "id": "blue_skies:summoner",
+      "required": false
+    },
+    {
+      "id": "blue_skies:alchemist",
+      "required": false
+    },
+    {
+      "id": "blue_skies:starlit_crusher",
+      "required": false
+    },
+    {
+      "id": "blue_skies:arachnarch",
+      "required": false
+    },
+    {
+      "id": "iceandfire:fire_dragon",
+      "required": false
+    },
+    {
+      "id": "iceandfire:ice_dragon",
+      "required": false
+    },
+    {
+      "id": "iceandfire:lightning_dragon",
+      "required": false
+    },
+    {
+      "id": "meetyourfight:bellringer",
+      "required": false
+    },
+    {
+      "id": "meetyourfight:rosalyne",
+      "required": false
+    },
+    {
+      "id": "meetyourfight:swampjaw",
+      "required": false
+    },
+    {
+      "id": "meetyourfight:dame_fortuna",
+      "required": false
+    },
+    {
+      "id": "born_in_chaos_v1:krampus",
+      "required": false
+    },
+    {
+      "id": "born_in_chaos_v1:pumpkinhead",
+      "required": false
+    },
+    {
+      "id": "born_in_chaos_v1:lord_pumpkinhead",
+      "required": false
+    },
+    {
+      "id": "legendary_monsters:the_obliterator",
+      "required": false
+    },
+    {
+      "id": "legendary_monsters:cloud_golem",
+      "required": false
+    },
+    {
+      "id": "legendary_monsters:posessed_paladin",
+      "required": false
+    }
+  ]
+}
