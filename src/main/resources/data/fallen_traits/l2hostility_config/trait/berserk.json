@@ -1,6 +1,6 @@
 {
   "cost": 100,
   "max_rank": 3,
-  "min_level": 600,
-  "weight": 5
+  "min_level": 1000,
+  "weight": 50
 }
