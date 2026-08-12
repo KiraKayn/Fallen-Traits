@@ -90,22 +90,27 @@ public class InfernalTrait extends LegendaryTrait {
 
     private Player resolveTarget(Mob mob, Data data) {
         LivingEntity target = mob.getTarget();
-        if (target instanceof Player player) {
+        if (target instanceof Player player && isValidTarget(player)) {
             data.lastTargetId = player.getUUID();
             return player;
         }
         if (data.lastTargetId != null) {
             Player player = mob.level().getPlayerByUUID(data.lastTargetId);
-            if (player != null && player.isAlive() && player.level() == mob.level()) {
+            if (player != null && isValidTarget(player) && player.level() == mob.level()) {
                 return player;
             }
             data.lastTargetId = null;
         }
         Player nearest = PlayerFinder.getNearestPlayer(mob.level(), mob);
-        if (nearest != null) {
+        if (nearest != null && isValidTarget(nearest)) {
             data.lastTargetId = nearest.getUUID();
+            return nearest;
         }
-        return nearest;
+        return null;
+    }
+
+    private static boolean isValidTarget(Player player) {
+        return player.isAlive() && !player.isSpectator() && !player.getAbilities().invulnerable;
     }
 
     private void startEnrage(Mob mob, int level, Data data, long time) {
@@ -251,6 +256,11 @@ public class InfernalTrait extends LegendaryTrait {
     @Override
     public boolean allow(LivingEntity le, int difficulty, int maxModLv) {
         return super.allow(le, difficulty, maxModLv) && !TraitCompatibility.isIncompatible(this, le);
+    }
+
+    @Override
+    public void postInit(LivingEntity mob, int lv) {
+        TraitCompatibility.resolve(mob);
     }
 
     @SerialClass
