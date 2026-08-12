@@ -41,6 +41,11 @@ public class BerserkTrait extends LegendaryTrait {
     }
 
     @Override
+    public void postInit(LivingEntity mob, int lv) {
+        TraitCompatibility.resolve(mob);
+    }
+
+    @Override
     public void addDetail(List<Component> list) {
         list.add(Component.translatable(getDescriptionId() + ".desc").withStyle(ChatFormatting.GRAY));
         list.add(mapLevel(e -> {

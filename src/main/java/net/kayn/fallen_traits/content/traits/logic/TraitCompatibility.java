@@ -46,4 +46,20 @@ public class TraitCompatibility {
         return false;
     }
 
+    public static void resolve(LivingEntity mob) {
+        if (!MobTraitCap.HOLDER.isProper(mob)) return;
+        MobTraitCap cap = MobTraitCap.HOLDER.get(mob);
+        List<MobTrait> keys = new ArrayList<>(cap.traits.keySet());
+        for (int i = 0; i < keys.size(); i++) {
+            Set<MobTrait> incompatible = get().get(keys.get(i));
+            if (incompatible == null) continue;
+            for (int j = i + 1; j < keys.size(); j++) {
+                MobTrait later = keys.get(j);
+                if (cap.hasTrait(later) && incompatible.contains(later)) {
+                    cap.removeTrait(later);
+                }
+            }
+        }
+    }
+
 }
