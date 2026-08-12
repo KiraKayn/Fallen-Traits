@@ -1,9 +1,12 @@
 package net.kayn.fallen_traits.content.traits;
 
 import dev.xkmc.l2hostility.content.traits.legendary.LegendaryTrait;
+import net.kayn.fallen_traits.content.traits.logic.TraitCompatibility;
 import net.kayn.fallen_traits.init.FTConfig;
+import net.kayn.fallen_traits.init.FTTraits;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.LivingEntity;
 
 import java.util.List;
 
@@ -13,6 +16,7 @@ public class BerserkTrait extends LegendaryTrait {
 
     public BerserkTrait(ChatFormatting style) {
         super(style);
+        TraitCompatibility.register(this, FTTraits.INFERNAL);
     }
 
     public static int getIntervalTicks(int level) {
@@ -29,6 +33,11 @@ public class BerserkTrait extends LegendaryTrait {
 
     public static double getCooldownMultiplier(int level) {
         return Math.max(1d - level * FTConfig.COMMON.berserkISSFactorPerLevel.get(), 0.1);
+    }
+
+    @Override
+    public boolean allow(LivingEntity le, int difficulty, int maxModLv) {
+        return super.allow(le, difficulty, maxModLv) && !TraitCompatibility.isIncompatible(this, le);
     }
 
     @Override

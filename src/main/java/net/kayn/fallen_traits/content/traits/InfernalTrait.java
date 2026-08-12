@@ -10,7 +10,9 @@ import dev.xkmc.l2hostility.content.logic.TraitManager;
 import dev.xkmc.l2hostility.content.traits.legendary.LegendaryTrait;
 import dev.xkmc.l2library.util.math.MathHelper;
 import dev.xkmc.l2serial.serialization.SerialClass;
+import net.kayn.fallen_traits.content.traits.logic.TraitCompatibility;
 import net.kayn.fallen_traits.init.FTConfig;
+import net.kayn.fallen_traits.init.FTTraits;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.CommonComponents;
@@ -36,6 +38,7 @@ public class InfernalTrait extends LegendaryTrait {
 
     public InfernalTrait(ChatFormatting style) {
         super(style);
+        TraitCompatibility.register(this, FTTraits.BERSERK);
     }
 
     @Override
@@ -243,6 +246,11 @@ public class InfernalTrait extends LegendaryTrait {
 
     private static String formatSeconds(double val) {
         return val == Math.floor(val) ? String.valueOf((int) val) : String.valueOf(val);
+    }
+
+    @Override
+    public boolean allow(LivingEntity le, int difficulty, int maxModLv) {
+        return super.allow(le, difficulty, maxModLv) && !TraitCompatibility.isIncompatible(this, le);
     }
 
     @SerialClass
