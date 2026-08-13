@@ -10,6 +10,8 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import net.rtxyd.fallen.lib.runtime.forgemod.util.EntityCakyHandler;
+import net.rtxyd.fallen.lib.util.IObjectCaky;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -19,7 +21,7 @@ import java.util.WeakHashMap;
 
 public class RageGlove extends CurseCurioItem {
 
-    public static final Map<UUID, Stack> STACKS = new WeakHashMap<>();
+    public static final String GLOVE_STACK_KEY = "ft.glove_stack";
 
     public RageGlove(Properties props) {
         super(props);
@@ -34,7 +36,7 @@ public class RageGlove extends CurseCurioItem {
     public void onHurtTarget(ItemStack stack, LivingEntity user, AttackCache cache) {
         var event = cache.getLivingHurtEvent();
         if (event == null || event.getAmount() <= 0) return;
-        Stack data = STACKS.computeIfAbsent(user.getUUID(), k -> new Stack());
+        Stack data = getStack(user);
         long time = user.level().getGameTime();
         int timeout = FTConfig.COMMON.furyStackTimeoutTicks.get();
         if (time - data.lastHit > timeout) {
@@ -46,6 +48,10 @@ public class RageGlove extends CurseCurioItem {
         cache.addHurtModifier(DamageModifier.multBase((float) factor));
         data.count++;
         data.lastHit = time;
+    }
+
+    private Stack getStack(LivingEntity user) {
+        return EntityCakyHandler.resolveWith(user, GLOVE_STACK_KEY, IObjectCaky.Type.MANUAL, e -> new Stack(), e -> 0);
     }
 
     @Override
