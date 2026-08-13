@@ -98,7 +98,7 @@ public class FTEvents {
             double radius = lvl * FTConfig.COMMON.devourerRadiusPerLevel.get();
             if (le.distanceToSqr(target) > radius * radius) continue;
             event.setCanceled(true);
-            DevourerTrait.grantHealth(le, amount);
+            DevourerTrait.grantMaxHealth(le, amount);
             break;
         }
     }

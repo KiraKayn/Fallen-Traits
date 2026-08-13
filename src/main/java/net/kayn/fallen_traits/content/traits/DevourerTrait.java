@@ -1,12 +1,12 @@
 package net.kayn.fallen_traits.content.traits;
 
+import dev.xkmc.l2damagetracker.contents.attack.AttackCache;
+import dev.xkmc.l2hostility.content.logic.TraitEffectCache;
 import dev.xkmc.l2hostility.content.traits.base.MobTrait;
 import net.kayn.fallen_traits.init.FTConfig;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.phys.AABB;
 
 import java.util.List;
 
@@ -17,23 +17,16 @@ public class DevourerTrait extends MobTrait {
     }
 
     @Override
-    public void tick(LivingEntity mob, int level) {
-        if (mob.level().isClientSide()) return;
-        int interval = FTConfig.COMMON.devourerDrainIntervalTicks.get();
-        if (mob.tickCount % interval != 0) return;
-        double radius = level * FTConfig.COMMON.devourerRadiusPerLevel.get();
+    public void onHurtTarget(int level, LivingEntity attacker, AttackCache cache, TraitEffectCache traitCache) {
+        var event = cache.getLivingHurtEvent();
+        if (event == null || event.getAmount() <= 0) return;
         double percent = level * FTConfig.COMMON.devourerDrainPercentPerLevel.get();
-        AABB box = mob.getBoundingBox().inflate(radius);
-        for (Player player : mob.level().getEntitiesOfClass(Player.class, box, p -> !p.isSpectator() && !p.isCreative())) {
-            if (player.distanceToSqr(mob) > radius * radius) continue;
-            float drain = (float) (player.getHealth() * percent);
-            if (drain <= 0) continue;
-            player.hurt(mob.level().damageSources().magic(), drain);
-            grantHealth(mob, drain);
-        }
+        float gain = (float) (event.getAmount() * percent);
+        if (gain <= 0) return;
+        grantMaxHealth(attacker, gain);
     }
 
-    public static void grantHealth(LivingEntity mob, float amount) {
+    public static void grantMaxHealth(LivingEntity mob, float amount) {
         if (!mob.isAlive() || mob.isDeadOrDying()) return;
         float max = mob.getMaxHealth();
         float newHealth = mob.getHealth() + amount;

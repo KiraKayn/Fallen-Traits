@@ -53,6 +53,10 @@
   "block.fallen_traits.transcendent_block": "Transcendent Block",
 
   "trait.fallen_traits.devourer": "Devourer",
-  "trait.fallen_traits.devourer.desc": "Steals %s of nearby players' HP. Any healing within %s blocks is stolen instead, turning into overheal once past max health.",
-  "item.fallen_traits.devourer": "Devourer"
+  "trait.fallen_traits.devourer.desc": "Steals %s of the damage it deals as health for itself. Any healing within %s blocks is stolen instead, turning into overheal once past max health.",
+  "item.fallen_traits.devourer": "Devourer",
+
+  "trait.fallen_traits.shredder": "Shredder",
+  "trait.fallen_traits.shredder.desc": "Steals %s of a player's current armor with each hit and wears it as its own. Stolen armor is returned when the mob dies.",
+  "item.fallen_traits.shredder": "Shredder"
 }
