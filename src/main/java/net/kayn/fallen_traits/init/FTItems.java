@@ -51,6 +51,15 @@ public class FTItems {
     public static final RegistryObject<FuryOfInfernal> FURY_OF_INFERNAL = ITEMS.register("fury_of_infernal",
             () -> new FuryOfInfernal(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant()));
 
+    public static final RegistryObject<FoiledItem> TRANSCENDENT_INGOT = ITEMS.register("transcendent_ingot",
+            () -> new FoiledItem(new Item.Properties().rarity(Rarity.EPIC).fireResistant()));
+
+    public static final RegistryObject<FoiledItem> TRANSCENDENT_DUST = ITEMS.register("transcendent_dust",
+            () -> new FoiledItem(new Item.Properties().rarity(Rarity.EPIC).fireResistant()));
+
+    public static final RegistryObject<BlockItem> TRANSCENDENT_BLOCK = ITEMS.register("transcendent_block",
+            () -> new BlockItem(FTBlocks.TRANSCENDENT_BLOCK.get(), new Item.Properties().rarity(Rarity.EPIC).fireResistant()));
+
     public static void register() {
     }
 

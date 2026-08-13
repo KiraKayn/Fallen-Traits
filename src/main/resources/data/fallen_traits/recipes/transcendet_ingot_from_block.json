@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "fallen_traits:transcendent_block"
+    }
+  ],
+  "result": {
+    "item": "fallen_traits:transcendent_ingot",
+    "count": 9
+  }
+}

@@ -1,5 +1,6 @@
 package net.kayn.fallen_traits;
 
+import net.kayn.fallen_traits.content.block.FTBlocks;
 import net.kayn.fallen_traits.init.FTConfig;
 import net.kayn.fallen_traits.init.FTCreativeTab;
 import net.kayn.fallen_traits.init.FTItems;
@@ -29,6 +30,7 @@ public class FallenTraits {
         FTTraits.TRAITS.register(modEventBus);
         FTItems.ITEMS.register(modEventBus);
         FTCreativeTab.register(modEventBus);
+        FTBlocks.BLOCKS.register(modEventBus);
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, FTConfig.COMMON_SPEC);
 

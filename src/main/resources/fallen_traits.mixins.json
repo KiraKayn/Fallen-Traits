@@ -6,9 +6,11 @@
   "mixins": [
     "MeleeAttackGoalMixin",
     "RangedAttackGoalMixin",
-    "l2hostility.PlayerDifficultyMixin"
+    "l2hostility.PlayerDifficultyMixin",
+    "l2hostility.HostilityBeaconPaymentMixin"
   ],
   "client": [
+    "l2hostility.HostilityBeaconScreenMixin"
   ],
   "minVersion": "0.8"
 }
