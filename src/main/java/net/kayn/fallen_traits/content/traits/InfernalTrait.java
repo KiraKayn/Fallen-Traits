@@ -27,6 +27,8 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.scores.PlayerTeam;
+import dev.xkmc.l2hostility.compat.curios.CurioCompat;
+import net.kayn.fallen_traits.init.FTItems;
 
 import java.util.List;
 import java.util.UUID;
@@ -38,7 +40,9 @@ public class InfernalTrait extends LegendaryTrait {
 
     public InfernalTrait(ChatFormatting style) {
         super(style);
-        TraitCompatibility.register(this, FTTraits.BERSERK);
+        TraitCompatibility.register(this, FTTraits.BERSERK, mob ->
+                PlayerFinder.getNearestPlayer(mob.level(), mob) instanceof Player &&
+                        CurioCompat.hasItemInCurio(PlayerFinder.getNearestPlayer(mob.level(), mob), FTItems.FURY_OF_INFERNAL.get()));
     }
 
     @Override

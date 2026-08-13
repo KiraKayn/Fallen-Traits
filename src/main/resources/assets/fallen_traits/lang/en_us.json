@@ -38,5 +38,13 @@
   "trait.fallen_traits.infernal.trigger_range": "Trigger Range",
   "trait.fallen_traits.infernal.enrage_suffix": " has become Enraged!",
   "item.fallen_traits.infernal": "Infernal",
-  "trait.fallen_traits.infernal.enraged_name": "Enraged %s"
+  "trait.fallen_traits.infernal.enraged_name": "Enraged %s",
+
+  "item.fallen_traits.fury_of_infernal": "Fury of the Infernal",
+  "item.fallen_traits.fury_of_infernal.desc_compat": "Infernal and Berserk traits become compatible, can spawn together now",
+  "item.fallen_traits.fury_of_infernal.desc_frequency": "Mob Traits will be 100% more frequent",
+  "item.fallen_traits.fury_of_infernal.desc_damage": "Gain %s damage per Trait Level the attacked enemy has (legendary not counted)",
+  "item.fallen_traits.fury_of_infernal.desc_crit": "Each Legendary Trait level on the attacked enemy grants %s crit damage",
+  "item.fallen_traits.fury_of_infernal.desc_attack_speed": "Mobs with %s+ trait levels grant %s Attack Speed, %s per block away from the enemy",
+  "item.fallen_traits.fury_of_infernal.desc_move_speed": "Mobs with %s+ trait levels grant %s Movement Speed, %s per block away from the enemy"
 }

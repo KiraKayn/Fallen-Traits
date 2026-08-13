@@ -2,8 +2,12 @@ package net.kayn.fallen_traits.init;
 
 import dev.xkmc.l2hostility.content.item.traits.TraitSymbol;
 import net.kayn.fallen_traits.FallenTraits;
+import net.kayn.fallen_traits.content.block.FTBlocks;
+import net.kayn.fallen_traits.content.item.FoiledItem;
+import net.kayn.fallen_traits.content.item.curio.FuryOfInfernal;
 import net.kayn.fallen_traits.content.item.curio.InvulnerabilityBreaker;
 import net.kayn.fallen_traits.content.item.curio.RageGlove;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.minecraftforge.registries.DeferredRegister;
@@ -43,6 +47,9 @@ public class FTItems {
 
     public static final RegistryObject<InvulnerabilityBreaker> INVULNERABILITY_BREAKER = ITEMS.register("invulnerability_breaker",
             () -> new InvulnerabilityBreaker(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant()));
+
+    public static final RegistryObject<FuryOfInfernal> FURY_OF_INFERNAL = ITEMS.register("fury_of_infernal",
+            () -> new FuryOfInfernal(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant()));
 
     public static void register() {
     }

@@ -63,6 +63,18 @@ public class FTConfig {
         public final ForgeConfigSpec.IntValue invulnBreakerWearerInvulnBonusTicks;
         public final ForgeConfigSpec.IntValue invulnBreakerExtraDifficulty;
 
+        public final ForgeConfigSpec.IntValue furyInfernalExtraLevel;
+        public final ForgeConfigSpec.DoubleValue furyInfernalDamagePerTraitLevel;
+        public final ForgeConfigSpec.DoubleValue furyInfernalCritDamagePerLegendaryLevel;
+        public final ForgeConfigSpec.IntValue furyInfernalAttackSpeedTraitThreshold;
+        public final ForgeConfigSpec.DoubleValue furyInfernalAttackSpeedBase;
+        public final ForgeConfigSpec.DoubleValue furyInfernalAttackSpeedPerBlock;
+        public final ForgeConfigSpec.IntValue furyInfernalMoveSpeedTraitThreshold;
+        public final ForgeConfigSpec.DoubleValue furyInfernalMoveSpeedBase;
+        public final ForgeConfigSpec.DoubleValue furyInfernalMoveSpeedPerBlock;
+        public final ForgeConfigSpec.IntValue furyInfernalMaxBonusBlocks;
+        public final ForgeConfigSpec.IntValue furyInfernalTargetTimeoutTicks;
+
         public Common(ForgeConfigSpec.Builder builder) {
 
             // traits (behavior granted directly by the trait itself)
@@ -273,6 +285,53 @@ public class FTConfig {
                         .comment("if false (default), Curse of Lust will not force Mimic-copied equipment to drop,",
                                 "preventing players from easily duping their own gear by killing a Mimic wearing it")
                         .define("allowLustToDropMimicEquipment", false);
+
+                builder.pop();
+                builder.push("fury_of_infernal");
+
+                furyInfernalExtraLevel = builder
+                        .comment("extra mob difficulty while worn")
+                        .defineInRange("furyInfernalExtraLevel", 500, 0, 100000);
+
+                furyInfernalDamagePerTraitLevel = builder
+                        .comment("damage bonus per non-legendary trait level on the attacked mob (0.03 = +3% per level)")
+                        .defineInRange("furyInfernalDamagePerTraitLevel", 0.03, 0, 10);
+
+                furyInfernalCritDamagePerLegendaryLevel = builder
+                        .comment("crit damage attribute bonus per legendary trait level on the current tracked target (0.05 = +5%)")
+                        .defineInRange("furyInfernalCritDamagePerLegendaryLevel", 0.05, 0, 10);
+
+                furyInfernalAttackSpeedTraitThreshold = builder
+                        .comment("minimum trait count on the tracked target to gain the attack speed bonus")
+                        .defineInRange("furyInfernalAttackSpeedTraitThreshold", 10, 1, 100);
+
+                furyInfernalAttackSpeedBase = builder
+                        .comment("base attack speed bonus once the threshold is met")
+                        .defineInRange("furyInfernalAttackSpeedBase", 0.25, 0, 10);
+
+                furyInfernalAttackSpeedPerBlock = builder
+                        .comment("extra attack speed bonus per block of distance to the tracked target")
+                        .defineInRange("furyInfernalAttackSpeedPerBlock", 0.05, 0, 10);
+
+                furyInfernalMoveSpeedTraitThreshold = builder
+                        .comment("minimum trait count on the tracked target to gain the movement speed bonus")
+                        .defineInRange("furyInfernalMoveSpeedTraitThreshold", 20, 1, 100);
+
+                furyInfernalMoveSpeedBase = builder
+                        .comment("base movement speed bonus once the threshold is met")
+                        .defineInRange("furyInfernalMoveSpeedBase", 0.25, 0, 10);
+
+                furyInfernalMoveSpeedPerBlock = builder
+                        .comment("extra movement speed bonus per block of distance to the tracked target")
+                        .defineInRange("furyInfernalMoveSpeedPerBlock", 0.05, 0, 10);
+
+                furyInfernalMaxBonusBlocks = builder
+                        .comment("distance is capped at this many blocks for the attack/movement speed bonuses")
+                        .defineInRange("furyInfernalMaxBonusBlocks", 50, 1, 10000);
+
+                furyInfernalTargetTimeoutTicks = builder
+                        .comment("tracked target is forgotten if no hit lands within this many ticks")
+                        .defineInRange("furyInfernalTargetTimeoutTicks", 200, 1, 72000);
 
                 builder.pop();
             }

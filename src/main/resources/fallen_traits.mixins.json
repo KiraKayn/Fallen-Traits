@@ -5,7 +5,8 @@
   "refmap": "fallen_traits.refmap.json",
   "mixins": [
     "MeleeAttackGoalMixin",
-    "RangedAttackGoalMixin"
+    "RangedAttackGoalMixin",
+    "l2hostility.PlayerDifficultyMixin"
   ],
   "client": [
   ],

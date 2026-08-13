@@ -29,6 +29,7 @@ public class FTCreativeTab {
                         output.accept(FTItems.BERSERK_SYMBOL.get());
                         output.accept(FTItems.INVULNERABILITY_BREAKER.get());
                         output.accept(FTItems.INFERNAL_SYMBOL.get());
+                        output.accept(FTItems.FURY_OF_INFERNAL.get());
                     })
                     .build());
 
