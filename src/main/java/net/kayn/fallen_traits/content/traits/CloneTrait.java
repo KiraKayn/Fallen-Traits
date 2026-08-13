@@ -5,11 +5,13 @@ import dev.xkmc.l2hostility.content.capability.mob.MobTraitCap;
 import dev.xkmc.l2hostility.content.logic.InheritContext;
 import dev.xkmc.l2hostility.content.traits.base.MobTrait;
 import dev.xkmc.l2hostility.events.MiscHandlers;
+import dev.xkmc.l2hostility.init.registrate.LHTraits;
 import dev.xkmc.l2serial.serialization.SerialClass;
 import net.kayn.fallen_traits.init.FTConfig;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -68,6 +70,11 @@ public class CloneTrait extends MobTrait {
         sl.addFreshEntity(clone);
 
         MiscHandlers.copyCap(original, clone);
+
+        MobTrait split = LHTraits.TRAITS.get().getValue(new ResourceLocation("l2hostility", "split"));
+        if (split != null) {
+            MobTraitCap.HOLDER.get(clone).removeTrait(split);
+        }
 
         double health = FTConfig.COMMON.cloneHealth.get();
         var healthAttr = clone.getAttribute(Attributes.MAX_HEALTH);
