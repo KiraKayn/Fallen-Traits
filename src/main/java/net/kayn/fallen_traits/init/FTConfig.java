@@ -77,7 +77,9 @@ public class FTConfig {
 
         public final ForgeConfigSpec.DoubleValue devourerDrainPercentPerLevel;
         public final ForgeConfigSpec.IntValue devourerRadiusPerLevel;
-        public final ForgeConfigSpec.IntValue devourerDrainIntervalTicks;
+
+        public final ForgeConfigSpec.DoubleValue shredderPercentPerLevel;
+        public final ForgeConfigSpec.IntValue shredderScanIntervalTicks;
 
         public Common(ForgeConfigSpec.Builder builder) {
 
@@ -244,11 +246,19 @@ public class FTConfig {
                         .comment("blocks of range for both HP draining and healing theft, per trait level")
                         .defineInRange("devourerRadiusPerLevel", 10, 1, 128);
 
-                devourerDrainIntervalTicks = builder
-                        .comment("ticks between each HP drain pulse")
-                        .defineInRange("devourerDrainIntervalTicks", 100, 1, 72000);
+                builder.pop();
+                builder.push("shredder_trait");
+
+                shredderPercentPerLevel = builder
+                        .comment("percent of a nearby player's current armor stolen, per trait level (0.1 = 10% per level)")
+                        .defineInRange("shredderPercentPerLevel", 0.1, 0, 1);
+
+                shredderScanIntervalTicks = builder
+                        .comment("ticks between each range check, the steal itself is a constant attribute modifier")
+                        .defineInRange("shredderScanIntervalTicks", 20, 1, 72000);
 
                 builder.pop();
+
             }
             builder.pop();
 

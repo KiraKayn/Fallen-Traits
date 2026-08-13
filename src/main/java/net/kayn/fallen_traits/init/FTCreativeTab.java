@@ -34,6 +34,7 @@ public class FTCreativeTab {
                         output.accept(FTItems.TRANSCENDENT_DUST.get());
                         output.accept(FTItems.TRANSCENDENT_BLOCK.get());
                         output.accept(FTItems.DEVOURER_SYMBOL.get());
+                        output.accept(FTItems.SHREDDER_SYMBOL.get());
                     })
                     .build());
 

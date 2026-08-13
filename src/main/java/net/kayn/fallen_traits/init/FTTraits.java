@@ -40,6 +40,9 @@ public class FTTraits {
     public static final RegistryObject<DevourerTrait> DEVOURER = TRAITS.register("devourer",
             () -> new DevourerTrait(ChatFormatting.DARK_PURPLE));
 
+    public static final RegistryObject<ShredderTrait> SHREDDER = TRAITS.register("shredder",
+            () -> new ShredderTrait(ChatFormatting.DARK_GRAY));
+
     public static void register() {
     }
 
