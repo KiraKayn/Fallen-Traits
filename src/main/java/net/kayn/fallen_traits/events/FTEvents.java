@@ -2,10 +2,12 @@ package net.kayn.fallen_traits.events;
 
 import dev.xkmc.l2hostility.compat.curios.CurioCompat;
 import dev.xkmc.l2hostility.content.capability.mob.MobTraitCap;
+import dev.xkmc.l2hostility.content.logic.TraitManager;
 import dev.xkmc.l2hostility.init.registrate.LHItems;
 import net.kayn.fallen_traits.FallenTraits;
 import net.kayn.fallen_traits.content.item.curio.RageGlove;
 import net.kayn.fallen_traits.content.traits.CloneTrait;
+import net.kayn.fallen_traits.content.traits.DevourerTrait;
 import net.kayn.fallen_traits.content.traits.MimicTrait;
 import net.kayn.fallen_traits.init.FTConfig;
 import net.kayn.fallen_traits.init.FTItems;
@@ -13,8 +15,10 @@ import net.kayn.fallen_traits.init.FTTraits;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.phys.AABB;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.living.LivingHealEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -75,6 +79,27 @@ public class FTEvents {
         LivingEntity entity = event.getEntity();
         if (CurioCompat.hasItemInCurio(entity, FTItems.INVULNERABILITY_BREAKER.get())) {
             FTItems.INVULNERABILITY_BREAKER.get().onWearerHurt(entity);
+        }
+    }
+
+    @SubscribeEvent
+    public static void onDevourerHeal(LivingHealEvent event) {
+        LivingEntity target = event.getEntity();
+        if (target.level().isClientSide()) return;
+        float amount = event.getAmount();
+        if (amount <= 0) return;
+        double maxRadius = FTConfig.COMMON.devourerRadiusPerLevel.get() * TraitManager.getMaxLevel();
+        AABB box = target.getBoundingBox().inflate(maxRadius);
+        for (LivingEntity le : target.level().getEntitiesOfClass(LivingEntity.class, box,
+                e -> e != target && e.isAlive() && MobTraitCap.HOLDER.isProper(e))) {
+            MobTraitCap cap = MobTraitCap.HOLDER.get(le);
+            int lvl = cap.getTraitLevel(FTTraits.DEVOURER.get());
+            if (lvl <= 0) continue;
+            double radius = lvl * FTConfig.COMMON.devourerRadiusPerLevel.get();
+            if (le.distanceToSqr(target) > radius * radius) continue;
+            event.setCanceled(true);
+            DevourerTrait.grantHealth(le, amount);
+            break;
         }
     }
 

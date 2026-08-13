@@ -50,5 +50,9 @@
 
   "item.fallen_traits.transcendent_ingot": "Transcendent Ingot",
   "item.fallen_traits.transcendent_dust": "Transcendent Dust",
-  "block.fallen_traits.transcendent_block": "Transcendent Block"
+  "block.fallen_traits.transcendent_block": "Transcendent Block",
+
+  "trait.fallen_traits.devourer": "Devourer",
+  "trait.fallen_traits.devourer.desc": "Steals %s of nearby players' HP. Any healing within %s blocks is stolen instead, turning into overheal once past max health.",
+  "item.fallen_traits.devourer": "Devourer"
 }

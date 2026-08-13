@@ -75,6 +75,10 @@ public class FTConfig {
         public final ForgeConfigSpec.IntValue furyInfernalMaxBonusBlocks;
         public final ForgeConfigSpec.IntValue furyInfernalTargetTimeoutTicks;
 
+        public final ForgeConfigSpec.DoubleValue devourerDrainPercentPerLevel;
+        public final ForgeConfigSpec.IntValue devourerRadiusPerLevel;
+        public final ForgeConfigSpec.IntValue devourerDrainIntervalTicks;
+
         public Common(ForgeConfigSpec.Builder builder) {
 
             // traits (behavior granted directly by the trait itself)
@@ -228,6 +232,21 @@ public class FTConfig {
                 infernalActionbarRadius = builder
                         .comment("radius in blocks in which players see the enrage actionbar warning")
                         .defineInRange("infernalActionbarRadius", 128, 1, 512);
+
+                builder.pop();
+                builder.push("devourer_trait");
+
+                devourerDrainPercentPerLevel = builder
+                        .comment("percent of a nearby player's current HP drained per interval, per trait level (0.1 = 10% per level)")
+                        .defineInRange("devourerDrainPercentPerLevel", 0.1, 0, 1);
+
+                devourerRadiusPerLevel = builder
+                        .comment("blocks of range for both HP draining and healing theft, per trait level")
+                        .defineInRange("devourerRadiusPerLevel", 10, 1, 128);
+
+                devourerDrainIntervalTicks = builder
+                        .comment("ticks between each HP drain pulse")
+                        .defineInRange("devourerDrainIntervalTicks", 100, 1, 72000);
 
                 builder.pop();
             }

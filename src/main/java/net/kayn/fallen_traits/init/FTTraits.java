@@ -37,6 +37,9 @@ public class FTTraits {
     public static final RegistryObject<InfernalTrait> INFERNAL = TRAITS.register("infernal",
             () -> new InfernalTrait(ChatFormatting.GOLD));
 
+    public static final RegistryObject<DevourerTrait> DEVOURER = TRAITS.register("devourer",
+            () -> new DevourerTrait(ChatFormatting.DARK_PURPLE));
+
     public static void register() {
     }
 

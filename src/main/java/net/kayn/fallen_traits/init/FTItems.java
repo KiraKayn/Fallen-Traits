@@ -60,6 +60,9 @@ public class FTItems {
     public static final RegistryObject<BlockItem> TRANSCENDENT_BLOCK = ITEMS.register("transcendent_block",
             () -> new BlockItem(FTBlocks.TRANSCENDENT_BLOCK.get(), new Item.Properties().rarity(Rarity.EPIC).fireResistant()));
 
+    public static final RegistryObject<TraitSymbol> DEVOURER_SYMBOL = ITEMS.register("devourer",
+            () -> new TraitSymbol(new Item.Properties().stacksTo(64)));
+
     public static void register() {
     }
 
