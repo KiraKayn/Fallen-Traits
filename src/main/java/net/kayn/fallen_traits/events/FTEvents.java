@@ -19,6 +19,8 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.rtxyd.fallen.lib.runtime.forgemod.util.EntityCakyHandler;
+import net.rtxyd.fallen.lib.util.IObjectCaky;
 
 @Mod.EventBusSubscriber(modid = FallenTraits.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class FTEvents {
@@ -26,10 +28,7 @@ public class FTEvents {
     @SubscribeEvent
     public static void onHurt(LivingHurtEvent event) {
         if (event.getAmount() <= 0) return;
-        LivingEntity entity = event.getEntity();
-        if (CurioCompat.hasItemInCurio(entity, FTItems.RAGE_GLOVE.get())) {
-            RageGlove.STACKS.remove(entity.getUUID());
-        }
+        EntityCakyHandler.resolveWith(event.getEntity(), RageGlove.GLOVE_STACK_KEY, IObjectCaky.Type.MANUAL, e -> new RageGlove.Stack(), e -> 1);
     }
 
     @SubscribeEvent(priority = EventPriority.LOW)
