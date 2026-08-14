@@ -1,12 +1,18 @@
 package net.kayn.fallen_traits.content.traits;
 
 import dev.xkmc.l2damagetracker.contents.attack.AttackCache;
+import dev.xkmc.l2hostility.content.capability.mob.CapStorageData;
+import dev.xkmc.l2hostility.content.capability.mob.MobTraitCap;
 import dev.xkmc.l2hostility.content.logic.TraitEffectCache;
+import dev.xkmc.l2hostility.content.logic.TraitManager;
 import dev.xkmc.l2hostility.content.traits.base.MobTrait;
+import dev.xkmc.l2serial.serialization.SerialClass;
 import net.kayn.fallen_traits.init.FTConfig;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 
 import java.util.List;
 
@@ -23,10 +29,20 @@ public class DevourerTrait extends MobTrait {
         double percent = level * FTConfig.COMMON.devourerDrainPercentPerLevel.get();
         float gain = (float) (event.getAmount() * percent);
         if (gain <= 0) return;
-        grantMaxHealth(attacker, gain);
+        growMaxHealth(attacker, gain);
     }
 
-    public static void grantMaxHealth(LivingEntity mob, float amount) {
+    private void growMaxHealth(LivingEntity mob, float amount) {
+        if (!mob.isAlive() || mob.isDeadOrDying()) return;
+        MobTraitCap cap = MobTraitCap.HOLDER.get(mob);
+        Data data = cap.getOrCreateData(getRegistryName(), Data::new);
+        data.bonusHealth += amount;
+        TraitManager.addAttribute(mob, Attributes.MAX_HEALTH, "fallen_traits_devourer",
+                data.bonusHealth, AttributeModifier.Operation.ADDITION);
+        mob.heal(amount);
+    }
+
+    public static void grantOverheal(LivingEntity mob, float amount) {
         if (!mob.isAlive() || mob.isDeadOrDying()) return;
         float max = mob.getMaxHealth();
         float newHealth = mob.getHealth() + amount;
@@ -47,6 +63,14 @@ public class DevourerTrait extends MobTrait {
                         "" + Math.round(i * FTConfig.COMMON.devourerRadiusPerLevel.get()))
                 .withStyle(ChatFormatting.DARK_PURPLE));
         list.add(Component.translatable(getDescriptionId() + ".desc", percent, radius).withStyle(ChatFormatting.GRAY));
+    }
+
+    @SerialClass
+    public static class Data extends CapStorageData {
+
+        @SerialClass.SerialField
+        public double bonusHealth = 0;
+
     }
 
 }

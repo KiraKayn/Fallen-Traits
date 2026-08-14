@@ -53,7 +53,7 @@
   "block.fallen_traits.transcendent_block": "Transcendent Block",
 
   "trait.fallen_traits.devourer": "Devourer",
-  "trait.fallen_traits.devourer.desc": "Steals %s of the damage it deals as health for itself. Any healing within %s blocks is stolen instead, turning into overheal once past max health.",
+  "trait.fallen_traits.devourer.desc": "Steals %s of the damage it deals as permanent max health. Any healing within %s blocks is stolen instead, granted as overheal once past max health.",
   "item.fallen_traits.devourer": "Devourer",
 
   "trait.fallen_traits.shredder": "Shredder",
