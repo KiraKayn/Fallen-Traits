@@ -17,7 +17,7 @@ public class FTCreativeTab {
     public static final RegistryObject<CreativeModeTab> FALLEN_TRAITS_TAB = CREATIVE_MODE_TABS.register("fallen_traits_tab",
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.fallen_traits_tab"))
-                    .icon(() -> new ItemStack(FTItems.RAGE_GLOVE.get()))
+                    .icon(() -> new ItemStack(FTItems.INFERNAL_SYMBOL.get()))
                     .displayItems((parameters, output) -> {
                         output.accept(FTItems.RAGE_SYMBOL.get());
                         output.accept(FTItems.RAGE_GLOVE.get());
