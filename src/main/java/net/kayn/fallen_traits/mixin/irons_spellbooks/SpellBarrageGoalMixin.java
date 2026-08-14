@@ -4,7 +4,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import dev.xkmc.l2hostility.content.capability.mob.MobTraitCap;
 import io.redspace.ironsspellbooks.entity.mobs.goals.SpellBarrageGoal;
-import net.kayn.fallen_traits.content.traits.BerserkTrait;
+import net.kayn.fallen_traits.content.traits.legendary.BerserkTrait;
 import net.kayn.fallen_traits.init.FTTraits;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.PathfinderMob;

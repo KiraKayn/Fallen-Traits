@@ -1,4 +1,4 @@
-package net.kayn.fallen_traits.content.traits;
+package net.kayn.fallen_traits.content.traits.legendary;
 
 import dev.xkmc.l2hostility.content.traits.legendary.LegendaryTrait;
 import net.kayn.fallen_traits.content.traits.logic.TraitCompatibility;

@@ -1,4 +1,4 @@
-package net.kayn.fallen_traits.content.traits;
+package net.kayn.fallen_traits.content.traits.basic;
 
 import dev.xkmc.l2hostility.content.capability.mob.CapStorageData;
 import dev.xkmc.l2hostility.content.capability.mob.MobTraitCap;

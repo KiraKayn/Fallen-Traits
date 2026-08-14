@@ -6,7 +6,7 @@ import com.gametechbc.traveloptics.api.entity.ai.WarlockAttackGoal;
 import dev.xkmc.l2hostility.content.capability.mob.MobTraitCap;
 import io.redspace.ironsspellbooks.api.entity.IMagicEntity;
 import io.redspace.ironsspellbooks.entity.mobs.goals.WizardAttackGoal;
-import net.kayn.fallen_traits.content.traits.BerserkTrait;
+import net.kayn.fallen_traits.content.traits.legendary.BerserkTrait;
 import net.kayn.fallen_traits.init.FTTraits;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

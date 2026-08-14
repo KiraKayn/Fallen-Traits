@@ -1,4 +1,4 @@
-package net.kayn.fallen_traits.content.traits;
+package net.kayn.fallen_traits.content.traits.legendary;
 
 import dev.xkmc.l2damagetracker.contents.attack.AttackCache;
 import dev.xkmc.l2damagetracker.contents.attack.DamageModifier;

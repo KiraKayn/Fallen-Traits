@@ -2,7 +2,7 @@ package net.kayn.fallen_traits.mixin.traveloptics;
 
 import com.gametechbc.traveloptics.api.entity.ai.ComboWizardAttackGoal;
 import dev.xkmc.l2hostility.content.capability.mob.MobTraitCap;
-import net.kayn.fallen_traits.content.traits.BerserkTrait;
+import net.kayn.fallen_traits.content.traits.legendary.BerserkTrait;
 import net.kayn.fallen_traits.init.FTTraits;
 import net.minecraft.world.entity.PathfinderMob;
 import org.spongepowered.asm.mixin.Final;

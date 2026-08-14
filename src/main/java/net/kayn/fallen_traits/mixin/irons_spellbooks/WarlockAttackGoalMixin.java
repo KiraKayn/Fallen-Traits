@@ -6,7 +6,7 @@ import dev.xkmc.l2hostility.content.capability.mob.MobTraitCap;
 import io.redspace.ironsspellbooks.api.entity.IMagicEntity;
 import io.redspace.ironsspellbooks.entity.mobs.goals.WarlockAttackGoal;
 import io.redspace.ironsspellbooks.entity.mobs.goals.WizardAttackGoal;
-import net.kayn.fallen_traits.content.traits.BerserkTrait;
+import net.kayn.fallen_traits.content.traits.legendary.BerserkTrait;
 import net.kayn.fallen_traits.init.FTTraits;
 import net.minecraft.util.RandomSource;
 import org.spongepowered.asm.mixin.Mixin;
