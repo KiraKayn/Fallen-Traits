@@ -81,6 +81,20 @@ public class FTConfig {
         public final ForgeConfigSpec.DoubleValue shredderPercentPerLevel;
         public final ForgeConfigSpec.IntValue shredderScanIntervalTicks;
 
+        public final ForgeConfigSpec.DoubleValue titanSizeBase;
+        public final ForgeConfigSpec.DoubleValue titanSizeStep;
+        public final ForgeConfigSpec.DoubleValue titanHealthBase;
+        public final ForgeConfigSpec.DoubleValue titanHealthStep;
+        public final ForgeConfigSpec.DoubleValue titanKnockbackBase;
+        public final ForgeConfigSpec.DoubleValue titanKnockbackStep;
+
+        public final ForgeConfigSpec.DoubleValue dwarfSizeBase;
+        public final ForgeConfigSpec.DoubleValue dwarfSizeStep;
+        public final ForgeConfigSpec.DoubleValue dwarfSpeedBase;
+        public final ForgeConfigSpec.DoubleValue dwarfSpeedStep;
+        public final ForgeConfigSpec.DoubleValue dwarfDodgeBase;
+        public final ForgeConfigSpec.DoubleValue dwarfDodgeStep;
+
         public Common(ForgeConfigSpec.Builder builder) {
 
             // traits (behavior granted directly by the trait itself)
@@ -256,6 +270,60 @@ public class FTConfig {
                 shredderScanIntervalTicks = builder
                         .comment("ticks between each range check, the steal itself is a constant attribute modifier")
                         .defineInRange("shredderScanIntervalTicks", 20, 1, 72000);
+
+                builder.pop();
+                builder.push("titan_trait");
+
+                titanSizeBase = builder
+                        .comment("size increase at trait level 1 (0.5 = +50%)")
+                        .defineInRange("titanSizeBase", 0.5, 0, 10);
+
+                titanSizeStep = builder
+                        .comment("additional size increase per level above 1")
+                        .defineInRange("titanSizeStep", 0.25, 0, 10);
+
+                titanHealthBase = builder
+                        .comment("max health increase at trait level 1 (1.0 = +100%)")
+                        .defineInRange("titanHealthBase", 1.0, 0, 20);
+
+                titanHealthStep = builder
+                        .comment("additional max health increase per level above 1")
+                        .defineInRange("titanHealthStep", 0.5, 0, 20);
+
+                titanKnockbackBase = builder
+                        .comment("knockback resistance at trait level 1 (0.5 = 50%, vanilla caps total at 100%)")
+                        .defineInRange("titanKnockbackBase", 0.5, 0, 1);
+
+                titanKnockbackStep = builder
+                        .comment("additional knockback resistance per level above 1")
+                        .defineInRange("titanKnockbackStep", 0.25, 0, 1);
+
+                builder.pop();
+                builder.push("dwarf_trait");
+
+                dwarfSizeBase = builder
+                        .comment("size decrease at trait level 1 (0.15 = -15%)")
+                        .defineInRange("dwarfSizeBase", 0.15, 0, 0.9);
+
+                dwarfSizeStep = builder
+                        .comment("additional size decrease per level above 1")
+                        .defineInRange("dwarfSizeStep", 0.15, 0, 0.9);
+
+                dwarfSpeedBase = builder
+                        .comment("movement speed increase at trait level 1 (0.5 = +50%)")
+                        .defineInRange("dwarfSpeedBase", 0.5, 0, 5);
+
+                dwarfSpeedStep = builder
+                        .comment("additional movement speed increase per level above 1")
+                        .defineInRange("dwarfSpeedStep", 0.5, 0, 5);
+
+                dwarfDodgeBase = builder
+                        .comment("dodge chance at trait level 1 (0.1 = 10%)")
+                        .defineInRange("dwarfDodgeBase", 0.1, 0, 1);
+
+                dwarfDodgeStep = builder
+                        .comment("additional dodge chance per level above 1")
+                        .defineInRange("dwarfDodgeStep", 0.1, 0, 1);
 
                 builder.pop();
 

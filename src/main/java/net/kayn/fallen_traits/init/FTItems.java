@@ -66,6 +66,12 @@ public class FTItems {
     public static final RegistryObject<TraitSymbol> SHREDDER_SYMBOL = ITEMS.register("shredder",
             () -> new TraitSymbol(new Item.Properties().stacksTo(64)));
 
+    public static final RegistryObject<TraitSymbol> TITAN_SYMBOL = ITEMS.register("titan",
+            () -> new TraitSymbol(new Item.Properties().stacksTo(64)));
+
+    public static final RegistryObject<TraitSymbol> DWARF_SYMBOL = ITEMS.register("dwarf",
+            () -> new TraitSymbol(new Item.Properties().stacksTo(64)));
+
     public static void register() {
     }
 

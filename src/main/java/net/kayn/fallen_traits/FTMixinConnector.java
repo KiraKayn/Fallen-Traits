@@ -18,6 +18,9 @@ public class FTMixinConnector implements IMixinConnector {
         boolean isISSLoaded = getClass().getClassLoader().getResource(
                 "io/redspace/ironsspellbooks/IronsSpellbooks.class") != null;
 
+        boolean isGeckoLibLoaded = getClass().getClassLoader().getResource(
+                "software/bernie/geckolib/GeckoLib.class") != null;
+
         if (isCataclysmLoaded) {
             Mixins.addConfiguration("fallen_traits.cataclysm.mixins.json");
         }
@@ -26,6 +29,9 @@ public class FTMixinConnector implements IMixinConnector {
         }
         if (isISSLoaded) {
             Mixins.addConfiguration("fallen_traits.irons_spellbooks.mixins.json");
+        }
+        if (isGeckoLibLoaded) {
+            Mixins.addConfiguration("fallen_traits.geckolib.mixins.json");
         }
     }
 }

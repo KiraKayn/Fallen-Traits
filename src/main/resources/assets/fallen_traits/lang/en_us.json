@@ -58,5 +58,12 @@
 
   "trait.fallen_traits.shredder": "Shredder",
   "trait.fallen_traits.shredder.desc": "Steals %s of a player's current armor with each hit and wears it as its own. Stolen armor is returned when the mob dies.",
-  "item.fallen_traits.shredder": "Shredder"
+  "item.fallen_traits.shredder": "Shredder",
+
+  "trait.fallen_traits.titan": "Titan",
+  "item.fallen_traits.titan": "Titan",
+  "attribute.fallen_traits.size": "Size",
+
+  "trait.fallen_traits.dwarf": "Dwarf",
+  "item.fallen_traits.dwarf": "Dwarf"
 }

@@ -3,7 +3,8 @@ package net.kayn.fallen_traits.init;
 import dev.xkmc.l2hostility.content.traits.base.MobTrait;
 import dev.xkmc.l2hostility.init.registrate.LHTraits;
 import net.kayn.fallen_traits.FallenTraits;
-import net.kayn.fallen_traits.content.traits.*;
+import net.kayn.fallen_traits.content.traits.legendary.*;
+import net.kayn.fallen_traits.content.traits.basic.*;
 import net.minecraft.ChatFormatting;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
@@ -42,6 +43,13 @@ public class FTTraits {
 
     public static final RegistryObject<ShredderTrait> SHREDDER = TRAITS.register("shredder",
             () -> new ShredderTrait(ChatFormatting.DARK_GRAY));
+
+    public static final RegistryObject<TitanTrait> TITAN = TRAITS.register("titan",
+            () -> new TitanTrait(ChatFormatting.DARK_GREEN));
+
+    public static final RegistryObject<DwarfTrait> DWARF = TRAITS.register("dwarf",
+            () -> new DwarfTrait(ChatFormatting.DARK_AQUA));
+
 
     public static void register() {
     }

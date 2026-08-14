@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "irons_spellbooks:dead_king_corpse",
+      "required": false
+    },
+    {
+      "id": "irons_spellbooks:dead_king",
+      "required": false
+    },
+    {
+      "id": "irons_spellbooks:fire_boss",
+      "required": false
+    },
+    {
+      "id": "traveloptics:the_nightwarden",
+      "required": false
+    }
+  ]
+}

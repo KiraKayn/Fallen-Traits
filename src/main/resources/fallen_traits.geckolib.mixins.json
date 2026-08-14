@@ -4,11 +4,9 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "fallen_traits.refmap.json",
   "mixins": [
-    "traveloptics.ComboWizardAttackGoalMixin",
-    "traveloptics.NightwardenAttackGoalMixin",
-    "traveloptics.TOWarlockAttackGoalMixin"
   ],
   "client": [
+    "geckolib.GeoEntityRendererMixin"
   ],
   "minVersion": "0.8"
 }

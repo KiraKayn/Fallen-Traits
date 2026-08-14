@@ -13,6 +13,8 @@
     "cataclysm.TheLeviathanEntityMixin"
   ],
   "client": [
+    "cataclysm.ScyllaRendererMixin",
+    "cataclysm.MaledictusRendererMixin"
   ],
   "minVersion": "0.8"
 }
