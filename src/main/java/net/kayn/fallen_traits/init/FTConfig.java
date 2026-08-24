@@ -100,6 +100,17 @@ public class FTConfig {
         public final ForgeConfigSpec.DoubleValue titansHeartArmor;
         public final ForgeConfigSpec.DoubleValue titansHeartLegendaryChanceBonus;
 
+        public final ForgeConfigSpec.IntValue lawOfScaleExtraDifficulty;
+        public final ForgeConfigSpec.IntValue lawOfScaleExtraTraitCount;
+        public final ForgeConfigSpec.DoubleValue lawOfScaleMaxDamagePercent;
+        public final ForgeConfigSpec.DoubleValue lawOfScaleDamagePercentPerSizeRatio;
+        public final ForgeConfigSpec.DoubleValue lawOfScaleKnockbackBase;
+        public final ForgeConfigSpec.DoubleValue lawOfScaleKnockbackPerSizeRatio;
+        public final ForgeConfigSpec.DoubleValue lawOfScaleKnockbackMax;
+        public final ForgeConfigSpec.DoubleValue lawOfScaleAttackSpeedPer50PercentSmaller;
+        public final ForgeConfigSpec.DoubleValue lawOfScaleAttackDamagePer50PercentLarger;
+        public final ForgeConfigSpec.IntValue lawOfScaleTargetTimeoutTicks;
+
         public Common(ForgeConfigSpec.Builder builder) {
 
             // traits (behavior granted directly by the trait itself)
@@ -455,6 +466,50 @@ public class FTConfig {
                         .defineInRange("titansHeartLegendaryChanceBonus", 0.5, 0, 1);
 
                 builder.pop();
+                builder.push("law_of_scale");
+
+                lawOfScaleExtraDifficulty = builder
+                        .comment("extra mob difficulty while worn")
+                        .defineInRange("lawOfScaleExtraDifficulty", 500, 0, 100000);
+
+                lawOfScaleExtraTraitCount = builder
+                        .comment("extra random traits mobs can spawn with while this curse is worn")
+                        .defineInRange("lawOfScaleExtraTraitCount", 5, 0, 100);
+
+                lawOfScaleMaxDamagePercent = builder
+                        .comment("max bonus damage dealt to a larger enemy, as a percent of its current health (0.2 = 20%)")
+                        .defineInRange("lawOfScaleMaxDamagePercent", 0.2, 0, 1);
+
+                lawOfScaleDamagePercentPerSizeRatio = builder
+                        .comment("bonus damage percent gained per full size ratio the enemy is larger than you")
+                        .defineInRange("lawOfScaleDamagePercentPerSizeRatio", 0.2, 0, 10);
+
+                lawOfScaleKnockbackBase = builder
+                        .comment("base knockback strength applied to smaller enemies")
+                        .defineInRange("lawOfScaleKnockbackBase", 0.3, 0, 10);
+
+                lawOfScaleKnockbackPerSizeRatio = builder
+                        .comment("extra knockback strength per full size ratio you are larger than the enemy")
+                        .defineInRange("lawOfScaleKnockbackPerSizeRatio", 0.3, 0, 10);
+
+                lawOfScaleKnockbackMax = builder
+                        .comment("maximum knockback strength regardless of size advantage")
+                        .defineInRange("lawOfScaleKnockbackMax", 2.0, 0, 20);
+
+                lawOfScaleAttackSpeedPer50PercentSmaller = builder
+                        .comment("attack speed multiplier gained for every 50% smaller you are than your current target (0.1 = +10%)")
+                        .defineInRange("lawOfScaleAttackSpeedPer50PercentSmaller", 0.1, 0, 10);
+
+                lawOfScaleAttackDamagePer50PercentLarger = builder
+                        .comment("attack damage multiplier gained for every 50% larger you are than your current target (0.1 = +10%)")
+                        .defineInRange("lawOfScaleAttackDamagePer50PercentLarger", 0.1, 0, 10);
+
+                lawOfScaleTargetTimeoutTicks = builder
+                        .comment("tracked target is forgotten if no hit lands within this many ticks")
+                        .defineInRange("lawOfScaleTargetTimeoutTicks", 200, 1, 72000);
+
+                builder.pop();
+
             }
             builder.pop();
         }

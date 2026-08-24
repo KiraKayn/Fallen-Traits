@@ -3,6 +3,7 @@ package net.kayn.fallen_traits.mixin.l2hostility;
 import dev.xkmc.l2hostility.compat.curios.CurioCompat;
 import dev.xkmc.l2hostility.content.capability.player.PlayerDifficulty;
 import dev.xkmc.l2hostility.content.logic.MobDifficultyCollector;
+import net.kayn.fallen_traits.content.traits.logic.ExtraTraitHolder;
 import net.kayn.fallen_traits.content.traits.logic.LegendaryWeightHolder;
 import net.kayn.fallen_traits.init.FTConfig;
 import net.kayn.fallen_traits.init.FTItems;
@@ -35,6 +36,9 @@ public abstract class PlayerDifficultyMixin {
         }
         if (CurioCompat.hasItemInCurio(fallen_traits$cachedPlayer, FTItems.TITANS_HEART.get())) {
             ((LegendaryWeightHolder) instance).fallen_traits$addLegendaryWeightBonus(FTConfig.COMMON.titansHeartLegendaryChanceBonus.get());
+        }
+        if (CurioCompat.hasItemInCurio(fallen_traits$cachedPlayer, FTItems.LAW_OF_SCALE.get())) {
+            ((ExtraTraitHolder) instance).fallen_traits$addExtraTraitCount(FTConfig.COMMON.lawOfScaleExtraTraitCount.get());
         }
     }
 

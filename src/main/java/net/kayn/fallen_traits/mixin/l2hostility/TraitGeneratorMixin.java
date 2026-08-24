@@ -5,11 +5,13 @@ import dev.xkmc.l2hostility.content.logic.MobDifficultyCollector;
 import dev.xkmc.l2hostility.content.logic.TraitGenerator;
 import dev.xkmc.l2hostility.content.traits.base.MobTrait;
 import dev.xkmc.l2hostility.content.traits.legendary.LegendaryTrait;
+import net.kayn.fallen_traits.content.traits.logic.ExtraTraitHolder;
 import net.kayn.fallen_traits.content.traits.logic.LegendaryWeightHolder;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.LivingEntity;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Mutable;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -33,28 +35,37 @@ public abstract class TraitGeneratorMixin {
     @Final
     private RandomSource rand;
 
+    @Mutable
+    @Shadow
+    private int maxTrait;
+
     @Inject(method = "<init>(Ldev/xkmc/l2hostility/content/capability/mob/MobTraitCap;Lnet/minecraft/world/entity/LivingEntity;ILjava/util/HashMap;Ldev/xkmc/l2hostility/content/logic/MobDifficultyCollector;)V",
             at = @At("TAIL"))
-    private void fallen_traits$boostLegendaryWeight(MobTraitCap cap, LivingEntity entity, int mobLevel,
-                                                    HashMap<MobTrait, Integer> traits, MobDifficultyCollector ins, CallbackInfo ci) {
+    private void fallen_traits$applyBonuses(MobTraitCap cap, LivingEntity entity, int mobLevel,
+                                            HashMap<MobTrait, Integer> traits, MobDifficultyCollector ins, CallbackInfo ci) {
         double bonus = ((LegendaryWeightHolder) ins).fallen_traits$getLegendaryWeightBonus();
-        if (bonus <= 0) return;
+        if (bonus > 0) {
+            List<MobTrait> legendary = new ArrayList<>();
+            for (MobTrait trait : traitPool) {
+                if (trait instanceof LegendaryTrait) {
+                    legendary.add(trait);
+                }
+            }
 
-        List<MobTrait> legendary = new ArrayList<>();
-        for (MobTrait trait : traitPool) {
-            if (trait instanceof LegendaryTrait) {
-                legendary.add(trait);
+            for (MobTrait trait : legendary) {
+                int extraCopies = (int) bonus;
+                double frac = bonus - extraCopies;
+                if (frac > 0 && rand.nextDouble() < frac) extraCopies++;
+                for (int i = 0; i < extraCopies; i++) {
+                    traitPool.add(trait);
+                    weights += trait.getConfig().weight;
+                }
             }
         }
 
-        for (MobTrait trait : legendary) {
-            int extraCopies = (int) bonus;
-            double frac = bonus - extraCopies;
-            if (frac > 0 && rand.nextDouble() < frac) extraCopies++;
-            for (int i = 0; i < extraCopies; i++) {
-                traitPool.add(trait);
-                weights += trait.getConfig().weight;
-            }
+        int extraTraits = ((ExtraTraitHolder) ins).fallen_traits$getExtraTraitCount();
+        if (extraTraits > 0 && maxTrait > 0) {
+            maxTrait += extraTraits;
         }
     }
 

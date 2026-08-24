@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "fallen_traits:fury_of_infernal"
+    "fallen_traits:fury_of_infernal",
+    "fallen_traits:law_of_scale"
   ]
 }

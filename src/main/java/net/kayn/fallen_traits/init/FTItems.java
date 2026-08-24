@@ -4,10 +4,7 @@ import dev.xkmc.l2hostility.content.item.traits.TraitSymbol;
 import net.kayn.fallen_traits.FallenTraits;
 import net.kayn.fallen_traits.content.block.FTBlocks;
 import net.kayn.fallen_traits.content.item.FoiledItem;
-import net.kayn.fallen_traits.content.item.curio.FuryOfInfernal;
-import net.kayn.fallen_traits.content.item.curio.InvulnerabilityBreaker;
-import net.kayn.fallen_traits.content.item.curio.RageGlove;
-import net.kayn.fallen_traits.content.item.curio.TitansHeart;
+import net.kayn.fallen_traits.content.item.curio.*;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
@@ -75,6 +72,9 @@ public class FTItems {
 
     public static final RegistryObject<TitansHeart> TITANS_HEART = ITEMS.register("titans_heart",
             () -> new TitansHeart(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant()));
+
+    public static final RegistryObject<LawOfScale> LAW_OF_SCALE = ITEMS.register("law_of_scale",
+            () -> new LawOfScale(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant()));
 
     public static void register() {
     }

@@ -69,5 +69,12 @@
 
   "item.fallen_traits.titans_heart": "Titan's Heart",
   "item.fallen_traits.titans_heart.desc_static": "Gain %s Size, %s Max Health, and %s Armor",
-  "item.fallen_traits.legendary_trait_cheap": "Legendary Traits will be +%s more frequent"
+  "item.fallen_traits.legendary_trait_cheap": "Legendary Traits will be +%s more frequent",
+
+  "item.fallen_traits.law_of_scale": "Law of Scale",
+  "item.fallen_traits.law_of_scale.desc_damage": "Deal up to %s current health damage to larger enemies, scaling with size difference",
+  "item.fallen_traits.law_of_scale.desc_knockback": "Knock back smaller enemies on hit, ignoring knockback resistance",
+  "item.fallen_traits.law_of_scale.desc_attack_speed": "Gain %s Attack Speed for every 50%% smaller you are than your target",
+  "item.fallen_traits.law_of_scale.desc_attack_damage": "Gain %s Attack Damage for every 50%% larger you are than your target",
+  "item.fallen_traits.law_of_scale.desc_traits": "Mobs will have %s more random traits"
 }
