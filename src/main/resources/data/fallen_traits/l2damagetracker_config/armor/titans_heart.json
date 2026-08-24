@@ -1,0 +1,11 @@
+{
+  "immune": {
+    "fallen_traits:titans_heart": [
+      "l2complements:flame",
+      "l2complements:curse",
+      "l2hostility:moonwalk",
+      "l2hostility:gravity",
+      "minecraft:levitation"
+    ]
+  }
+}

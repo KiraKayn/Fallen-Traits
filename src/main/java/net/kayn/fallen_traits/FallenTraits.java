@@ -1,10 +1,7 @@
 package net.kayn.fallen_traits;
 
 import net.kayn.fallen_traits.content.block.FTBlocks;
-import net.kayn.fallen_traits.init.FTConfig;
-import net.kayn.fallen_traits.init.FTCreativeTab;
-import net.kayn.fallen_traits.init.FTItems;
-import net.kayn.fallen_traits.init.FTTraits;
+import net.kayn.fallen_traits.init.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -31,6 +28,7 @@ public class FallenTraits {
         FTItems.ITEMS.register(modEventBus);
         FTCreativeTab.register(modEventBus);
         FTBlocks.BLOCKS.register(modEventBus);
+        FTMiscs.ATTRIBUTES.register(modEventBus);
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, FTConfig.COMMON_SPEC);
 

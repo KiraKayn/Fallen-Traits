@@ -19,20 +19,23 @@ public class FTCreativeTab {
                     .title(Component.translatable("itemGroup.fallen_traits_tab"))
                     .icon(() -> new ItemStack(FTItems.INFERNAL_SYMBOL.get()))
                     .displayItems((parameters, output) -> {
-                        output.accept(FTItems.RAGE_SYMBOL.get());
+                        //items
+                        output.accept(FTItems.TITANS_HEART.get());
+                        output.accept(FTItems.FURY_OF_INFERNAL.get());
+                        output.accept(FTItems.TRANSCENDENT_INGOT.get());
+                        output.accept(FTItems.TRANSCENDENT_DUST.get());
+                        output.accept(FTItems.TRANSCENDENT_BLOCK.get());
                         output.accept(FTItems.RAGE_GLOVE.get());
+                        output.accept(FTItems.INVULNERABILITY_BREAKER.get());
+                        //traits
+                        output.accept(FTItems.RAGE_SYMBOL.get());
                         output.accept(FTItems.MIMIC_SYMBOL.get());
                         output.accept(FTItems.CLONE_SYMBOL.get());
                         output.accept(FTItems.CLEANSE_SYMBOL.get());
                         output.accept(FTItems.NIGHTCRAWLER_SYMBOL.get());
                         output.accept(FTItems.DAYWALKER_SYMBOL.get());
                         output.accept(FTItems.BERSERK_SYMBOL.get());
-                        output.accept(FTItems.INVULNERABILITY_BREAKER.get());
                         output.accept(FTItems.INFERNAL_SYMBOL.get());
-                        output.accept(FTItems.FURY_OF_INFERNAL.get());
-                        output.accept(FTItems.TRANSCENDENT_INGOT.get());
-                        output.accept(FTItems.TRANSCENDENT_DUST.get());
-                        output.accept(FTItems.TRANSCENDENT_BLOCK.get());
                         output.accept(FTItems.DEVOURER_SYMBOL.get());
                         output.accept(FTItems.SHREDDER_SYMBOL.get());
                         output.accept(FTItems.TITAN_SYMBOL.get());

@@ -8,11 +8,16 @@
     "RangedAttackGoalMixin",
     "l2hostility.PlayerDifficultyMixin",
     "l2hostility.HostilityBeaconPaymentMixin",
-    "EntityDimensionsMixin"
+    "EntityDimensionsMixin",
+    "l2hostility.PlayerDifficultyMixin",
+    "l2hostility.MobDifficultyCollectorMixin",
+    "l2hostility.TraitGeneratorMixin",
+    "PlayerDimensionsMixin"
   ],
   "client": [
     "l2hostility.HostilityBeaconScreenMixin",
-    "LivingEntityRendererMixin"
+    "LivingEntityRendererMixin",
+    "InventoryScreenMixin"
   ],
   "minVersion": "0.8"
 }

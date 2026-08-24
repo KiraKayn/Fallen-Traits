@@ -65,5 +65,9 @@
   "attribute.fallen_traits.size": "Size",
 
   "trait.fallen_traits.dwarf": "Dwarf",
-  "item.fallen_traits.dwarf": "Dwarf"
+  "item.fallen_traits.dwarf": "Dwarf",
+
+  "item.fallen_traits.titans_heart": "Titan's Heart",
+  "item.fallen_traits.titans_heart.desc_static": "Gain %s Size, %s Max Health, and %s Armor",
+  "item.fallen_traits.legendary_trait_cheap": "Legendary Traits will be +%s more frequent"
 }

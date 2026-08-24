@@ -1,6 +1,8 @@
 package net.kayn.fallen_traits.content.traits.legendary;
 
 import dev.xkmc.l2hostility.content.traits.legendary.LegendaryTrait;
+import net.kayn.fallen_traits.client.SizeRenderContext;
+import net.kayn.fallen_traits.init.FTMiscs;
 import net.minecraft.ChatFormatting;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -20,6 +22,7 @@ public abstract class SizeTrait extends LegendaryTrait {
         applyAttributes(mob, level);
         mob.getPersistentData().putInt(getLevelTag(), level);
         mob.refreshDimensions();
+        mob.getPersistentData().putBoolean(DIMENSIONS_UPDATED_TAG, true);
     }
 
     @Override
@@ -27,6 +30,7 @@ public abstract class SizeTrait extends LegendaryTrait {
         applyAttributes(mob, level);
         mob.getPersistentData().putInt(getLevelTag(), level);
         mob.refreshDimensions();
+        mob.getPersistentData().putBoolean(DIMENSIONS_UPDATED_TAG, true);
     }
 
     @Override
@@ -48,20 +52,33 @@ public abstract class SizeTrait extends LegendaryTrait {
     protected abstract String getLevelTag();
 
     public static float getScale(Entity entity) {
-        if (!(entity instanceof LivingEntity)) {
+        if (!(entity instanceof LivingEntity living)) {
+            return 1.0F;
+        }
+        if (SizeRenderContext.isInventoryPreview()) {
             return 1.0F;
         }
 
         float scale = 1.0F;
 
-        int titanLevel = entity.getPersistentData().getInt(TITAN_LEVEL_TAG);
+        int titanLevel = living.getPersistentData().getInt(TITAN_LEVEL_TAG);
         if (titanLevel > 0) {
-            scale *= (float) (1 + TitanTrait.sizeAt(titanLevel));
+            scale *= (float) (1.0D + TitanTrait.sizeAt(titanLevel));
         }
 
-        int dwarfLevel = entity.getPersistentData().getInt(DWARF_LEVEL_TAG);
+        int dwarfLevel = living.getPersistentData().getInt(DWARF_LEVEL_TAG);
         if (dwarfLevel > 0) {
-            scale *= (float) (1 + DwarfTrait.sizeAt(dwarfLevel));
+            scale *= (float) (1.0D + DwarfTrait.sizeAt(dwarfLevel));
+        }
+
+        var attributes = living.getAttributes();
+        if (attributes == null) {
+            return scale;
+        }
+
+        var sizeAttribute = attributes.getInstance(FTMiscs.SIZE_SCALE.get());
+        if (sizeAttribute != null) {
+            scale *= (float) sizeAttribute.getValue();
         }
 
         return scale;

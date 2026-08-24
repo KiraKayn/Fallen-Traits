@@ -95,6 +95,13 @@ public class FTConfig {
         public final ForgeConfigSpec.DoubleValue dwarfDodgeBase;
         public final ForgeConfigSpec.DoubleValue dwarfDodgeStep;
 
+        public final ForgeConfigSpec.IntValue titansHeartExtraDifficulty;
+        public final ForgeConfigSpec.DoubleValue titansHeartSize;
+        public final ForgeConfigSpec.DoubleValue titansHeartHealth;
+        public final ForgeConfigSpec.DoubleValue titansHeartArmor;
+        public final ForgeConfigSpec.DoubleValue titansHeartLegendaryChanceBonus;
+        public final ForgeConfigSpec.IntValue titansHeartTargetTimeoutTicks;
+
         public Common(ForgeConfigSpec.Builder builder) {
 
             // traits (behavior granted directly by the trait itself)
@@ -429,6 +436,33 @@ public class FTConfig {
                 furyInfernalTargetTimeoutTicks = builder
                         .comment("tracked target is forgotten if no hit lands within this many ticks")
                         .defineInRange("furyInfernalTargetTimeoutTicks", 200, 1, 72000);
+
+                builder.pop();
+                builder.push("titans_heart");
+
+                titansHeartExtraDifficulty = builder
+                        .comment("extra mob difficulty while worn")
+                        .defineInRange("titansHeartExtraDifficulty", 300, 0, 100000);
+
+                titansHeartSize = builder
+                        .comment("static size increase while worn (0.5 = +50%)")
+                        .defineInRange("titansHeartSize", 0.5, 0, 100);
+
+                titansHeartHealth = builder
+                        .comment("static max health multiplier while worn (0.5 = +50%)")
+                        .defineInRange("titansHeartHealth", 0.5, 0, 100);
+
+                titansHeartArmor = builder
+                        .comment("static armor multiplier while worn (0.5 = +50%)")
+                        .defineInRange("titansHeartArmor", 0.5, 0, 100);
+
+                titansHeartLegendaryChanceBonus = builder
+                        .comment("bonus chance for spawned mobs to roll a legendary trait while worn")
+                        .defineInRange("titansHeartLegendaryChanceBonus", 0.5, 0, 1);
+
+                titansHeartTargetTimeoutTicks = builder
+                        .comment("tracked target is forgotten if no hit lands within this many ticks")
+                        .defineInRange("titansHeartTargetTimeoutTicks", 200, 1, 72000);
 
                 builder.pop();
             }

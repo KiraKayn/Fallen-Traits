@@ -3,6 +3,8 @@ package net.kayn.fallen_traits.mixin.l2hostility;
 import dev.xkmc.l2hostility.compat.curios.CurioCompat;
 import dev.xkmc.l2hostility.content.capability.player.PlayerDifficulty;
 import dev.xkmc.l2hostility.content.logic.MobDifficultyCollector;
+import net.kayn.fallen_traits.content.traits.logic.LegendaryWeightHolder;
+import net.kayn.fallen_traits.init.FTConfig;
 import net.kayn.fallen_traits.init.FTItems;
 import net.minecraft.world.entity.player.Player;
 import org.spongepowered.asm.mixin.Mixin;
@@ -27,9 +29,12 @@ public abstract class PlayerDifficultyMixin {
 
     @Inject(method = "apply(Ldev/xkmc/l2hostility/content/logic/MobDifficultyCollector;)V", at = @At("TAIL"))
     private void fallen_traits$applyFury(MobDifficultyCollector instance, CallbackInfo ci) {
-        if (fallen_traits$cachedPlayer != null &&
-                CurioCompat.hasItemInCurio(fallen_traits$cachedPlayer, FTItems.FURY_OF_INFERNAL.get())) {
+        if (fallen_traits$cachedPlayer == null) return;
+        if (CurioCompat.hasItemInCurio(fallen_traits$cachedPlayer, FTItems.FURY_OF_INFERNAL.get())) {
             instance.setFullChance();
+        }
+        if (CurioCompat.hasItemInCurio(fallen_traits$cachedPlayer, FTItems.TITANS_HEART.get())) {
+            ((LegendaryWeightHolder) instance).fallen_traits$addLegendaryWeightBonus(FTConfig.COMMON.titansHeartLegendaryChanceBonus.get());
         }
     }
 

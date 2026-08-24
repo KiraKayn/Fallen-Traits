@@ -7,6 +7,7 @@ import net.kayn.fallen_traits.content.item.FoiledItem;
 import net.kayn.fallen_traits.content.item.curio.FuryOfInfernal;
 import net.kayn.fallen_traits.content.item.curio.InvulnerabilityBreaker;
 import net.kayn.fallen_traits.content.item.curio.RageGlove;
+import net.kayn.fallen_traits.content.item.curio.TitansHeart;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
@@ -71,6 +72,9 @@ public class FTItems {
 
     public static final RegistryObject<TraitSymbol> DWARF_SYMBOL = ITEMS.register("dwarf",
             () -> new TraitSymbol(new Item.Properties().stacksTo(64)));
+
+    public static final RegistryObject<TitansHeart> TITANS_HEART = ITEMS.register("titans_heart",
+            () -> new TitansHeart(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant()));
 
     public static void register() {
     }
