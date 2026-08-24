@@ -79,7 +79,6 @@ public class FTConfig {
         public final ForgeConfigSpec.IntValue devourerRadiusPerLevel;
 
         public final ForgeConfigSpec.DoubleValue shredderPercentPerLevel;
-        public final ForgeConfigSpec.IntValue shredderScanIntervalTicks;
 
         public final ForgeConfigSpec.DoubleValue titanSizeBase;
         public final ForgeConfigSpec.DoubleValue titanSizeStep;
@@ -100,7 +99,6 @@ public class FTConfig {
         public final ForgeConfigSpec.DoubleValue titansHeartHealth;
         public final ForgeConfigSpec.DoubleValue titansHeartArmor;
         public final ForgeConfigSpec.DoubleValue titansHeartLegendaryChanceBonus;
-        public final ForgeConfigSpec.IntValue titansHeartTargetTimeoutTicks;
 
         public Common(ForgeConfigSpec.Builder builder) {
 
@@ -273,10 +271,6 @@ public class FTConfig {
                 shredderPercentPerLevel = builder
                         .comment("percent of a nearby player's current armor stolen, per trait level (0.1 = 10% per level)")
                         .defineInRange("shredderPercentPerLevel", 0.1, 0, 1);
-
-                shredderScanIntervalTicks = builder
-                        .comment("ticks between each range check, the steal itself is a constant attribute modifier")
-                        .defineInRange("shredderScanIntervalTicks", 20, 1, 72000);
 
                 builder.pop();
                 builder.push("titan_trait");
@@ -459,10 +453,6 @@ public class FTConfig {
                 titansHeartLegendaryChanceBonus = builder
                         .comment("bonus chance for spawned mobs to roll a legendary trait while worn")
                         .defineInRange("titansHeartLegendaryChanceBonus", 0.5, 0, 1);
-
-                titansHeartTargetTimeoutTicks = builder
-                        .comment("tracked target is forgotten if no hit lands within this many ticks")
-                        .defineInRange("titansHeartTargetTimeoutTicks", 200, 1, 72000);
 
                 builder.pop();
             }
