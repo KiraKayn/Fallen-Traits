@@ -20,22 +20,22 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import net.rtxyd.fallen.lib.runtime.forgemod.util.EntityCakyHandler;
+import net.rtxyd.fallen.lib.util.IObjectCaky;
 import org.jetbrains.annotations.Nullable;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
 
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
-import java.util.WeakHashMap;
 
 public class FuryOfInfernal extends CurseCurioItem {
+
+    public static final String TARGET_KEY = "ft.fury_target";
 
     private static final UUID ATTACK_SPEED_ID = dev.xkmc.l2library.util.math.MathHelper.getUUIDFromString("fallen_traits_fury_attack_speed");
     private static final UUID MOVE_SPEED_ID = dev.xkmc.l2library.util.math.MathHelper.getUUIDFromString("fallen_traits_fury_move_speed");
     private static final UUID CRIT_DAMAGE_ID = dev.xkmc.l2library.util.math.MathHelper.getUUIDFromString("fallen_traits_fury_crit_damage");
-
-    private static final Map<UUID, TargetData> TARGETS = new WeakHashMap<>();
 
     public FuryOfInfernal(Properties props) {
         super(props);
@@ -58,7 +58,11 @@ public class FuryOfInfernal extends CurseCurioItem {
         var event = cache.getLivingHurtEvent();
         if (event == null || event.getAmount() <= 0) return;
         LivingEntity target = cache.getAttackTarget();
-        TARGETS.put(user.getUUID(), new TargetData(target.getUUID(), user.level().getGameTime()));
+        if (target == null) return;
+
+        TargetData data = getData(user);
+        data.targetId = target.getUUID();
+        data.lastHitTick = user.level().getGameTime();
 
         if (!MobTraitCap.HOLDER.isProper(target)) return;
         MobTraitCap cap = MobTraitCap.HOLDER.get(target);
@@ -120,12 +124,16 @@ public class FuryOfInfernal extends CurseCurioItem {
         setOrRemoveModifier(wearer, ALObjects.Attributes.CRIT_DAMAGE.get(), CRIT_DAMAGE_ID, "fallen_traits_fury_crit_damage", 0, AttributeModifier.Operation.ADDITION);
     }
 
+    private TargetData getData(LivingEntity entity) {
+        return EntityCakyHandler.resolveWith(entity, TARGET_KEY, IObjectCaky.Type.MANUAL, e -> new TargetData(), e -> 0);
+    }
+
     private LivingEntity resolveTarget(LivingEntity wearer) {
-        TargetData td = TARGETS.get(wearer.getUUID());
-        if (td == null) return null;
+        TargetData td = getData(wearer);
+        if (td.targetId == null) return null;
         int timeout = FTConfig.COMMON.furyInfernalTargetTimeoutTicks.get();
         if (wearer.level().getGameTime() - td.lastHitTick > timeout) {
-            TARGETS.remove(wearer.getUUID());
+            td.targetId = null;
             return null;
         }
         if (!(wearer.level() instanceof ServerLevel sl)) return null;
@@ -166,14 +174,9 @@ public class FuryOfInfernal extends CurseCurioItem {
         list.add(Component.translatable(getDescriptionId() + ".desc_frequency").withStyle(ChatFormatting.RED));
     }
 
-    private static class TargetData {
-        final UUID targetId;
-        final long lastHitTick;
-
-        TargetData(UUID targetId, long lastHitTick) {
-            this.targetId = targetId;
-            this.lastHitTick = lastHitTick;
-        }
+    public static class TargetData {
+        public UUID targetId;
+        public long lastHitTick;
     }
 
 }
