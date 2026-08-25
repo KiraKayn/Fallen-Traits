@@ -79,6 +79,9 @@ public class FTItems {
     public static final RegistryObject<Feyweight> FEYWEIGHT = ITEMS.register("feyweight",
             () -> new Feyweight(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant()));
 
+    public static final RegistryObject<OmniscientLootingCharm> OMNISCIENT_LOOTING_CHARM = ITEMS.register("omniscient_looting_charm",
+            () -> new OmniscientLootingCharm(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant()));
+
     public static void register() {
     }
 

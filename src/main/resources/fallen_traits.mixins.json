@@ -12,7 +12,9 @@
     "l2hostility.PlayerDifficultyMixin",
     "l2hostility.MobDifficultyCollectorMixin",
     "l2hostility.TraitGeneratorMixin",
-    "PlayerDimensionsMixin"
+    "PlayerDimensionsMixin",
+    "l2hostility.CurioCompatMixin",
+    "l2hostility.ItemPopulatorMixin"
   ],
   "client": [
     "l2hostility.HostilityBeaconScreenMixin",

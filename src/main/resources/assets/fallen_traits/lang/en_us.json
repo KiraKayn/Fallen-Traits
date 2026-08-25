@@ -29,7 +29,7 @@
   "item.fallen_traits.berserk": "Berserk",
 
   "item.fallen_traits.invulnerability_breaker": "Invulnerability Breaker",
-  "item.fallen_traits.invulnerability_breaker.desc": "Reduces hit targets' i-frames %s ticks. Increases your own by %s ticks when hurt.",
+  "item.fallen_traits.invulnerability_breaker.desc": "Reduces hit targets' i-frames by %s ticks. Increases your own by %s ticks when hurt.",
 
   "trait.fallen_traits.infernal": "Infernal",
   "trait.fallen_traits.infernal.desc": "If a target strays too far for too long, the boss becomes Enraged: hitting harder, moving faster, and lunging at its target.",
@@ -80,5 +80,11 @@
 
   "item.fallen_traits.feyweight": "Feyweight",
   "item.fallen_traits.feyweight.desc_static": "Gain %s Size, %s Movement Speed, %s Attack Speed, and %s Dodge Chance",
-  "item.fallen_traits.feyweight.desc_vulnerability": "Larger enemies deal %s more damage to you"
+  "item.fallen_traits.feyweight.desc_vulnerability": "Larger enemies deal %s more damage to you",
+
+  "item.fallen_traits.omniscient_looting_charm": "Omniscient Looting Charm",
+  "tooltip.fallen_traits.omniscient_looting_charm": "Combines the power of all Looting Charms",
+  "tooltip.fallen_traits.omniscient_looting_charm.desc": "Mobs cannot drop their equipment.",
+
+  "tooltip.fallen_traits.omniscient_looting_charm.jei": "Works with Omniscient Looting Charm"
 }

@@ -45,7 +45,7 @@ ordering="AFTER"
 side="BOTH"
 [[dependencies.fallen_traits]]
 modId="l2hostility"
-mandatory=false
+mandatory=true
 versionRange="[2.5.6,)"
 ordering="AFTER"
 side="BOTH"
@@ -67,3 +67,9 @@ mandatory=true
 versionRange="[1.4.0,)"
 ordering="AFTER"
 side="BOTH"
+[[dependencies.fallen_traits]]
+modId="jei"
+mandatory=false
+versionRange="[1.0.0,)"
+ordering="AFTER"
+side="CLIENT"
