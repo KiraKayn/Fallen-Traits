@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "fallen_traits:rage_glove"
+    "fallen_traits:rage_glove",
+    "fallen_traits:invulnerability_breaker"
   ]
 }
