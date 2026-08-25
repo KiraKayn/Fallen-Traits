@@ -1,5 +1,7 @@
 package net.kayn.fallen_traits.events;
 
+import dev.shadowsoffire.attributeslib.api.ALObjects;
+import dev.shadowsoffire.attributeslib.impl.AttributeEvents;
 import dev.xkmc.l2hostility.compat.curios.CurioCompat;
 import dev.xkmc.l2hostility.content.capability.mob.MobTraitCap;
 import dev.xkmc.l2hostility.content.logic.TraitManager;
@@ -12,14 +14,23 @@ import net.kayn.fallen_traits.content.traits.legendary.MimicTrait;
 import net.kayn.fallen_traits.init.FTConfig;
 import net.kayn.fallen_traits.init.FTItems;
 import net.kayn.fallen_traits.init.FTTraits;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.AABB;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.living.LivingEvent;
-import net.minecraftforge.event.entity.living.LivingHealEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.event.ForgeEventFactory;
+import net.minecraftforge.event.entity.EntityTeleportEvent;
+import net.minecraftforge.event.entity.ProjectileImpactEvent;
+import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -73,6 +84,7 @@ public class FTEvents {
             entity.discard();
         }
     }
+
     @SubscribeEvent
     public static void onWearerHurt(LivingHurtEvent event) {
         if (event.getAmount() <= 0) return;
@@ -103,4 +115,101 @@ public class FTEvents {
         }
     }
 
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public static void onPlayerAttacked(LivingAttackEvent event) {
+        if (event.getEntity() instanceof Player player) {
+            if (!player.level().isClientSide() && CurioCompat.hasItemInCurio(player, FTItems.PHASEWALKERS_RING.get())) {
+                double dodgeChance = player.getAttributeValue(ALObjects.Attributes.DODGE_CHANCE.get());
+                Entity attacker = event.getSource().getEntity();
+
+                if (dodgeChance > 0 && player.getRandom().nextDouble() < dodgeChance) {
+                    if (teleportBehind(player, attacker)) {
+                        event.setCanceled(true);
+                    }
+                }
+            }
+        }
+    }
+
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public static void onPlayerHurt(LivingHurtEvent event) {
+        if (event.getEntity() instanceof Player player) {
+            if (!player.level().isClientSide() && CurioCompat.hasItemInCurio(player, FTItems.PHASEWALKERS_RING.get())) {
+                double dodgeChance = player.getAttributeValue(ALObjects.Attributes.DODGE_CHANCE.get());
+                Entity attacker = event.getSource().getEntity();
+
+                if (dodgeChance > 0 && player.getRandom().nextDouble() < dodgeChance) {
+                    if (teleportBehind(player, attacker)) {
+                        event.setCanceled(true);
+                    }
+                }
+            }
+        }
+    }
+
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public static void onProjectileHit(ProjectileImpactEvent event) {
+        if (event.getRayTraceResult() instanceof net.minecraft.world.phys.EntityHitResult entityHit) {
+            if (entityHit.getEntity() instanceof Player player) {
+                if (!player.level().isClientSide() && CurioCompat.hasItemInCurio(player, FTItems.PHASEWALKERS_RING.get())) {
+                    double dodgeChance = player.getAttributeValue(ALObjects.Attributes.DODGE_CHANCE.get());
+                    Entity attacker = event.getProjectile().getOwner();
+
+                    if (dodgeChance > 0 && player.getRandom().nextDouble() < dodgeChance) {
+                        if (teleportBehind(player, attacker)) {
+                            event.setCanceled(true);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private static boolean teleportBehind(LivingEntity entity, Entity attacker) {
+        int range = 8;
+        if (!entity.level().isClientSide() && entity.isAlive() && range > 0) {
+            Vec3 target;
+            if (attacker != null) {
+                Vec3 attackerPos = attacker.position();
+                Vec3 entityPos = entity.position();
+                Vec3 direction = entityPos.subtract(attackerPos).normalize();
+                target = attackerPos.subtract(direction.scale(2));
+            } else {
+                double d0 = entity.getX() + (entity.getRandom().nextDouble() - 0.5D) * range * 2;
+                double d1 = entity.getY() + (double) (entity.getRandom().nextInt(range * 2) - range);
+                double d2 = entity.getZ() + (entity.getRandom().nextDouble() - 0.5D) * range * 2;
+                target = new Vec3(d0, d1, d2);
+            }
+            return teleport(entity, target.x, target.y, target.z);
+        } else {
+            return false;
+        }
+    }
+
+    private static boolean teleport(LivingEntity entity, double pX, double pY, double pZ) {
+        BlockPos.MutableBlockPos ipos = new BlockPos.MutableBlockPos(pX, pY, pZ);
+        while (ipos.getY() > entity.level().getMinBuildHeight() && !entity.level().getBlockState(ipos).blocksMotion()) {
+            ipos.move(Direction.DOWN);
+        }
+
+        BlockState blockstate = entity.level().getBlockState(ipos);
+        boolean flag = blockstate.blocksMotion();
+        boolean flag1 = blockstate.getFluidState().is(FluidTags.WATER);
+        if (flag && !flag1) {
+            EntityTeleportEvent.EnderEntity event = ForgeEventFactory.onEnderTeleport(entity, pX, pY, pZ);
+            if (event.isCanceled()) return false;
+            Vec3 vec3 = entity.position();
+            boolean flag2 = entity.randomTeleport(event.getTargetX(), event.getTargetY(), event.getTargetZ(), true);
+            if (flag2) {
+                entity.level().gameEvent(GameEvent.TELEPORT, vec3, GameEvent.Context.of(entity));
+                if (!entity.isSilent()) {
+                    entity.level().playSound(null, entity.xo, entity.yo, entity.zo, SoundEvents.ENDERMAN_TELEPORT, entity.getSoundSource(), 1.0F, 1.0F);
+                    entity.playSound(SoundEvents.ENDERMAN_TELEPORT, 1.0F, 1.0F);
+                }
+            }
+            return flag2;
+        } else {
+            return false;
+        }
+    }
 }

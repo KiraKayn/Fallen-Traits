@@ -30,6 +30,7 @@ public class FTCreativeTab {
                         output.accept(FTItems.LAW_OF_SCALE.get());
                         output.accept(FTItems.FEYWEIGHT.get());
                         output.accept(FTItems.OMNISCIENT_LOOTING_CHARM.get());
+                        output.accept(FTItems.PHASEWALKERS_RING.get());
                         //traits
                         output.accept(FTItems.RAGE_SYMBOL.get());
                         output.accept(FTItems.MIMIC_SYMBOL.get());

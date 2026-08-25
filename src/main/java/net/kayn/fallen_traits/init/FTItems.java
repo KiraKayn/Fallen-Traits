@@ -82,6 +82,9 @@ public class FTItems {
     public static final RegistryObject<OmniscientLootingCharm> OMNISCIENT_LOOTING_CHARM = ITEMS.register("omniscient_looting_charm",
             () -> new OmniscientLootingCharm(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant()));
 
+    public static final RegistryObject<PhasewalkersRing> PHASEWALKERS_RING = ITEMS.register("phasewalkers_ring",
+            () -> new PhasewalkersRing(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant()));
+
     public static void register() {
     }
 

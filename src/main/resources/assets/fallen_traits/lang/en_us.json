@@ -86,5 +86,8 @@
   "tooltip.fallen_traits.omniscient_looting_charm": "Combines the power of all Looting Charms",
   "tooltip.fallen_traits.omniscient_looting_charm.desc": "Mobs cannot drop their equipment.",
 
-  "tooltip.fallen_traits.omniscient_looting_charm.jei": "Works with Omniscient Looting Charm"
+  "tooltip.fallen_traits.omniscient_looting_charm.jei": "Works with Omniscient Looting Charm",
+
+  "item.fallen_traits.phasewalkers_ring": "Phasewalker's Ring",
+  "item.fallen_traits.phasewalkers_ring.desc": "Dodging attacks teleports you behind your attacker instead of negating damage."
 }
