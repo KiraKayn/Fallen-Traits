@@ -76,6 +76,9 @@ public class FTItems {
     public static final RegistryObject<LawOfScale> LAW_OF_SCALE = ITEMS.register("law_of_scale",
             () -> new LawOfScale(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant()));
 
+    public static final RegistryObject<Feyweight> FEYWEIGHT = ITEMS.register("feyweight",
+            () -> new Feyweight(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant()));
+
     public static void register() {
     }
 

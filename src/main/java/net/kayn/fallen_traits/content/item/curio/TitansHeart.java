@@ -3,6 +3,7 @@ package net.kayn.fallen_traits.content.item.curio;
 import dev.xkmc.l2damagetracker.contents.attack.AttackCache;
 import dev.xkmc.l2damagetracker.init.data.ArmorEffectConfig;
 import dev.xkmc.l2damagetracker.init.data.L2DTLangData;
+import dev.xkmc.l2hostility.compat.curios.CurioCompat;
 import dev.xkmc.l2hostility.content.item.curio.core.CurseCurioItem;
 import dev.xkmc.l2hostility.content.logic.DifficultyLevel;
 import dev.xkmc.l2library.util.math.MathHelper;
@@ -47,6 +48,15 @@ public class TitansHeart extends CurseCurioItem {
     @Override
     public int getExtraLevel() {
         return FTConfig.COMMON.titansHeartExtraDifficulty.get();
+    }
+
+    @Override
+    public boolean canEquip(SlotContext slotContext, ItemStack stack) {
+        LivingEntity wearer = slotContext.entity();
+        return CurioCompat.getItems(
+                wearer,
+                equipped -> equipped.getItem() instanceof Feyweight
+        ).isEmpty();
     }
 
     @Override

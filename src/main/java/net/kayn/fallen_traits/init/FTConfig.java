@@ -111,6 +111,12 @@ public class FTConfig {
         public final ForgeConfigSpec.DoubleValue lawOfScaleAttackDamagePer50PercentLarger;
         public final ForgeConfigSpec.IntValue lawOfScaleTargetTimeoutTicks;
 
+        public final ForgeConfigSpec.DoubleValue feyweightSizeReduction;
+        public final ForgeConfigSpec.DoubleValue feyweightMovementSpeed;
+        public final ForgeConfigSpec.DoubleValue feyweightAttackSpeed;
+        public final ForgeConfigSpec.DoubleValue feyweightDodgeChance;
+        public final ForgeConfigSpec.DoubleValue feyweightLargerEnemyDamage;
+
         public Common(ForgeConfigSpec.Builder builder) {
 
             // traits (behavior granted directly by the trait itself)
@@ -507,6 +513,29 @@ public class FTConfig {
                 lawOfScaleTargetTimeoutTicks = builder
                         .comment("tracked target is forgotten if no hit lands within this many ticks")
                         .defineInRange("lawOfScaleTargetTimeoutTicks", 200, 1, 72000);
+
+                builder.pop();
+                builder.push("feyweight");
+
+                feyweightSizeReduction = builder
+                        .comment("size reduction while worn (0.5 = -50%)")
+                        .defineInRange("feyweightSizeReduction", 0.5, 0, 0.99);
+
+                feyweightMovementSpeed = builder
+                        .comment("movement speed multiplier while worn (1.0 = +100%)")
+                        .defineInRange("feyweightMovementSpeed", 1.0, 0, 100);
+
+                feyweightAttackSpeed = builder
+                        .comment("attack speed multiplier while worn (0.5 = +50%)")
+                        .defineInRange("feyweightAttackSpeed", 0.5, 0, 100);
+
+                feyweightDodgeChance = builder
+                        .comment("additive dodge chance while worn (0.1 = +10%)")
+                        .defineInRange("feyweightDodgeChance", 0.1, 0, 1);
+
+                feyweightLargerEnemyDamage = builder
+                        .comment("extra damage received from any larger living attacker (0.2 = +20%)")
+                        .defineInRange("feyweightLargerEnemyDamage", 0.2, 0, 100);
 
                 builder.pop();
 

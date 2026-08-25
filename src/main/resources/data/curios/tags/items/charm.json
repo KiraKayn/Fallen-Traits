@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "fallen_traits:titans_heart"
+    "fallen_traits:titans_heart",
+    "fallen_traits:feyweight"
   ]
 }
