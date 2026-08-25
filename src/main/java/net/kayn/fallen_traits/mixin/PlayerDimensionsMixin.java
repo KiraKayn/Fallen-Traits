@@ -28,15 +28,8 @@ public abstract class PlayerDimensionsMixin {
         }
     }
 
-    @Inject(
-            method = "getDimensions",
-            at = @At("RETURN"),
-            cancellable = true
-    )
-    private void fallen_traits$sizeScale(
-            Pose pose,
-            CallbackInfoReturnable<EntityDimensions> cir
-    ) {
+    @Inject(method = "getDimensions", at = @At("RETURN"), cancellable = true)
+    private void fallen_traits$sizeScale(Pose pose, CallbackInfoReturnable<EntityDimensions> cir) {
         Player player = (Player) (Object) this;
         float scale = SizeTrait.getScale(player);
 
@@ -45,21 +38,10 @@ public abstract class PlayerDimensionsMixin {
         }
     }
 
-    @Inject(
-            method = "getStandingEyeHeight",
-            at = @At("RETURN"),
-            cancellable = true
-    )
-    private void fallen_traits$scaleEyeHeight(
-            Pose pose,
-            EntityDimensions dimensions,
-            CallbackInfoReturnable<Float> cir
-    ) {
+    @Inject(method = "getStandingEyeHeight", at = @At("RETURN"), cancellable = true)
+    private void fallen_traits$scaleEyeHeight(Pose pose, EntityDimensions dimensions, CallbackInfoReturnable<Float> cir) {
         Player player = (Player) (Object) this;
-
-        if (player.getAttributes() == null) {
-            return;
-        }
+        if (player.getAttributes() == null) return;
 
         float scale = SizeTrait.getScale(player);
         if (scale != 1.0F) {

@@ -17,7 +17,8 @@
   "client": [
     "l2hostility.HostilityBeaconScreenMixin",
     "LivingEntityRendererMixin",
-    "InventoryScreenMixin"
+    "InventoryScreenMixin",
+    "CameraMixin"
   ],
   "minVersion": "0.8"
 }
