@@ -107,5 +107,10 @@
   "enchantment.fallen_traits.incarcerating_blade.desc": "Apply Incarceration effect to target. Higher levels have longer duration.",
 
   "item.fallen_traits.divine_singularity": "Divine Singularity",
-  "item.fallen_traits.divine_singularity.desc": "Cleanse effect will not clear any beneficial effect."
+  "item.fallen_traits.divine_singularity.desc": "Cleanse effect will not clear any beneficial effect.",
+
+  "item.fallen_traits.wrath_of_fenrir": "Wrath of Fenrir",
+  "item.fallen_traits.wrath_of_fenrir.desc_damage": "Gain %s attack damage per difficulty level difference against mobs with higher level than you",
+  "item.fallen_traits.wrath_of_fenrir.desc_disable": "Temporarily disables %s-%s traits of attacked mobs for %s",
+  "item.fallen_traits.wrath_of_fenrir.desc_spawn_rate": "Increases Entity Spawn rate by %s"
 }

@@ -91,6 +91,9 @@ public class FTItems {
     public static final RegistryObject<DivineSingularity> DIVINE_SINGULARITY = ITEMS.register("divine_singularity",
             () -> new DivineSingularity(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant()));
 
+    public static final RegistryObject<WrathOfFenrir> WRATH_OF_FENRIR = ITEMS.register("wrath_of_fenrir",
+            () -> new WrathOfFenrir(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant()));
+
     public static void register() {
     }
 

@@ -1,8 +1,10 @@
 package net.kayn.fallen_traits.content.traits.legendary;
 
+import dev.xkmc.l2hostility.content.capability.mob.MobTraitCap;
 import dev.xkmc.l2hostility.content.traits.legendary.LegendaryTrait;
 import net.kayn.fallen_traits.client.SizeRenderContext;
 import net.kayn.fallen_traits.init.FTMiscs;
+import net.kayn.fallen_traits.init.FTTraits;
 import net.minecraft.ChatFormatting;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -65,14 +67,27 @@ public abstract class SizeTrait extends LegendaryTrait {
 
         float scale = 1.0F;
 
-        int titanLevel = living.getPersistentData().getInt(TITAN_LEVEL_TAG);
-        if (titanLevel > 0) {
-            scale *= (float) (1.0D + TitanTrait.sizeAt(titanLevel));
+        boolean hasTitan = true;
+        boolean hasDwarf = true;
+
+        if (MobTraitCap.HOLDER.isProper(living)) {
+            MobTraitCap cap = MobTraitCap.HOLDER.get(living);
+            hasTitan = cap.traits.containsKey(FTTraits.TITAN.get());
+            hasDwarf = cap.traits.containsKey(FTTraits.DWARF.get());
         }
 
-        int dwarfLevel = living.getPersistentData().getInt(DWARF_LEVEL_TAG);
-        if (dwarfLevel > 0) {
-            scale *= (float) (1.0D + DwarfTrait.sizeAt(dwarfLevel));
+        if (hasTitan) {
+            int titanLevel = living.getPersistentData().getInt(TITAN_LEVEL_TAG);
+            if (titanLevel > 0) {
+                scale *= (float) (1.0D + TitanTrait.sizeAt(titanLevel));
+            }
+        }
+
+        if (hasDwarf) {
+            int dwarfLevel = living.getPersistentData().getInt(DWARF_LEVEL_TAG);
+            if (dwarfLevel > 0) {
+                scale *= (float) (1.0D + DwarfTrait.sizeAt(dwarfLevel));
+            }
         }
 
         var attributes = living.getAttributes();

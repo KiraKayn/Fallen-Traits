@@ -125,6 +125,13 @@ public class FTConfig {
 
         public final ForgeConfigSpec.IntValue incarceratingEnchantDuration;
 
+        public final ForgeConfigSpec.DoubleValue wrathOfFenrirDamagePerLevelDiff;
+        public final ForgeConfigSpec.IntValue wrathOfFenrirExtraDifficulty;
+        public final ForgeConfigSpec.IntValue wrathOfFenrirMinTraitsDisabled;
+        public final ForgeConfigSpec.IntValue wrathOfFenrirMaxTraitsDisabled;
+        public final ForgeConfigSpec.IntValue wrathOfFenrirTraitDisableDuration;
+        public final ForgeConfigSpec.DoubleValue wrathOfFenrirSpawnRateMultiplier;
+
         public Common(ForgeConfigSpec.Builder builder) {
 
             // traits (behavior granted directly by the trait itself)
@@ -567,6 +574,33 @@ public class FTConfig {
                 handOfCreationFlameDurationTicks = builder
                         .comment("duration in ticks of Soul Flame inflicted on hit")
                         .defineInRange("handOfCreationFlameDurationTicks", 100, 1, 10000);
+
+                builder.pop();
+                builder.push("wrath_of_fenrir");
+
+                wrathOfFenrirDamagePerLevelDiff = builder
+                        .comment("bonus damage per difficulty level difference (0.05 = 5%)")
+                        .defineInRange("wrathOfFenrirDamagePerLevelDiff", 0.05, 0, 10);
+
+                wrathOfFenrirExtraDifficulty = builder
+                        .comment("extra mob difficulty while worn")
+                        .defineInRange("wrathOfFenrirExtraDifficulty", 400, 0, 100000);
+
+                wrathOfFenrirMinTraitsDisabled = builder
+                        .comment("minimum traits disabled per hit")
+                        .defineInRange("wrathOfFenrirMinTraitsDisabled", 1, 1, 10);
+
+                wrathOfFenrirMaxTraitsDisabled = builder
+                        .comment("maximum traits disabled per hit")
+                        .defineInRange("wrathOfFenrirMaxTraitsDisabled", 3, 1, 10);
+
+                wrathOfFenrirTraitDisableDuration = builder
+                        .comment("duration in ticks traits stay disabled")
+                        .defineInRange("wrathOfFenrirTraitDisableDuration", 60, 1, 72000);
+
+                wrathOfFenrirSpawnRateMultiplier = builder
+                        .comment("spawn rate multiplier (1.0 = +100%)")
+                        .defineInRange("wrathOfFenrirSpawnRateMultiplier", 1.0, 0, 100);
 
                 builder.pop();
                 //enchantments

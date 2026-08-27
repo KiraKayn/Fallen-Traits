@@ -9,6 +9,7 @@ import dev.xkmc.l2hostility.init.registrate.LHItems;
 import net.kayn.fallen_traits.FallenTraits;
 import net.kayn.fallen_traits.content.item.curio.HandOfCreation;
 import net.kayn.fallen_traits.content.item.curio.RageGlove;
+import net.kayn.fallen_traits.content.item.curio.WrathOfFenrir;
 import net.kayn.fallen_traits.content.traits.basic.CloneTrait;
 import net.kayn.fallen_traits.content.traits.basic.DevourerTrait;
 import net.kayn.fallen_traits.content.traits.legendary.MimicTrait;
@@ -237,5 +238,9 @@ public class FTEvents {
             if (owner != null) return owner;
         }
         return null;
+    }
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void onLivingTick(LivingEvent.LivingTickEvent event) {
+        WrathOfFenrir.restoreExpiredTraits(event.getEntity());
     }
 }

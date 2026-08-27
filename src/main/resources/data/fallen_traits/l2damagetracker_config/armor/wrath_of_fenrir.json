@@ -1,0 +1,12 @@
+{
+  "immune": {
+    "fallen_traits:wrath_of_fenrir": [
+      "minecraft:blindness",
+      "minecraft:darkness",
+      "minecraft:nausea",
+      "minecraft:slowness",
+      "minecraft:mining_fatigue",
+      "minecraft:weakness"
+    ]
+  }
+}
