@@ -1,0 +1,17 @@
+{
+  "type": "jeed:effect_provider",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "jeed"
+    }
+  ],
+  "effect": "l2complements:stone_cage",
+  "providers": [
+    {
+      "type": "l2library:enchantment",
+      "enchantment": "fallen_traits:incarcerating_blade",
+      "min_level": 1
+    }
+  ]
+}

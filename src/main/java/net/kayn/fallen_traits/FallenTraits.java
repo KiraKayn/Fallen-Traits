@@ -32,6 +32,7 @@ public class FallenTraits {
         FTBlocks.BLOCKS.register(modEventBus);
         FTMiscs.ATTRIBUTES.register(modEventBus);
         FTTags.register();
+        FTEnchantments.ENCHANTMENTS.register(modEventBus);
 
         AttackEventHandler.register(500, new FTAttackListener());
 

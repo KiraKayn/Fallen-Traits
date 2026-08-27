@@ -123,6 +123,8 @@ public class FTConfig {
         public final ForgeConfigSpec.IntValue handOfCreationWearerInvulnBonusTicks;
         public final ForgeConfigSpec.IntValue handOfCreationFlameDurationTicks;
 
+        public final ForgeConfigSpec.IntValue incarceratingEnchantDuration;
+
         public Common(ForgeConfigSpec.Builder builder) {
 
             // traits (behavior granted directly by the trait itself)
@@ -567,7 +569,17 @@ public class FTConfig {
                         .defineInRange("handOfCreationFlameDurationTicks", 100, 1, 10000);
 
                 builder.pop();
+                //enchantments
+                builder.push("enchants");
+                {
+                    builder.push("incarcerating_blade");
 
+                    incarceratingEnchantDuration = builder
+                            .comment("Base duration for Incarcerating Blade enchant")
+                            .defineInRange("incarceratingEnchantDuration", 60, 1, 10000);
+
+                    builder.pop();
+                }
             }
             builder.pop();
         }
