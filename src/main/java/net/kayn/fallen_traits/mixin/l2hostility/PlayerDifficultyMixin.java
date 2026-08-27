@@ -5,6 +5,8 @@ import dev.xkmc.l2hostility.content.capability.player.PlayerDifficulty;
 import dev.xkmc.l2hostility.content.logic.MobDifficultyCollector;
 import net.kayn.fallen_traits.content.traits.logic.ExtraTraitHolder;
 import net.kayn.fallen_traits.content.traits.logic.LegendaryWeightHolder;
+import net.kayn.fallen_traits.content.traits.logic.OverMaxTraitHolder;
+import net.kayn.fallen_traits.content.traits.logic.UnlimitedTraitCountHolder;
 import net.kayn.fallen_traits.init.FTConfig;
 import net.kayn.fallen_traits.init.FTItems;
 import net.minecraft.world.entity.player.Player;
@@ -40,6 +42,11 @@ public abstract class PlayerDifficultyMixin {
         if (CurioCompat.hasItemInCurio(fallen_traits$cachedPlayer, FTItems.LAW_OF_SCALE.get())) {
             ((ExtraTraitHolder) instance).fallen_traits$addExtraTraitCount(FTConfig.COMMON.lawOfScaleExtraTraitCount.get());
         }
+        if (CurioCompat.hasItemInCurio(fallen_traits$cachedPlayer, FTItems.HAND_OF_CREATION.get())) {
+            instance.setFullChance();
+            instance.traitCostFactor(0);
+            ((OverMaxTraitHolder) instance).fallen_traits$setOverMax(true);
+            ((UnlimitedTraitCountHolder) instance).fallen_traits$setUnlimitedTraitCount(true);
+        }
     }
-
 }

@@ -85,6 +85,9 @@ public class FTItems {
     public static final RegistryObject<PhasewalkersRing> PHASEWALKERS_RING = ITEMS.register("phasewalkers_ring",
             () -> new PhasewalkersRing(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant()));
 
+    public static final RegistryObject<HandOfCreation> HAND_OF_CREATION = ITEMS.register("hand_of_creation",
+            () -> new HandOfCreation(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant()));
+
     public static void register() {
     }
 

@@ -2,6 +2,7 @@ package net.kayn.fallen_traits.content.traits.logic;
 
 import dev.xkmc.l2hostility.content.capability.mob.MobTraitCap;
 import dev.xkmc.l2hostility.content.traits.base.MobTrait;
+import net.kayn.fallen_traits.content.traits.legendary.SizeTrait;
 import net.minecraft.world.entity.LivingEntity;
 
 import java.util.ArrayList;
@@ -62,17 +63,50 @@ public class TraitCompatibility {
         resolvePending();
         if (!MobTraitCap.HOLDER.isProper(mob)) return;
         MobTraitCap cap = MobTraitCap.HOLDER.get(mob);
+
+        List<MobTrait> toRemove = new ArrayList<>();
         List<MobTrait> keys = new ArrayList<>(cap.traits.keySet());
+
         for (int i = 0; i < keys.size(); i++) {
             Set<MobTrait> incompatible = resolvedPairs.get(keys.get(i));
             if (incompatible == null) continue;
             for (int j = i + 1; j < keys.size(); j++) {
                 MobTrait later = keys.get(j);
                 if (cap.hasTrait(later) && incompatible.contains(later) && !bypassed(keys.get(i), later, mob)) {
-                    cap.removeTrait(later);
+                    if (!toRemove.contains(later)) {
+                        toRemove.add(later);
+                    }
                 }
             }
         }
-    }
+        for (MobTrait trait : toRemove) {
+            cap.removeTrait(trait);
+            if (trait instanceof SizeTrait sizeTrait) {
+                mob.getPersistentData().remove(sizeTrait.getLevelTagPublic());
+            }
+        }
 
+        if (!toRemove.isEmpty()) {
+            mob.getPersistentData().putBoolean("fallen_traits_size_dimensions_updated", false);
+            mob.refreshDimensions();
+        }
+    }
+    public static void resolveMap(LivingEntity mob, Map<MobTrait, Integer> traits) {
+        resolvePending();
+        List<MobTrait> keys = new ArrayList<>(traits.keySet());
+        List<MobTrait> toRemove = new ArrayList<>();
+        for (int i = 0; i < keys.size(); i++) {
+            Set<MobTrait> incompatible = resolvedPairs.get(keys.get(i));
+            if (incompatible == null) continue;
+            for (int j = i + 1; j < keys.size(); j++) {
+                MobTrait later = keys.get(j);
+                if (traits.containsKey(later) && incompatible.contains(later) && !bypassed(keys.get(i), later, mob)) {
+                    if (!toRemove.contains(later)) toRemove.add(later);
+                }
+            }
+        }
+        for (MobTrait trait : toRemove) {
+            traits.remove(trait);
+        }
+    }
 }

@@ -1,0 +1,22 @@
+{
+  "replace": false,
+  "values": [
+    "l2hostility:protection",
+    "l2hostility:invisible",
+    "l2hostility:fiery",
+    "l2hostility:shulker",
+    "l2hostility:grenade",
+    "l2hostility:counter_strike",
+    "l2hostility:arena",
+    "l2hostility:dementor",
+    "l2hostility:undying",
+    "l2hostility:teleport",
+    "l2hostility:repelling",
+    "l2hostility:pulling",
+    "l2hostility:reprint",
+    "l2hostility:master",
+    "fallen_traits:mimic",
+    "fallen_traits:cleanse",
+    "fallen_traits:berserk"
+  ]
+}

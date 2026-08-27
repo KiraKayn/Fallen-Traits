@@ -51,6 +51,10 @@ public abstract class SizeTrait extends LegendaryTrait {
 
     protected abstract String getLevelTag();
 
+    public String getLevelTagPublic() {
+        return getLevelTag();
+    }
+
     public static float getScale(Entity entity) {
         if (!(entity instanceof LivingEntity living)) {
             return 1.0F;

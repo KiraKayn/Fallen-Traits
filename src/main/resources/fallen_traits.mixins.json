@@ -14,7 +14,8 @@
     "l2hostility.TraitGeneratorMixin",
     "PlayerDimensionsMixin",
     "l2hostility.CurioCompatMixin",
-    "l2hostility.ItemPopulatorMixin"
+    "l2hostility.ItemPopulatorMixin",
+    "l2hostility.SingletonItemMixin"
   ],
   "client": [
     "l2hostility.HostilityBeaconScreenMixin",

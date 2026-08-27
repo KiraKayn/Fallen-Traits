@@ -2,6 +2,7 @@ package net.kayn.fallen_traits.content.item.curio;
 
 import dev.xkmc.l2damagetracker.contents.attack.AttackCache;
 import dev.xkmc.l2damagetracker.contents.attack.DamageModifier;
+import dev.xkmc.l2hostility.compat.curios.CurioCompat;
 import dev.xkmc.l2hostility.content.item.curio.core.CurseCurioItem;
 import net.kayn.fallen_traits.init.FTConfig;
 import net.minecraft.ChatFormatting;
@@ -13,6 +14,7 @@ import net.minecraft.world.level.Level;
 import net.rtxyd.fallen.lib.runtime.forgemod.util.EntityCakyHandler;
 import net.rtxyd.fallen.lib.util.IObjectCaky;
 import org.jetbrains.annotations.Nullable;
+import top.theillusivec4.curios.api.SlotContext;
 
 import java.util.List;
 import java.util.Map;
@@ -52,6 +54,15 @@ public class RageGlove extends CurseCurioItem {
 
     private Stack getStack(LivingEntity user) {
         return EntityCakyHandler.resolveWith(user, GLOVE_STACK_KEY, IObjectCaky.Type.MANUAL, e -> new Stack(), e -> 0);
+    }
+
+    @Override
+    public boolean canEquip(SlotContext slotContext, ItemStack stack) {
+        LivingEntity wearer = slotContext.entity();
+        return CurioCompat.getItems(
+                wearer,
+                equipped -> equipped.getItem() instanceof HandOfCreation
+        ).isEmpty();
     }
 
     @Override

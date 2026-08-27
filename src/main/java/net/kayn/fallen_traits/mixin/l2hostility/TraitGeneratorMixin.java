@@ -7,14 +7,24 @@ import dev.xkmc.l2hostility.content.traits.base.MobTrait;
 import dev.xkmc.l2hostility.content.traits.legendary.LegendaryTrait;
 import net.kayn.fallen_traits.content.traits.logic.ExtraTraitHolder;
 import net.kayn.fallen_traits.content.traits.logic.LegendaryWeightHolder;
+import net.kayn.fallen_traits.content.traits.logic.OverMaxTraitHolder;
+import net.kayn.fallen_traits.content.traits.logic.TraitCompatibility;
+import net.kayn.fallen_traits.content.traits.logic.UnlimitedTraitCountHolder;
+import net.kayn.fallen_traits.init.FTTags;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraftforge.registries.IForgeRegistry;
+import net.minecraftforge.registries.tags.ITagManager;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Mutable;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.ArrayList;
@@ -35,9 +45,25 @@ public abstract class TraitGeneratorMixin {
     @Final
     private RandomSource rand;
 
+    @Shadow
+    @Final
+    private MobDifficultyCollector ins;
+
+    @Final
     @Mutable
     @Shadow
     private int maxTrait;
+
+    @Shadow
+    @Final
+    private HashMap<MobTrait, Integer> traits;
+
+    @Shadow
+    @Final
+    private LivingEntity entity;
+
+    @Unique
+    private MobTrait fallen_traits$currentTrait;
 
     @Inject(method = "<init>(Ldev/xkmc/l2hostility/content/capability/mob/MobTraitCap;Lnet/minecraft/world/entity/LivingEntity;ILjava/util/HashMap;Ldev/xkmc/l2hostility/content/logic/MobDifficultyCollector;)V",
             at = @At("TAIL"))
@@ -67,6 +93,47 @@ public abstract class TraitGeneratorMixin {
         if (extraTraits > 0 && maxTrait > 0) {
             maxTrait += extraTraits;
         }
+
+        if (((UnlimitedTraitCountHolder) ins).fallen_traits$isUnlimitedTraitCount()) {
+            maxTrait = -1;
+        }
     }
 
+    @ModifyVariable(method = "generate", at = @At(value = "STORE", ordinal = 0), index = 1)
+    private MobTrait fallen_traits$capturePoppedTrait(MobTrait trait) {
+        fallen_traits$currentTrait = trait;
+        return trait;
+    }
+
+    @ModifyVariable(method = "generate", at = @At(value = "STORE", ordinal = 0), index = 3)
+    private int fallen_traits$bumpMaxRank(int max) {
+        if (((OverMaxTraitHolder) ins).fallen_traits$isOverMax()) {
+            if (fallen_traits$currentTrait != null && !isInNoOverMaxTag(fallen_traits$currentTrait)) {
+                return max + 1;
+            }
+        }
+        return max;
+    }
+
+    @Inject(method = "generate", at = @At(value = "INVOKE", target = "Ljava/util/HashMap;entrySet()Ljava/util/Set;"))
+    private void fallen_traits$resolveBeforeInit(CallbackInfo ci) {
+        TraitCompatibility.resolveMap(this.entity, this.traits);
+    }
+
+    @Unique
+    private static boolean isInNoOverMaxTag(MobTrait trait) {
+        IForgeRegistry<MobTrait> registry = dev.xkmc.l2hostility.init.registrate.LHTraits.TRAITS.get();
+        if (registry == null) return false;
+
+        ResourceLocation traitId = registry.getKey(trait);
+        if (traitId == null) return false;
+
+        ITagManager<MobTrait> tagManager = registry.tags();
+        if (tagManager == null) return false;
+
+        var tag = tagManager.getTag(FTTags.NO_OVER_MAX);
+        if (tag == null) return false;
+
+        return tag.contains(trait);
+    }
 }

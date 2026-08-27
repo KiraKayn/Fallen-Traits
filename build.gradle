@@ -140,6 +140,7 @@ dependencies {
     implementation fg.deobf("curse.maven:jade-324717:${jade_file_id}")
     implementation fg.deobf("mezz.jei:jei-${jei_minecraft_version}:${jei_version}")
     runtimeOnly fg.deobf("curse.maven:artifacts-312353:7903806")
+    runtimeOnly fg.deobf("curse.maven:elytra-slot-317716:5778734")
 
     //integrations
     implementation fg.deobf("curse.maven:lendercataclysm-551586:6769185")

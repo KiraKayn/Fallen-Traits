@@ -7,6 +7,7 @@ import dev.xkmc.l2hostility.content.capability.mob.MobTraitCap;
 import dev.xkmc.l2hostility.content.logic.TraitManager;
 import dev.xkmc.l2hostility.init.registrate.LHItems;
 import net.kayn.fallen_traits.FallenTraits;
+import net.kayn.fallen_traits.content.item.curio.HandOfCreation;
 import net.kayn.fallen_traits.content.item.curio.RageGlove;
 import net.kayn.fallen_traits.content.traits.basic.CloneTrait;
 import net.kayn.fallen_traits.content.traits.basic.DevourerTrait;
@@ -44,6 +45,7 @@ public class FTEvents {
     public static void onHurt(LivingHurtEvent event) {
         if (event.getAmount() <= 0) return;
         EntityCakyHandler.resolveWith(event.getEntity(), RageGlove.GLOVE_STACK_KEY, IObjectCaky.Type.MANUAL, e -> new RageGlove.Stack(), e -> 1);
+        EntityCakyHandler.resolveWith(event.getEntity(), HandOfCreation.STACK_KEY, IObjectCaky.Type.MANUAL, e -> new HandOfCreation.Stack(), e -> 1);
     }
 
     @SubscribeEvent(priority = EventPriority.LOW)
@@ -91,6 +93,9 @@ public class FTEvents {
         LivingEntity entity = event.getEntity();
         if (CurioCompat.hasItemInCurio(entity, FTItems.INVULNERABILITY_BREAKER.get())) {
             FTItems.INVULNERABILITY_BREAKER.get().onWearerHurt(entity);
+        }
+        if (CurioCompat.hasItemInCurio(entity, FTItems.HAND_OF_CREATION.get())) {
+            FTItems.HAND_OF_CREATION.get().onWearerHurt(entity);
         }
     }
 
@@ -211,5 +216,26 @@ public class FTEvents {
         } else {
             return false;
         }
+    }
+    @SubscribeEvent(priority = EventPriority.HIGH)
+    public static void onAttackIgnoreInvuln(LivingAttackEvent event) {
+        Entity direct = event.getSource().getEntity();
+        if (direct instanceof LivingEntity attacker && CurioCompat.hasItemInCurio(attacker, FTItems.HAND_OF_CREATION.get())) {
+            event.getEntity().invulnerableTime = 0;
+            return;
+        }
+        LivingEntity owner = resolveEffectOwner(event.getEntity(), event.getSource());
+        if (owner != null && CurioCompat.hasItemInCurio(owner, FTItems.HAND_OF_CREATION.get())) {
+            event.getEntity().invulnerableTime = 0;
+        }
+    }
+
+    private static LivingEntity resolveEffectOwner(LivingEntity target, net.minecraft.world.damagesource.DamageSource source) {
+        if (source.getEntity() instanceof LivingEntity le) return le;
+        for (var effect : target.getActiveEffectsMap().values()) {
+            LivingEntity owner = HandOfCreation.getEffectOwner(target, effect.getEffect());
+            if (owner != null) return owner;
+        }
+        return null;
     }
 }

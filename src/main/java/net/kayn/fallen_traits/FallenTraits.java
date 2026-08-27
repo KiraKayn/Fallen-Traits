@@ -1,6 +1,8 @@
 package net.kayn.fallen_traits;
 
+import dev.xkmc.l2damagetracker.contents.attack.AttackEventHandler;
 import net.kayn.fallen_traits.content.block.FTBlocks;
+import net.kayn.fallen_traits.events.FTAttackListener;
 import net.kayn.fallen_traits.init.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
@@ -29,6 +31,9 @@ public class FallenTraits {
         FTCreativeTab.register(modEventBus);
         FTBlocks.BLOCKS.register(modEventBus);
         FTMiscs.ATTRIBUTES.register(modEventBus);
+        FTTags.register();
+
+        AttackEventHandler.register(500, new FTAttackListener());
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, FTConfig.COMMON_SPEC);
 

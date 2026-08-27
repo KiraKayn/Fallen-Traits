@@ -3,7 +3,7 @@
   "trait.fallen_traits.rage.desc": "Landing consecutive hits on the same target increases damage dealt. Stacks reset if the target hits back.",
   "item.fallen_traits.rage": "Rage",
   "item.fallen_traits.rage_glove": "Rage Glove",
-  "item.fallen_traits.rage_glove.desc": "Melee attacks deal %s more damage per consecutive hit, up to %s total. Resets on being hit or after 10s of inactivity.",
+  "item.fallen_traits.rage_glove.desc": "Attacks deal %s more damage per consecutive hit, up to %s total. Resets on being hit or after 10s of inactivity.",
   "itemGroup.fallen_traits_tab": "Fallen Traits",
 
   "trait.fallen_traits.mimic": "Mimic",
@@ -89,5 +89,17 @@
   "tooltip.fallen_traits.omniscient_looting_charm.jei": "Works with Omniscient Looting Charm",
 
   "item.fallen_traits.phasewalkers_ring": "Phasewalker's Ring",
-  "item.fallen_traits.phasewalkers_ring.desc": "Dodging attacks teleports you behind your attacker instead of negating damage."
+  "item.fallen_traits.phasewalkers_ring.desc": "Dodging attacks teleports you behind your attacker instead of negating damage.",
+
+  "item.fallen_traits.hand_of_creation": "Hand of Creation",
+  "item.fallen_traits.hand_of_creation.desc_intro": "Combines all effects of Gloves and improves their effects",
+  "item.fallen_traits.hand_of_creation.desc_rage": "Attacks deal +%s per hit, up to +%s. Resets after 10s inactivity",
+  "item.fallen_traits.hand_of_creation.desc_invuln_break": "All your damage ignores I-Frames",
+  "item.fallen_traits.hand_of_creation.desc_invuln_bonus": "Increases your own I-Frames by %s ticks when hurt",
+  "item.fallen_traits.hand_of_creation.desc_flame": "Each hit stacks Soul Flame 1 level higher, capped by target's trait count",
+  "item.fallen_traits.hand_of_creation.desc_magic": "All damage bypasses magical protection",
+  "item.fallen_traits.hand_of_creation.desc_no_drop": "Mobs you kill will not drop Hostility Loot",
+  "item.fallen_traits.hand_of_creation.desc_max_traits": "All mobs spawn with Max level traits",
+  "item.fallen_traits.hand_of_creation.desc_over_max": "If their trait would have been max, give it +1 level",
+  "item.fallen_traits.hand_of_creation.desc_no_trait_cap": "Mobs can spawn with unlimited traits"
 }

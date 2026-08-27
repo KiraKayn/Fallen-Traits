@@ -117,6 +117,12 @@ public class FTConfig {
         public final ForgeConfigSpec.DoubleValue feyweightDodgeChance;
         public final ForgeConfigSpec.DoubleValue feyweightLargerEnemyDamage;
 
+        public final ForgeConfigSpec.DoubleValue handOfCreationDamageIncreasePerHit;
+        public final ForgeConfigSpec.DoubleValue handOfCreationMaxDamageMultiplier;
+        public final ForgeConfigSpec.IntValue handOfCreationStackTimeoutTicks;
+        public final ForgeConfigSpec.IntValue handOfCreationWearerInvulnBonusTicks;
+        public final ForgeConfigSpec.IntValue handOfCreationFlameDurationTicks;
+
         public Common(ForgeConfigSpec.Builder builder) {
 
             // traits (behavior granted directly by the trait itself)
@@ -536,6 +542,29 @@ public class FTConfig {
                 feyweightLargerEnemyDamage = builder
                         .comment("extra damage received from any larger living attacker (0.2 = +20%)")
                         .defineInRange("feyweightLargerEnemyDamage", 0.2, 0, 100);
+
+                builder.pop();
+                builder.push("hand_of_creation");
+
+                handOfCreationDamageIncreasePerHit = builder
+                        .comment("extra damage per hit while stacking, based on total damage rather than base damage")
+                        .defineInRange("handOfCreationDamageIncreasePerHit", 0.25, 0, 10);
+
+                handOfCreationMaxDamageMultiplier = builder
+                        .comment("damage multiplier cap, 5.0 = 5x damage")
+                        .defineInRange("handOfCreationMaxDamageMultiplier", 5.0, 1, 100);
+
+                handOfCreationStackTimeoutTicks = builder
+                        .comment("stacks reset if no hit lands within this many ticks")
+                        .defineInRange("handOfCreationStackTimeoutTicks", 200, 1, 72000);
+
+                handOfCreationWearerInvulnBonusTicks = builder
+                        .comment("extra ticks added to the wearer's own post-hit invulnerability window when hurt")
+                        .defineInRange("handOfCreationWearerInvulnBonusTicks", 5, 0, 20);
+
+                handOfCreationFlameDurationTicks = builder
+                        .comment("duration in ticks of Soul Flame inflicted on hit")
+                        .defineInRange("handOfCreationFlameDurationTicks", 100, 1, 10000);
 
                 builder.pop();
 
