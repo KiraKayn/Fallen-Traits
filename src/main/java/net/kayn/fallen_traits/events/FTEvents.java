@@ -2,6 +2,7 @@ package net.kayn.fallen_traits.events;
 
 import dev.shadowsoffire.attributeslib.api.ALObjects;
 import dev.shadowsoffire.attributeslib.impl.AttributeEvents;
+import dev.xkmc.l2damagetracker.init.data.ArmorEffectConfig;
 import dev.xkmc.l2hostility.compat.curios.CurioCompat;
 import dev.xkmc.l2hostility.content.capability.mob.MobTraitCap;
 import dev.xkmc.l2hostility.content.logic.TraitManager;
@@ -18,6 +19,7 @@ import net.kayn.fallen_traits.init.FTItems;
 import net.kayn.fallen_traits.init.FTTraits;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.entity.Entity;
@@ -25,6 +27,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.AABB;
@@ -33,9 +36,11 @@ import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.event.entity.EntityTeleportEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.*;
+import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.rtxyd.fallen.lib.runtime.forgemod.util.EntityCakyHandler;
 import net.rtxyd.fallen.lib.util.IObjectCaky;
 
@@ -252,5 +257,23 @@ public class FTEvents {
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onLivingTick(LivingEvent.LivingTickEvent event) {
         WrathOfFenrir.restoreExpiredTraits(event.getEntity());
+    }
+    @SubscribeEvent(priority = EventPriority.HIGH)
+    public static void onPotionTest(MobEffectEvent.Applicable event) {
+        LivingEntity entity = event.getEntity();
+
+        checkImmunity(entity, event, FTItems.WRATH_OF_FENRIR.get());
+        checkImmunity(entity, event, FTItems.TITANS_HEART.get());
+    }
+
+    private static void checkImmunity(LivingEntity entity, MobEffectEvent.Applicable event, Item item) {
+        if (CurioCompat.hasItemInCurio(entity, item)) {
+            ResourceLocation id = ForgeRegistries.ITEMS.getKey(item);
+            if (id == null) return;
+            var immunitySet = ArmorEffectConfig.get().getImmunity(id.toString());
+            if (immunitySet != null && immunitySet.contains(event.getEffectInstance().getEffect())) {
+                event.setResult(Event.Result.DENY);
+            }
+        }
     }
 }
