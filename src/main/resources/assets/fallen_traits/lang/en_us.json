@@ -104,5 +104,8 @@
   "item.fallen_traits.hand_of_creation.desc_no_trait_cap": "Mobs can spawn with unlimited traits",
 
   "enchantment.fallen_traits.incarcerating_blade": "Incarcerating Blade",
-  "enchantment.fallen_traits.incarcerating_blade.desc": "Apply Incarceration effect to target. Higher levels have longer duration."
+  "enchantment.fallen_traits.incarcerating_blade.desc": "Apply Incarceration effect to target. Higher levels have longer duration.",
+
+  "item.fallen_traits.divine_singularity": "Divine Singularity",
+  "item.fallen_traits.divine_singularity.desc": "Cleanse effect will not clear any beneficial effect."
 }

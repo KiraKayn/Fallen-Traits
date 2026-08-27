@@ -88,6 +88,9 @@ public class FTItems {
     public static final RegistryObject<HandOfCreation> HAND_OF_CREATION = ITEMS.register("hand_of_creation",
             () -> new HandOfCreation(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant()));
 
+    public static final RegistryObject<DivineSingularity> DIVINE_SINGULARITY = ITEMS.register("divine_singularity",
+            () -> new DivineSingularity(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant()));
+
     public static void register() {
     }
 

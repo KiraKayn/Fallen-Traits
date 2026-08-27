@@ -35,6 +35,7 @@ public class FTCreativeTab {
                         output.accept(FTItems.OMNISCIENT_LOOTING_CHARM.get());
                         output.accept(FTItems.PHASEWALKERS_RING.get());
                         output.accept(FTItems.HAND_OF_CREATION.get());
+                        output.accept(FTItems.DIVINE_SINGULARITY.get());
                         //traits
                         output.accept(FTItems.RAGE_SYMBOL.get());
                         output.accept(FTItems.MIMIC_SYMBOL.get());
