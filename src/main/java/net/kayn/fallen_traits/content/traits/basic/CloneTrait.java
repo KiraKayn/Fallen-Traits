@@ -5,6 +5,7 @@ import dev.xkmc.l2hostility.content.capability.mob.MobTraitCap;
 import dev.xkmc.l2hostility.content.logic.InheritContext;
 import dev.xkmc.l2hostility.content.traits.base.MobTrait;
 import dev.xkmc.l2hostility.events.MiscHandlers;
+import dev.xkmc.l2hostility.init.data.LHConfig;
 import dev.xkmc.l2hostility.init.registrate.LHTraits;
 import dev.xkmc.l2serial.serialization.SerialClass;
 import net.kayn.fallen_traits.init.FTConfig;
@@ -31,6 +32,7 @@ public class CloneTrait extends MobTrait {
 
     public static final String CLONE_TAG = "fallen_traits_is_clone";
     public static final String CLONE_SPAWN_TICK_TAG = "fallen_traits_clone_spawn_tick";
+    public static final String CLONE_ORIGINAL_LEVEL_TAG = "fallen_traits_clone_original_level";
     private static final String CLONE_TEAM = "fallen_traits_clone_glow";
 
     public CloneTrait(ChatFormatting style) {
@@ -89,6 +91,12 @@ public class CloneTrait extends MobTrait {
         clone.getPersistentData().putBoolean(CLONE_TAG, true);
         clone.getPersistentData().putLong(CLONE_SPAWN_TICK_TAG, clone.level().getGameTime());
 
+        // Store the original mob's level on the clone
+        if (MobTraitCap.HOLDER.isProper(original)) {
+            int originalLevel = MobTraitCap.HOLDER.get(original).getLevel();
+            clone.getPersistentData().putInt(CLONE_ORIGINAL_LEVEL_TAG, originalLevel);
+        }
+
         if (FTConfig.COMMON.cloneGlowEnabled.get()) {
             clone.setGlowingTag(true);
             var scoreboard = sl.getScoreboard();
@@ -115,19 +123,32 @@ public class CloneTrait extends MobTrait {
 
     public static void explode(LivingEntity clone) {
         if (!(clone.level() instanceof ServerLevel sl)) return;
-        double damage = FTConfig.COMMON.cloneExplosionDamage.get();
+
+        double baseDamage = FTConfig.COMMON.cloneExplosionDamage.get();
         double radius = FTConfig.COMMON.cloneExplosionRadius.get();
+
+        int originalLevel = clone.getPersistentData().getInt(CLONE_ORIGINAL_LEVEL_TAG);
+        if (originalLevel > 0) {
+            double damageFactor = LHConfig.COMMON.damageFactor.get();
+            if (LHConfig.COMMON.exponentialDamage.get()) {
+                baseDamage *= Math.pow(1.0 + damageFactor, originalLevel);
+            } else {
+                baseDamage *= 1.0 + (originalLevel * damageFactor);
+            }
+        }
+
         Vec3 pos = clone.position().add(0, clone.getBbHeight() * 0.5, 0);
 
         sl.playSound(null, pos.x, pos.y, pos.z, SoundEvents.GENERIC_EXPLODE, SoundSource.HOSTILE,
                 2.0F, (1.0F + (sl.random.nextFloat() - sl.random.nextFloat()) * 0.2F) * 0.7F);
         sl.sendParticles(ParticleTypes.EXPLOSION, pos.x, pos.y, pos.z, 1, 0, 0, 0, 0);
 
+        final double finalDamage = baseDamage;
         AABB box = new AABB(pos, pos).inflate(radius);
         for (LivingEntity target : sl.getEntitiesOfClass(LivingEntity.class, box, e -> e != clone && e.isAlive())) {
             double dist = target.position().distanceTo(pos);
             if (dist > radius) continue;
-            float dmg = (float) (damage * (1 - dist / radius));
+            float dmg = (float) (finalDamage * (1 - dist / radius));
             if (dmg <= 0) continue;
             target.hurt(sl.damageSources().explosion(null, clone), dmg);
             Vec3 dir = target.position().subtract(pos);

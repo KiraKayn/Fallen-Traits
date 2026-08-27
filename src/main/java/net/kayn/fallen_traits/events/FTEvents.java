@@ -88,6 +88,16 @@ public class FTEvents {
         }
     }
 
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public static void onCloneDamaged(LivingHurtEvent event) {
+        LivingEntity entity = event.getEntity();
+        if (entity.level().isClientSide()) return;
+        if (!entity.getPersistentData().getBoolean(CloneTrait.CLONE_TAG)) return;
+
+        // Clones always die in one hit regardless of damage
+        event.setAmount(Float.MAX_VALUE);
+    }
+
     @SubscribeEvent
     public static void onWearerHurt(LivingHurtEvent event) {
         if (event.getAmount() <= 0) return;
