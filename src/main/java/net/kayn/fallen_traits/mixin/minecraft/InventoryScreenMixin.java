@@ -1,4 +1,4 @@
-package net.kayn.fallen_traits.mixin;
+package net.kayn.fallen_traits.mixin.minecraft;
 
 import net.kayn.fallen_traits.client.SizeRenderContext;
 import net.minecraft.client.gui.GuiGraphics;

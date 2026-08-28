@@ -1,4 +1,4 @@
-package net.kayn.fallen_traits.mixin;
+package net.kayn.fallen_traits.mixin.minecraft;
 
 import dev.xkmc.l2hostility.compat.curios.CurioCompat;
 import net.kayn.fallen_traits.content.item.SpawnRateModifier;

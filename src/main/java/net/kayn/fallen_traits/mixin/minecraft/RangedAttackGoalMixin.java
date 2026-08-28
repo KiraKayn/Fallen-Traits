@@ -1,4 +1,4 @@
-package net.kayn.fallen_traits.mixin;
+package net.kayn.fallen_traits.mixin.minecraft;
 
 import dev.xkmc.l2hostility.content.capability.mob.MobTraitCap;
 import net.kayn.fallen_traits.content.traits.legendary.BerserkTrait;

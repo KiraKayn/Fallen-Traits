@@ -4,25 +4,25 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "fallen_traits.refmap.json",
   "mixins": [
-    "MeleeAttackGoalMixin",
-    "RangedAttackGoalMixin",
+    "minecraft.MeleeAttackGoalMixin",
+    "minecraft.RangedAttackGoalMixin",
     "l2hostility.PlayerDifficultyMixin",
     "l2hostility.HostilityBeaconPaymentMixin",
-    "EntityDimensionsMixin",
+    "minecraft.EntityDimensionsMixin",
     "l2hostility.PlayerDifficultyMixin",
     "l2hostility.MobDifficultyCollectorMixin",
     "l2hostility.TraitGeneratorMixin",
-    "PlayerDimensionsMixin",
+    "minecraft.PlayerDimensionsMixin",
     "l2hostility.CurioCompatMixin",
     "l2hostility.ItemPopulatorMixin",
     "l2hostility.SingletonItemMixin",
-    "NaturalSpawnerMixin"
+    "minecraft.NaturalSpawnerMixin"
   ],
   "client": [
     "l2hostility.HostilityBeaconScreenMixin",
-    "LivingEntityRendererMixin",
-    "InventoryScreenMixin",
-    "CameraMixin"
+    "minecraft.LivingEntityRendererMixin",
+    "minecraft.InventoryScreenMixin",
+    "minecraft.CameraMixin"
   ],
   "minVersion": "0.8"
 }

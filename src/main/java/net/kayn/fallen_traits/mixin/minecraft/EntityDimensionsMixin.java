@@ -1,4 +1,4 @@
-package net.kayn.fallen_traits.mixin;
+package net.kayn.fallen_traits.mixin.minecraft;
 
 import net.kayn.fallen_traits.content.traits.legendary.SizeTrait;
 import net.minecraft.world.entity.Entity;
