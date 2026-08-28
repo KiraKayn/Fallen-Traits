@@ -8,6 +8,7 @@ import dev.xkmc.l2hostility.compat.curios.CurioCompat;
 import dev.xkmc.l2hostility.content.capability.mob.MobTraitCap;
 import dev.xkmc.l2hostility.content.item.curio.core.CurseCurioItem;
 import dev.xkmc.l2hostility.content.logic.DifficultyLevel;
+import dev.xkmc.l2hostility.content.logic.TraitManager;
 import dev.xkmc.l2hostility.content.traits.base.AttributeTrait;
 import dev.xkmc.l2hostility.content.traits.base.MobTrait;
 import dev.xkmc.l2hostility.content.traits.base.SelfEffectTrait;
@@ -15,6 +16,7 @@ import dev.xkmc.l2hostility.init.registrate.LHItems;
 import dev.xkmc.l2hostility.init.registrate.LHTraits;
 import net.kayn.fallen_traits.content.item.SpawnRateModifier;
 import net.kayn.fallen_traits.init.FTConfig;
+import net.kayn.fallen_traits.mixin.l2hostility.AttributeTraitAccessor;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -24,6 +26,7 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
@@ -128,7 +131,11 @@ public class WrathOfFenrir extends CurseCurioItem implements SpawnRateModifier {
             }
 
             if (trait instanceof AttributeTrait attributeTrait) {
-                attributeTrait.initialize(target, 0);
+                var entries = ((AttributeTraitAccessor) attributeTrait).fallen_traits$getEntries();
+                for (var entry : entries) {
+                    if (entry.attribute().get() == Attributes.MAX_HEALTH) continue;
+                    TraitManager.addAttribute(target, entry.attribute().get(), entry.name(), 0, entry.op());
+                }
             }
         }
 
@@ -163,11 +170,12 @@ public class WrathOfFenrir extends CurseCurioItem implements SpawnRateModifier {
 
             if (trait != null && level > 0 && !cap.hasTrait(trait)) {
                 cap.traits.put(trait, level);
+                float preHealth = entity.getHealth();
                 trait.initialize(entity, level);
                 trait.postInit(entity, level);
+                entity.setHealth(Math.min(preHealth, entity.getMaxHealth()));
                 changed = true;
             }
-
             disabled.remove(i);
         }
 
