@@ -4,12 +4,14 @@ import dev.xkmc.l2damagetracker.contents.attack.AttackCache;
 import dev.xkmc.l2damagetracker.contents.attack.DamageModifier;
 import dev.xkmc.l2damagetracker.init.data.ArmorEffectConfig;
 import dev.xkmc.l2damagetracker.init.data.L2DTLangData;
+import dev.xkmc.l2hostility.compat.curios.CurioCompat;
 import dev.xkmc.l2hostility.content.capability.mob.MobTraitCap;
 import dev.xkmc.l2hostility.content.item.curio.core.CurseCurioItem;
 import dev.xkmc.l2hostility.content.logic.DifficultyLevel;
 import dev.xkmc.l2hostility.content.traits.base.AttributeTrait;
 import dev.xkmc.l2hostility.content.traits.base.MobTrait;
 import dev.xkmc.l2hostility.content.traits.base.SelfEffectTrait;
+import dev.xkmc.l2hostility.init.registrate.LHItems;
 import dev.xkmc.l2hostility.init.registrate.LHTraits;
 import net.kayn.fallen_traits.content.item.SpawnRateModifier;
 import net.kayn.fallen_traits.init.FTConfig;
@@ -27,6 +29,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.Nullable;
+import top.theillusivec4.curios.api.SlotContext;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -55,6 +58,15 @@ public class WrathOfFenrir extends CurseCurioItem implements SpawnRateModifier {
     @Override
     public float getSpawnRateMultiplier() {
         return FTConfig.COMMON.wrathOfFenrirSpawnRateMultiplier.get().floatValue();
+    }
+
+    @Override
+    public boolean canEquip(SlotContext slotContext, ItemStack stack) {
+        LivingEntity wearer = slotContext.entity();
+        return CurioCompat.getItems(
+                wearer,
+                equipped -> equipped.getItem() == LHItems.CURSE_WRATH.get()
+        ).isEmpty();
     }
 
     @Override
