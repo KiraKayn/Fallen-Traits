@@ -178,7 +178,7 @@ public class FTConfig {
 
                 cloneSpawnIntervalTicks = builder
                         .comment("minimum ticks between spawning new clones, only while the mob has a target")
-                        .defineInRange("cloneSpawnIntervalTicks", 100, 1, 72000);
+                        .defineInRange("cloneSpawnIntervalTicks", 50, 1, 72000);
 
                 cloneHealth = builder
                         .comment("flat max health for clones, low so any hit kills them regardless of the original's health/traits")
