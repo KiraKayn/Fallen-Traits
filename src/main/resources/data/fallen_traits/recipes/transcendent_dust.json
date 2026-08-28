@@ -1,0 +1,10 @@
+{
+  "type": "l2complements:burnt",
+  "chance": 128,
+  "ingredient": {
+    "tag": "l2hostility:trait_item"
+  },
+  "result": {
+    "item": "fallen_traits:transcendent_dust"
+  }
+}

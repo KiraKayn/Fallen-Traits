@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "1": {
+      "item": "l2hostility:chaos_ingot"
+    },
+    "2": {
+      "item": "l2complements:shulkerate_ingot"
+    },
+    "3": {
+      "item": "l2hostility:grenade"
+    },
+    "4": {
+      "item": "l2hostility:teleport"
+    }
+  },
+  "pattern": [
+    "242",
+    "313",
+    "242"
+  ],
+  "result": {
+    "item": "fallen_traits:phasewalkers_ring"
+  },
+  "show_notification": true
+}

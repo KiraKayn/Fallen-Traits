@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "T": {
+      "item": "l2hostility:tank"
+    },
+    "N": {
+      "item": "fallen_traits:titan"
+    },
+    "W": {
+      "item": "l2complements:warden_bone_shard"
+    },
+    "M": {
+      "item": "l2hostility:miracle_ingot"
+    }
+  },
+  "pattern": [
+    "NMN",
+    "MWM",
+    "TMT"
+  ],
+  "result": {
+    "item": "fallen_traits:titans_heart"
+  },
+  "show_notification": true
+}

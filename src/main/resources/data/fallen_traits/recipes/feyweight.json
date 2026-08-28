@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": {
+      "item": "fallen_traits:dwarf"
+    },
+    "S": {
+      "item": "l2hostility:speedy"
+    },
+    "C": {
+      "item": "l2complements:captured_wind"
+    },
+    "M": {
+      "item": "l2hostility:miracle_ingot"
+    }
+  },
+  "pattern": [
+    "DMD",
+    "MCM",
+    "SMS"
+  ],
+  "result": {
+    "item": "fallen_traits:feyweight"
+  },
+  "show_notification": true
+}

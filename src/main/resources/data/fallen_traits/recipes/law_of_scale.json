@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "F": {
+      "item": "fallen_traits:feyweight"
+    },
+    "T": {
+      "item": "fallen_traits:titans_heart"
+    },
+    "N": {
+      "item": "fallen_traits:titan"
+    },
+    "I": {
+      "item": "fallen_traits:transcendent_ingot"
+    },
+    "D": {
+      "item": "fallen_traits:dwarf"
+    },
+    "G": {
+      "item": "l2hostility:growth"
+    },
+    "C": {
+      "item": "fallen_traits:cleanse"
+    }
+  },
+  "pattern": [
+    "NCN",
+    "TIF",
+    "DGD"
+  ],
+  "result": {
+    "item": "fallen_traits:law_of_scale"
+  },
+  "show_notification": true
+}

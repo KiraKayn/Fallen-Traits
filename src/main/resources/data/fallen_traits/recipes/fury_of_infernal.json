@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "item": "fallen_traits:infernal"
+    },
+    "B": {
+      "item": "fallen_traits:berserk"
+    },
+    "R": {
+      "item": "fallen_traits:rage"
+    },
+    "D": {
+      "item": "fallen_traits:transcendent_dust"
+    },
+    "T": {
+      "item": "fallen_traits:transcendent_ingot"
+    },
+    "P": {
+      "item": "l2hostility:curse_of_pride"
+    }
+  },
+  "pattern": [
+    "BRB",
+    "TPT",
+    "IDI"
+  ],
+  "result": {
+    "item": "fallen_traits:fury_of_infernal"
+  },
+  "show_notification": true
+}

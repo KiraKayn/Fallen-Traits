@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "1": {
+      "item": "l2hostility:charm_of_looting_1"
+    },
+    "2": {
+      "item": "l2hostility:charm_of_looting_2"
+    },
+    "3": {
+      "item": "l2hostility:charm_of_looting_3"
+    },
+    "4": {
+      "item": "l2hostility:charm_of_looting_4"
+    },
+    "5": {
+      "item": "fallen_traits:transcendent_ingot"
+    },
+    "6": {
+      "type": "l2library:enchantment",
+      "enchantment": "minecraft:looting",
+      "min_level": 3
+    }
+  },
+  "pattern": [
+    "51 ",
+    "364",
+    " 25"
+  ],
+  "result": {
+    "item": "fallen_traits:omniscient_looting_charm"
+  },
+  "show_notification": true
+}

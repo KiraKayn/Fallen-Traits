@@ -2,18 +2,13 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "1": {
-      "type": "l2library:enchantment",
-      "enchantment": "minecraft:sharpness",
-      "min_level": 3
-    },
     "B": {
-      "item": "minecraft:blaze_powder"
+      "item": "minecraft:blaze_rod"
     },
-    "G": {
-      "item": "minecraft:leather"
+    "N": {
+      "item": "minecraft:netherite_ingot"
     },
-    "I": {
+    "C": {
       "item": "l2hostility:chaos_ingot"
     },
     "R": {
@@ -21,9 +16,9 @@
     }
   },
   "pattern": [
-    "GBG",
-    "1RI",
-    "GBG"
+    "NRN",
+    "BCB",
+    "NRN"
   ],
   "result": {
     "item": "fallen_traits:rage_glove"

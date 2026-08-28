@@ -1,0 +1,39 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "1": {
+      "item": "fallen_traits:mimic"
+    },
+    "2": {
+      "item": "fallen_traits:devourer"
+    },
+    "3": {
+      "item": "fallen_traits:infernal"
+    },
+    "4": {
+      "item": "fallen_traits:berserk"
+    },
+    "5": {
+      "item": "fallen_traits:transcendent_ingot"
+    },
+    "6": {
+      "item": "l2hostility:killer_aura"
+    },
+    "7": {
+      "item": "l2hostility:ragnarok"
+    },
+    "8": {
+      "item": "l2hostility:pocket_of_restoration"
+    }
+  },
+  "pattern": [
+    "236",
+    "585",
+    "741"
+  ],
+  "result": {
+    "item": "fallen_traits:yggdrasil_root"
+  },
+  "show_notification": true
+}

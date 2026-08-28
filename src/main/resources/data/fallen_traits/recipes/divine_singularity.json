@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "1": {
+      "item": "fallen_traits:devourer"
+    },
+    "2": {
+      "item": "fallen_traits:cleanse"
+    },
+    "3": {
+      "item": "l2hostility:divinity_cross"
+    },
+    "4": {
+      "item": "fallen_traits:transcendent_ingot"
+    }
+  },
+  "pattern": [
+    "121",
+    "434",
+    "212"
+  ],
+  "result": {
+    "item": "fallen_traits:divine_singularity"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "1": {
+      "item": "fallen_traits:rage"
+    },
+    "2": {
+      "item": "fallen_traits:transcendent_ingot"
+    },
+    "3": {
+      "item": "fallen_traits:shredder"
+    },
+    "4": {
+      "item": "l2hostility:curse_of_wrath"
+    },
+    "5": {
+      "item": "l2hostility:ragnarok"
+    },
+    "6": {
+      "item": "l2hostility:miracle_ingot"
+    }
+  },
+  "pattern": [
+    "141",
+    "525",
+    "636"
+  ],
+  "result": {
+    "item": "fallen_traits:wrath_of_fenrir"
+  },
+  "show_notification": true
+}

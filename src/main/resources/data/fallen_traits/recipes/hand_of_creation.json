@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "1": {
+      "item": "fallen_traits:transcendent_ingot"
+    },
+    "2": {
+      "item": "fallen_traits:invulnerability_breaker"
+    },
+    "3": {
+      "item": "fallen_traits:rage_glove"
+    },
+    "4": {
+      "item": "l2hostility:flaming_thorn"
+    },
+    "5": {
+      "item": "l2hostility:infinity_glove"
+    },
+    "6": {
+      "item": "l2hostility:imagine_breaker"
+    },
+    "7": {
+      "item": "l2hostility:platinum_star"
+    }
+  },
+  "pattern": [
+    "217",
+    "354",
+    "161"
+  ],
+  "result": {
+    "item": "fallen_traits:hand_of_creation"
+  },
+  "show_notification": true
+}

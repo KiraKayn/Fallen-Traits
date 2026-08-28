@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "1": {
+      "item": "l2hostility:pulling"
+    },
+    "2": {
+      "item": "l2hostility:repelling"
+    },
+    "3": {
+      "item": "l2hostility:miracle_ingot"
+    },
+    "4": {
+      "item": "l2hostility:hostility_essence"
+    },
+    "5": {
+      "item": "l2complements:blackstone_core"
+    },
+    "6": {
+      "item": "l2complements:force_field"
+    }
+  },
+  "pattern": [
+    "162",
+    "434",
+    "251"
+  ],
+  "result": {
+    "item": "fallen_traits:universal_point_of_discontinuity"
+  },
+  "show_notification": true
+}
