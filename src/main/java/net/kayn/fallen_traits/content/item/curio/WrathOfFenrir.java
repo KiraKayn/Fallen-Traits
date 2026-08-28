@@ -15,6 +15,7 @@ import dev.xkmc.l2hostility.content.traits.base.SelfEffectTrait;
 import dev.xkmc.l2hostility.init.registrate.LHItems;
 import dev.xkmc.l2hostility.init.registrate.LHTraits;
 import net.kayn.fallen_traits.content.item.SpawnRateModifier;
+import net.kayn.fallen_traits.content.traits.legendary.SizeTrait;
 import net.kayn.fallen_traits.init.FTConfig;
 import net.kayn.fallen_traits.mixin.l2hostility.AttributeTraitAccessor;
 import net.minecraft.ChatFormatting;
@@ -136,6 +137,9 @@ public class WrathOfFenrir extends CurseCurioItem implements SpawnRateModifier {
                     if (entry.attribute().get() == Attributes.MAX_HEALTH) continue;
                     TraitManager.addAttribute(target, entry.attribute().get(), entry.name(), 0, entry.op());
                 }
+            }
+            if (trait instanceof SizeTrait sizeTrait) {
+                sizeTrait.disableNonHealthAttributes(target);
             }
         }
 

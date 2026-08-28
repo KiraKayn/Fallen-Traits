@@ -51,6 +51,8 @@ public abstract class SizeTrait extends LegendaryTrait {
 
     protected abstract void applyAttributes(LivingEntity mob, int level);
 
+    public abstract void disableNonHealthAttributes(LivingEntity mob);
+
     protected abstract String getLevelTag();
 
     public String getLevelTagPublic() {

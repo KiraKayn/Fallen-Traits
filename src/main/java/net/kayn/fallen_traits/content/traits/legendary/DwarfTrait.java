@@ -46,6 +46,15 @@ public class DwarfTrait extends SizeTrait {
     }
 
     @Override
+    public void disableNonHealthAttributes(LivingEntity mob) {
+        if (mob.level().isClientSide()) return;
+        TraitManager.addAttribute(mob, Attributes.MOVEMENT_SPEED, "fallen_traits_dwarf_speed",
+                0, AttributeModifier.Operation.MULTIPLY_TOTAL);
+        TraitManager.addAttribute(mob, ALObjects.Attributes.DODGE_CHANCE.get(), "fallen_traits_dwarf_dodge",
+                0, AttributeModifier.Operation.ADDITION);
+    }
+
+    @Override
     protected String getLevelTag() {
         return LEVEL_TAG;
     }

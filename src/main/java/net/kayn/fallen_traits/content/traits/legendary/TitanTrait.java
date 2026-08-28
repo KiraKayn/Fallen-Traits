@@ -44,6 +44,13 @@ public class TitanTrait extends SizeTrait {
     }
 
     @Override
+    public void disableNonHealthAttributes(LivingEntity mob) {
+        if (mob.level().isClientSide()) return;
+        TraitManager.addAttribute(mob, Attributes.KNOCKBACK_RESISTANCE, "fallen_traits_titan_knockback",
+                0, AttributeModifier.Operation.ADDITION);
+    }
+
+    @Override
     protected String getLevelTag() {
         return LEVEL_TAG;
     }
