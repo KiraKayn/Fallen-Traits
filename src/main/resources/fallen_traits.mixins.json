@@ -18,7 +18,8 @@
     "l2hostility.SingletonItemMixin",
     "minecraft.NaturalSpawnerMixin",
     "minecraft.MobEffectInstanceMixin",
-    "l2hostility.AttributeTraitAccessor"
+    "l2hostility.AttributeTraitAccessor",
+    "attributeslib.AttributeEventsMixin"
   ],
   "client": [
     "l2hostility.HostilityBeaconScreenMixin",
