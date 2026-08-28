@@ -1,7 +1,6 @@
 package net.kayn.fallen_traits.events;
 
 import dev.shadowsoffire.attributeslib.api.ALObjects;
-import dev.shadowsoffire.attributeslib.impl.AttributeEvents;
 import dev.xkmc.l2damagetracker.init.data.ArmorEffectConfig;
 import dev.xkmc.l2hostility.compat.curios.CurioCompat;
 import dev.xkmc.l2hostility.content.capability.mob.MobTraitCap;
@@ -12,7 +11,7 @@ import net.kayn.fallen_traits.content.item.curio.HandOfCreation;
 import net.kayn.fallen_traits.content.item.curio.RageGlove;
 import net.kayn.fallen_traits.content.item.curio.WrathOfFenrir;
 import net.kayn.fallen_traits.content.traits.basic.CloneTrait;
-import net.kayn.fallen_traits.content.traits.basic.DevourerTrait;
+import net.kayn.fallen_traits.content.traits.legendary.DevourerTrait;
 import net.kayn.fallen_traits.content.traits.legendary.MimicTrait;
 import net.kayn.fallen_traits.init.FTConfig;
 import net.kayn.fallen_traits.init.FTItems;

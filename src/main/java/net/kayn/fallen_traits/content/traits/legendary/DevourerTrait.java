@@ -1,4 +1,4 @@
-package net.kayn.fallen_traits.content.traits.basic;
+package net.kayn.fallen_traits.content.traits.legendary;
 
 import dev.xkmc.l2damagetracker.contents.attack.AttackCache;
 import dev.xkmc.l2hostility.content.capability.mob.CapStorageData;
@@ -6,6 +6,7 @@ import dev.xkmc.l2hostility.content.capability.mob.MobTraitCap;
 import dev.xkmc.l2hostility.content.logic.TraitEffectCache;
 import dev.xkmc.l2hostility.content.logic.TraitManager;
 import dev.xkmc.l2hostility.content.traits.base.MobTrait;
+import dev.xkmc.l2hostility.content.traits.legendary.LegendaryTrait;
 import dev.xkmc.l2serial.serialization.SerialClass;
 import net.kayn.fallen_traits.init.FTConfig;
 import net.minecraft.ChatFormatting;
@@ -16,7 +17,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 
 import java.util.List;
 
-public class DevourerTrait extends MobTrait {
+public class DevourerTrait extends LegendaryTrait {
 
     public DevourerTrait(ChatFormatting style) {
         super(style);
