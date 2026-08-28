@@ -84,6 +84,8 @@ public class HandOfCreation extends CurseCurioItem {
         data.lastHit = time;
 
         LivingEntity target = cache.getAttackTarget();
+        markEffectOwner(target, user);
+
         String targetId = target.getStringUUID();
         if (!targetId.equals(data.flameTargetId)) {
             data.flameTargetId = targetId;
@@ -94,7 +96,6 @@ public class HandOfCreation extends CurseCurioItem {
             data.flameLevel = Math.min(traitCount, data.flameLevel + 1);
             int flameTime = FTConfig.COMMON.handOfCreationFlameDurationTicks.get();
             EffectUtil.addEffect(target, new MobEffectInstance(LCEffects.FLAME.get(), flameTime, data.flameLevel - 1), EffectUtil.AddReason.FORCE, user);
-            markEffectOwner(target, user);
         }
     }
 
@@ -105,12 +106,11 @@ public class HandOfCreation extends CurseCurioItem {
     }
 
     @Nullable
-    public static LivingEntity getEffectOwner(LivingEntity target, MobEffect effect) {
+    public static LivingEntity getEffectOwner(LivingEntity target, long windowTicks) {
         EffectOwnerData data = EntityCakyHandler.resolveWith(target, EFFECT_OWNER_KEY, IObjectCaky.Type.MANUAL, e -> new EffectOwnerData(), e -> 0);
         if (data.ownerUUID == null || data.ownerUUID.isEmpty()) return null;
 
-        long timeout = FTConfig.COMMON.handOfCreationFlameDurationTicks.get() + 20;
-        if (target.level().getGameTime() - data.lastMarked > timeout) {
+        if (target.level().getGameTime() - data.lastMarked > windowTicks) {
             data.ownerUUID = null;
             return null;
         }
@@ -145,6 +145,7 @@ public class HandOfCreation extends CurseCurioItem {
         list.add(Component.translatable(getDescriptionId() + ".desc_invuln_break").withStyle(ChatFormatting.GOLD));
         list.add(Component.translatable(getDescriptionId() + ".desc_invuln_bonus",
                 Component.literal(FTConfig.COMMON.handOfCreationWearerInvulnBonusTicks.get() + "").withStyle(ChatFormatting.RED)).withStyle(ChatFormatting.GOLD));
+        list.add(Component.translatable(getDescriptionId() + ".desc_dot").withStyle(ChatFormatting.GOLD));
         list.add(Component.translatable(getDescriptionId() + ".desc_flame").withStyle(ChatFormatting.GOLD));
         list.add(Component.translatable(getDescriptionId() + ".desc_magic").withStyle(ChatFormatting.GOLD));
         list.add(Component.translatable(getDescriptionId() + ".desc_no_drop").withStyle(ChatFormatting.RED));

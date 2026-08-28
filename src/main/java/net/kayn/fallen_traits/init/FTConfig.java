@@ -122,6 +122,7 @@ public class FTConfig {
         public final ForgeConfigSpec.IntValue handOfCreationStackTimeoutTicks;
         public final ForgeConfigSpec.IntValue handOfCreationWearerInvulnBonusTicks;
         public final ForgeConfigSpec.IntValue handOfCreationFlameDurationTicks;
+        public final ForgeConfigSpec.IntValue handOfCreationDotOwnerWindowTicks;
 
         public final ForgeConfigSpec.IntValue incarceratingEnchantDuration;
 
@@ -574,6 +575,10 @@ public class FTConfig {
                 handOfCreationFlameDurationTicks = builder
                         .comment("duration in ticks of Soul Flame inflicted on hit")
                         .defineInRange("handOfCreationFlameDurationTicks", 100, 1, 10000);
+
+                handOfCreationDotOwnerWindowTicks = builder
+                        .comment("ticks after hitting a target that its harmful effects tick every game tick instead of their normal interval, while you wear Hand of Creation")
+                        .defineInRange("handOfCreationDotOwnerWindowTicks", 20, 1, 72000);
 
                 builder.pop();
                 builder.push("wrath_of_fenrir");

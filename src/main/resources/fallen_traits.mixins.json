@@ -16,7 +16,8 @@
     "l2hostility.CurioCompatMixin",
     "l2hostility.ItemPopulatorMixin",
     "l2hostility.SingletonItemMixin",
-    "minecraft.NaturalSpawnerMixin"
+    "minecraft.NaturalSpawnerMixin",
+    "minecraft.MobEffectInstanceMixin"
   ],
   "client": [
     "l2hostility.HostilityBeaconScreenMixin",

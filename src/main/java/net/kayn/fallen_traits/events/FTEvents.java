@@ -232,6 +232,7 @@ public class FTEvents {
             return false;
         }
     }
+
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onAttackIgnoreInvuln(LivingAttackEvent event) {
         Entity direct = event.getSource().getEntity();
@@ -247,16 +248,14 @@ public class FTEvents {
 
     private static LivingEntity resolveEffectOwner(LivingEntity target, net.minecraft.world.damagesource.DamageSource source) {
         if (source.getEntity() instanceof LivingEntity le) return le;
-        for (var effect : target.getActiveEffectsMap().values()) {
-            LivingEntity owner = HandOfCreation.getEffectOwner(target, effect.getEffect());
-            if (owner != null) return owner;
-        }
-        return null;
+        return HandOfCreation.getEffectOwner(target, FTConfig.COMMON.handOfCreationDotOwnerWindowTicks.get());
     }
+
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onLivingTick(LivingEvent.LivingTickEvent event) {
         WrathOfFenrir.restoreExpiredTraits(event.getEntity());
     }
+
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onPotionTest(MobEffectEvent.Applicable event) {
         LivingEntity entity = event.getEntity();
