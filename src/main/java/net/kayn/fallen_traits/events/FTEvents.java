@@ -10,6 +10,7 @@ import net.kayn.fallen_traits.FallenTraits;
 import net.kayn.fallen_traits.content.item.curio.HandOfCreation;
 import net.kayn.fallen_traits.content.item.curio.RageGlove;
 import net.kayn.fallen_traits.content.item.curio.WrathOfFenrir;
+import net.kayn.fallen_traits.content.item.curio.YggdrasilRoot;
 import net.kayn.fallen_traits.content.traits.basic.CloneTrait;
 import net.kayn.fallen_traits.content.traits.legendary.DevourerTrait;
 import net.kayn.fallen_traits.content.traits.legendary.MimicTrait;
@@ -270,6 +271,19 @@ public class FTEvents {
             if (id == null) return;
             var immunitySet = ArmorEffectConfig.get().getImmunity(id.toString());
             if (immunitySet != null && immunitySet.contains(event.getEffectInstance().getEffect())) {
+                event.setResult(Event.Result.DENY);
+            }
+        }
+
+    }
+    @SubscribeEvent
+    public static void onCurioCanEquip(top.theillusivec4.curios.api.event.CurioEquipEvent event) {
+        if (event.getStack().getItem() == dev.xkmc.l2hostility.init.registrate.LHItems.RESTORATION.get()) {
+            LivingEntity wearer = event.getSlotContext().entity();
+            boolean hasYggdrasilRoot = !CurioCompat.getItems(
+                    wearer, equipped -> equipped.getItem() instanceof YggdrasilRoot
+            ).isEmpty();
+            if (hasYggdrasilRoot) {
                 event.setResult(Event.Result.DENY);
             }
         }

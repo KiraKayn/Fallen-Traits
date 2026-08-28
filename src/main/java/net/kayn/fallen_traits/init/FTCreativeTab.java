@@ -38,6 +38,7 @@ public class FTCreativeTab {
                         output.accept(FTItems.DIVINE_SINGULARITY.get());
                         output.accept(FTItems.WRATH_OF_FENRIR.get());
                         output.accept(FTItems.UNIVERSAL_POINT_OF_DISCONTINUITY.get());
+                        output.accept(FTItems.YGGDRASIL_ROOT.get());
                         //traits
                         output.accept(FTItems.RAGE_SYMBOL.get());
                         output.accept(FTItems.MIMIC_SYMBOL.get());

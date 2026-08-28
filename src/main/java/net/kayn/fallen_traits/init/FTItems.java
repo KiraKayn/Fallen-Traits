@@ -98,6 +98,9 @@ public class FTItems {
             ITEMS.register("universal_point_of_discontinuity",
                     () -> new UniversalPointOfDiscontinuity(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant()));
 
+    public static final RegistryObject<YggdrasilRoot> YGGDRASIL_ROOT = ITEMS.register("yggdrasil_root",
+            () -> new YggdrasilRoot(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant().durability(256)));
+
     public static void register() {
     }
 

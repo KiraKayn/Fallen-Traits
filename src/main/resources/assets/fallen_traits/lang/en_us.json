@@ -124,5 +124,9 @@
   "item.fallen_traits.universal_point_of_discontinuity.desc_asymptote": "Slows entities by up to %s within %s blocks",
   "item.fallen_traits.universal_point_of_discontinuity.desc_pulling": "Attracts entities within %s blocks, strength %s",
   "item.fallen_traits.universal_point_of_discontinuity.desc_disabled": "No abilities active",
-  "item.fallen_traits.universal_point_of_discontinuity.desc_use": "Right-click to cycle modes"
+  "item.fallen_traits.universal_point_of_discontinuity.desc_use": "Right-click to cycle modes",
+
+  "item.fallen_traits.yggdrasil_root": "Yggdrasil Root",
+  "item.fallen_traits.yggdrasil_root.desc": "Unseals up to %s items simultaneously at %s speed",
+  "item.fallen_traits.yggdrasil_root.desc_unsealing": "Currently unsealing %s items:"
 }

@@ -140,6 +140,9 @@ public class FTConfig {
         public final ForgeConfigSpec.IntValue updPullingRange;
         public final ForgeConfigSpec.DoubleValue updPullingStrength;
 
+        public final ForgeConfigSpec.IntValue yggdrasilRootMaxUnsealSlots;
+        public final ForgeConfigSpec.DoubleValue yggdrasilRootUnsealSpeedMultiplier;
+
         public Common(ForgeConfigSpec.Builder builder) {
 
             // traits (behavior granted directly by the trait itself)
@@ -640,6 +643,17 @@ public class FTConfig {
                 updPullingStrength = builder
                         .comment("Pull strength for Pulling mode")
                         .defineInRange("updPullingStrength", 0.15, 0, 10);
+
+                builder.pop();
+                builder.push("yggdrasil_root");
+
+                yggdrasilRootMaxUnsealSlots = builder
+                        .comment("Maximum number of sealed items that can be unsealed simultaneously")
+                        .defineInRange("yggdrasilRootMaxUnsealSlots", 3, 1, 20);
+
+                yggdrasilRootUnsealSpeedMultiplier = builder
+                        .comment("Speed multiplier for unsealing (2.0 = 2x faster)")
+                        .defineInRange("yggdrasilRootUnsealSpeedMultiplier", 2.0, 1.0, 10.0);
 
                 builder.pop();
                 //enchantments
