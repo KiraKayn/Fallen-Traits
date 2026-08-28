@@ -133,6 +133,13 @@ public class FTConfig {
         public final ForgeConfigSpec.IntValue wrathOfFenrirTraitDisableDuration;
         public final ForgeConfigSpec.DoubleValue wrathOfFenrirSpawnRateMultiplier;
 
+        public final ForgeConfigSpec.IntValue updRepellingRange;
+        public final ForgeConfigSpec.DoubleValue updRepellingStrength;
+        public final ForgeConfigSpec.IntValue updAsymptoteRange;
+        public final ForgeConfigSpec.DoubleValue updAsymptoteSlowStrength;
+        public final ForgeConfigSpec.IntValue updPullingRange;
+        public final ForgeConfigSpec.DoubleValue updPullingStrength;
+
         public Common(ForgeConfigSpec.Builder builder) {
 
             // traits (behavior granted directly by the trait itself)
@@ -606,6 +613,33 @@ public class FTConfig {
                 wrathOfFenrirSpawnRateMultiplier = builder
                         .comment("spawn rate multiplier (1.0 = +100%)")
                         .defineInRange("wrathOfFenrirSpawnRateMultiplier", 1.0, 0, 100);
+
+                builder.pop();
+                builder.push("universal_point_of_discontinuity");
+
+                updRepellingRange = builder
+                        .comment("Range in blocks for Repelling mode")
+                        .defineInRange("updRepellingRange", 8, 1, 64);
+
+                updRepellingStrength = builder
+                        .comment("Push strength for Repelling mode")
+                        .defineInRange("updRepellingStrength", 0.3, 0, 10);
+
+                updAsymptoteRange = builder
+                        .comment("Range in blocks for Asymptote mode")
+                        .defineInRange("updAsymptoteRange", 16, 1, 64);
+
+                updAsymptoteSlowStrength = builder
+                        .comment("Slow strength for Asymptote mode (1.0 = full stop at center)")
+                        .defineInRange("updAsymptoteSlowStrength", 0.9, 0, 1);
+
+                updPullingRange = builder
+                        .comment("Range in blocks for Pulling mode")
+                        .defineInRange("updPullingRange", 8, 1, 64);
+
+                updPullingStrength = builder
+                        .comment("Pull strength for Pulling mode")
+                        .defineInRange("updPullingStrength", 0.15, 0, 10);
 
                 builder.pop();
                 //enchantments

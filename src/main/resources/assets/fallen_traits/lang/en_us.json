@@ -113,5 +113,16 @@
   "item.fallen_traits.wrath_of_fenrir": "Wrath of Fenrir",
   "item.fallen_traits.wrath_of_fenrir.desc_damage": "Gain %s attack damage per difficulty level difference against mobs with higher level than you",
   "item.fallen_traits.wrath_of_fenrir.desc_disable": "Temporarily disables %s-%s traits of attacked mobs for %s",
-  "item.fallen_traits.wrath_of_fenrir.desc_spawn_rate": "Increases Entity Spawn rate by %s"
+  "item.fallen_traits.wrath_of_fenrir.desc_spawn_rate": "Increases Entity Spawn rate by %s",
+
+  "item.fallen_traits.universal_point_of_discontinuity": "Universal Point of Discontinuity",
+  "item.fallen_traits.universal_point_of_discontinuity.mode.0": "Mode: Repelling",
+  "item.fallen_traits.universal_point_of_discontinuity.mode.1": "Mode: Asymptote",
+  "item.fallen_traits.universal_point_of_discontinuity.mode.2": "Mode: Pulling",
+  "item.fallen_traits.universal_point_of_discontinuity.mode.3": "Mode: Disabled",
+  "item.fallen_traits.universal_point_of_discontinuity.desc_repelling": "Pushes entities away within %s blocks, strength %s",
+  "item.fallen_traits.universal_point_of_discontinuity.desc_asymptote": "Slows entities by up to %s within %s blocks",
+  "item.fallen_traits.universal_point_of_discontinuity.desc_pulling": "Attracts entities within %s blocks, strength %s",
+  "item.fallen_traits.universal_point_of_discontinuity.desc_disabled": "No abilities active",
+  "item.fallen_traits.universal_point_of_discontinuity.desc_use": "Right-click to cycle modes"
 }

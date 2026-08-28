@@ -94,6 +94,10 @@ public class FTItems {
     public static final RegistryObject<WrathOfFenrir> WRATH_OF_FENRIR = ITEMS.register("wrath_of_fenrir",
             () -> new WrathOfFenrir(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant()));
 
+    public static final RegistryObject<UniversalPointOfDiscontinuity> UNIVERSAL_POINT_OF_DISCONTINUITY =
+            ITEMS.register("universal_point_of_discontinuity",
+                    () -> new UniversalPointOfDiscontinuity(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant()));
+
     public static void register() {
     }
 
