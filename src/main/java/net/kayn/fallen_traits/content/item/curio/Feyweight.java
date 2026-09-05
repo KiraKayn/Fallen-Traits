@@ -39,6 +39,12 @@ public class Feyweight extends CurseCurioItem {
     @Override
     public boolean canEquip(SlotContext slotContext, ItemStack stack) {
         LivingEntity wearer = slotContext.entity();
+
+        boolean hasDuplicate = !CurioCompat.getItems(
+                wearer, equipped -> equipped.getItem() == this
+        ).isEmpty();
+        if (hasDuplicate) return false;
+
         return CurioCompat.getItems(
                 wearer,
                 equipped -> equipped.getItem() instanceof TitansHeart

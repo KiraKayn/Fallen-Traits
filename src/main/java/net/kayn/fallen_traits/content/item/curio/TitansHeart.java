@@ -53,12 +53,17 @@ public class TitansHeart extends CurseCurioItem {
     @Override
     public boolean canEquip(SlotContext slotContext, ItemStack stack) {
         LivingEntity wearer = slotContext.entity();
+
+        boolean hasDuplicate = !CurioCompat.getItems(
+                wearer, equipped -> equipped.getItem() == this
+        ).isEmpty();
+        if (hasDuplicate) return false;
+
         return CurioCompat.getItems(
                 wearer,
                 equipped -> equipped.getItem() instanceof Feyweight
         ).isEmpty();
     }
-
     @Override
     public void onHurtTarget(ItemStack stack, LivingEntity user, AttackCache cache) {
         var event = cache.getLivingHurtEvent();
