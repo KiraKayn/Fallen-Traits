@@ -5,6 +5,7 @@ import dev.xkmc.l2hostility.content.item.curio.core.SingletonItem;
 import dev.xkmc.l2hostility.init.registrate.LHItems;
 import net.kayn.fallen_traits.content.item.curio.HandOfCreation;
 import net.kayn.fallen_traits.content.item.curio.WrathOfFenrir;
+import net.kayn.fallen_traits.init.FTItems;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -39,6 +40,15 @@ public abstract class SingletonItemMixin {
                     wearer, equipped -> equipped.getItem() instanceof WrathOfFenrir
             ).isEmpty();
             if (hasWrathOfFenrir) {
+                cir.setReturnValue(false);
+            }
+        }
+        if (item == LHItems.LOOT_1.get() || item == LHItems.LOOT_2.get() ||
+                item == LHItems.LOOT_3.get() || item == LHItems.LOOT_4.get()) {
+            boolean hasOmniscient = !CurioCompat.getItems(
+                    wearer, equipped -> equipped.getItem() == FTItems.OMNISCIENT_LOOTING_CHARM.get()
+            ).isEmpty();
+            if (hasOmniscient) {
                 cir.setReturnValue(false);
             }
         }
