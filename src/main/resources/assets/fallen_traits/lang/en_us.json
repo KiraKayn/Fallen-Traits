@@ -128,5 +128,8 @@
 
   "item.fallen_traits.yggdrasil_root": "Yggdrasil Root",
   "item.fallen_traits.yggdrasil_root.desc": "Unseals up to %s items simultaneously at %s speed",
-  "item.fallen_traits.yggdrasil_root.desc_unsealing": "Currently unsealing %s items:"
+  "item.fallen_traits.yggdrasil_root.desc_unsealing": "Currently unsealing %s items:",
+
+  "fallen_traits.jade.trait_count": "Traits: %s",
+  "fallen_traits.jade.legendary_traits": "Legendary Traits: %s"
 }

@@ -19,7 +19,9 @@
     "minecraft.NaturalSpawnerMixin",
     "minecraft.MobEffectInstanceMixin",
     "l2hostility.AttributeTraitAccessor",
-    "attributeslib.AttributeEventsMixin"
+    "attributeslib.AttributeEventsMixin",
+    "l2hostility.TraitInfoMixin",
+    "l2hostility.MobTraitCapTitleMixin"
   ],
   "client": [
     "l2hostility.HostilityBeaconScreenMixin",
