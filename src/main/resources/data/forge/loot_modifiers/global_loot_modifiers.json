@@ -1,0 +1,14 @@
+{
+  "entries": [
+    "fallen_traits:berserk_drops_miracle_ingot",
+    "fallen_traits:infernal_drops_miracle_ingot",
+    "fallen_traits:titan_drops_warden_shard",
+    "fallen_traits:rage_drops_netherite_scrap",
+    "fallen_traits:dwarf_drops_golden_apple",
+    "fallen_traits:clone_drops_poseidite_nugget",
+    "fallen_traits:cleanse_drops_experience_bottle",
+    "fallen_traits:shredder_drops_echo_shard",
+    "fallen_traits:devourer_drops_hostility_essence"
+  ],
+  "replace": false
+}
