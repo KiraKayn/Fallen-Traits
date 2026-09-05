@@ -11,6 +11,7 @@ import dev.xkmc.l2hostility.content.item.curio.core.CurseCurioItem;
 import dev.xkmc.l2library.base.effects.EffectUtil;
 import net.kayn.fallen_traits.init.FTConfig;
 import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -146,16 +147,18 @@ public class HandOfCreation extends CurseCurioItem {
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> list, TooltipFlag flag) {
         int inc = (int) Math.round(FTConfig.COMMON.handOfCreationDamageIncreasePerHit.get() * 100);
         int maxMult = (int) Math.round(FTConfig.COMMON.handOfCreationMaxDamageMultiplier.get() * 100);
+
         list.add(Component.translatable(getDescriptionId() + ".desc_intro").withStyle(ChatFormatting.GOLD));
         list.add(Component.translatable(getDescriptionId() + ".desc_rage",
-                Component.literal(inc + "%").withStyle(ChatFormatting.RED),
-                Component.literal(maxMult + "%").withStyle(ChatFormatting.RED)).withStyle(ChatFormatting.GOLD));
+                Component.literal("+" + inc + "%").withStyle(ChatFormatting.RED),
+                Component.literal("+" + maxMult + "%").withStyle(ChatFormatting.RED)).withStyle(ChatFormatting.GOLD));
         list.add(Component.translatable(getDescriptionId() + ".desc_invuln_break").withStyle(ChatFormatting.GOLD));
         list.add(Component.translatable(getDescriptionId() + ".desc_invuln_bonus",
-                Component.literal(FTConfig.COMMON.handOfCreationWearerInvulnBonusTicks.get() + "").withStyle(ChatFormatting.RED)).withStyle(ChatFormatting.GOLD));
+                Component.literal(String.valueOf(FTConfig.COMMON.handOfCreationWearerInvulnBonusTicks.get())).withStyle(ChatFormatting.RED)).withStyle(ChatFormatting.GOLD));
         list.add(Component.translatable(getDescriptionId() + ".desc_dot").withStyle(ChatFormatting.GOLD));
         list.add(Component.translatable(getDescriptionId() + ".desc_flame").withStyle(ChatFormatting.GOLD));
         list.add(Component.translatable(getDescriptionId() + ".desc_magic").withStyle(ChatFormatting.GOLD));
+        list.add(CommonComponents.EMPTY);
         list.add(Component.translatable(getDescriptionId() + ".desc_no_drop").withStyle(ChatFormatting.RED));
         list.add(Component.translatable(getDescriptionId() + ".desc_max_traits").withStyle(ChatFormatting.RED));
         list.add(Component.translatable(getDescriptionId() + ".desc_over_max").withStyle(ChatFormatting.RED));
