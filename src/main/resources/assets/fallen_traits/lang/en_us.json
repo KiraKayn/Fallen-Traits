@@ -102,7 +102,7 @@
   "item.fallen_traits.hand_of_creation.desc_no_drop": "Mobs you kill will not drop Hostility Loot",
   "item.fallen_traits.hand_of_creation.desc_max_traits": "All mobs spawn with Max level Traits",
   "item.fallen_traits.hand_of_creation.desc_over_max": "If their Trait would have been max, give it +1 level",
-  "item.fallen_traits.hand_of_creation.desc_no_trait_cap": "Mobs can spawn with unlimited Traits",
+  "item.fallen_traits.hand_of_creation.desc_no_trait_cap": "Mobs can spawn with Unlimited Traits",
 
   "enchantment.fallen_traits.incarcerating_blade": "Incarcerating Blade",
   "enchantment.fallen_traits.incarcerating_blade.desc": "Apply Incarceration effect to target. Higher levels have longer duration.",
