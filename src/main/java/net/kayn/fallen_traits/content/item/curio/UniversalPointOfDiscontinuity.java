@@ -41,6 +41,14 @@ public class UniversalPointOfDiscontinuity extends MultiSlotItem {
     }
 
     @Override
+    public void inventoryTick(ItemStack stack, Level level, net.minecraft.world.entity.Entity entity, int slot, boolean selected) {
+        super.inventoryTick(stack, level, entity, slot, selected);
+        if (!stack.getOrCreateTag().contains("mode")) {
+            stack.getOrCreateTag().putInt("mode", 3);
+        }
+    }
+
+    @Override
     public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
         LivingEntity wearer = slotContext.entity();
         if (wearer == null) return;
