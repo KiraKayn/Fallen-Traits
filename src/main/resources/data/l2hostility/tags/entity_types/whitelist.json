@@ -1,10 +1,6 @@
 {
   "values": [
     {
-      "id": "dummmmmmy:target_dummy",
-      "required": false
-    },
-    {
       "id": "iceandfire:fire_dragon",
       "required": false
     },
