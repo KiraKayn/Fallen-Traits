@@ -7,8 +7,8 @@ showAsResourcePack=false
 
 [[mods]]
 modId="fallen_traits"
-version="1.20.1-1.0.0"
-displayName="Fallen Traits"
+version="1.20.1-1.0.1"
+displayName="Fallen Traits & Relics"
 updateJSONURL=""
 displayURL=""
 logoFile="logo.png"
