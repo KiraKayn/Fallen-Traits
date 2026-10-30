@@ -1,6 +1,7 @@
 package net.kayn.fallen_traits.events;
 
 import dev.shadowsoffire.attributeslib.api.ALObjects;
+import dev.xkmc.l2complements.init.registrate.LCEffects;
 import dev.xkmc.l2damagetracker.init.data.ArmorEffectConfig;
 import dev.xkmc.l2hostility.compat.curios.CurioCompat;
 import dev.xkmc.l2hostility.content.capability.mob.MobTraitCap;
@@ -128,6 +129,7 @@ public class FTEvents {
             MobTraitCap cap = MobTraitCap.HOLDER.get(le);
             int lvl = cap.getTraitLevel(FTTraits.DEVOURER.get());
             if (lvl <= 0) continue;
+            if (le.hasEffect(LCEffects.CURSE.get())) continue;
             double radius = lvl * FTConfig.COMMON.devourerRadiusPerLevel.get();
             if (le.distanceToSqr(target) > radius * radius) continue;
             event.setCanceled(true);
