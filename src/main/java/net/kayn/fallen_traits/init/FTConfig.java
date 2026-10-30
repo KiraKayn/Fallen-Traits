@@ -79,6 +79,8 @@ public class FTConfig {
         public final ForgeConfigSpec.IntValue devourerRadiusPerLevel;
 
         public final ForgeConfigSpec.DoubleValue shredderPercentPerLevel;
+        public final ForgeConfigSpec.IntValue shredderReturnBaseTicks;
+        public final ForgeConfigSpec.IntValue shredderReturnTicksPerLevel;
 
         public final ForgeConfigSpec.DoubleValue titanSizeBase;
         public final ForgeConfigSpec.DoubleValue titanSizeStep;
@@ -312,8 +314,16 @@ public class FTConfig {
                 builder.push("shredder_trait");
 
                 shredderPercentPerLevel = builder
-                        .comment("percent of a nearby player's current armor stolen, per trait level (0.1 = 10% per level)")
+                        .comment("percent of a nearby player's current armor stolen per hit, per trait level (0.1 = 10% per level)")
                         .defineInRange("shredderPercentPerLevel", 0.1, 0, 1);
+
+                shredderReturnBaseTicks = builder
+                        .comment("ticks until each stolen armor amount returns to the player at trait level 1")
+                        .defineInRange("shredderReturnBaseTicks", 200, 1, 72000);
+
+                shredderReturnTicksPerLevel = builder
+                        .comment("additional ticks before stolen armor returns, per trait level above 1")
+                        .defineInRange("shredderReturnTicksPerLevel", 100, 0, 72000);
 
                 builder.pop();
                 builder.push("titan_trait");

@@ -13,6 +13,7 @@ import net.kayn.fallen_traits.content.item.curio.RageGlove;
 import net.kayn.fallen_traits.content.item.curio.WrathOfFenrir;
 import net.kayn.fallen_traits.content.item.curio.YggdrasilRoot;
 import net.kayn.fallen_traits.content.traits.basic.CloneTrait;
+import net.kayn.fallen_traits.content.traits.basic.ShredderTrait;
 import net.kayn.fallen_traits.content.traits.legendary.DevourerTrait;
 import net.kayn.fallen_traits.content.traits.legendary.MimicTrait;
 import net.kayn.fallen_traits.init.FTConfig;
@@ -34,6 +35,7 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.ForgeEventFactory;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityTeleportEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.*;
@@ -289,5 +291,11 @@ public class FTEvents {
                 event.setResult(Event.Result.DENY);
             }
         }
+    }
+    @SubscribeEvent
+    public static void onShredderPlayerTick(TickEvent.PlayerTickEvent event) {
+        if (event.phase != TickEvent.Phase.END || event.side.isClient()) return;
+        if (event.player.tickCount % 20 != 0) return;
+        ShredderTrait.tickPlayer(event.player);
     }
 }

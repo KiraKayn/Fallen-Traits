@@ -57,7 +57,7 @@
   "item.fallen_traits.devourer": "Devourer",
 
   "trait.fallen_traits.shredder": "Shredder",
-  "trait.fallen_traits.shredder.desc": "Steals %s of a player's current armor with each hit and wears it as its own. Stolen armor is returned when the mob dies.",
+  "trait.fallen_traits.shredder.desc": "Steals %s of a player's current armor with each hit and wears it as its own. Each stolen amount is returned after %ss, or when the mob dies.",
   "item.fallen_traits.shredder": "Shredder",
 
   "trait.fallen_traits.titan": "Titan",
