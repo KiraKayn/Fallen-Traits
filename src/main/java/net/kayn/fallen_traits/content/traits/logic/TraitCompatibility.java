@@ -18,6 +18,7 @@ public class TraitCompatibility {
 
     private record Pending(MobTrait self, Supplier<? extends MobTrait> other, Predicate<LivingEntity> bypass) {}
 
+    private static final Object LOCK = new Object();
     private static final List<Pending> PENDING = new ArrayList<>();
     private static Map<MobTrait, Set<MobTrait>> resolvedPairs;
     private static Map<Set<MobTrait>, Predicate<LivingEntity>> bypasses;
@@ -27,19 +28,31 @@ public class TraitCompatibility {
     }
 
     public static void register(MobTrait self, Supplier<? extends MobTrait> other, Predicate<LivingEntity> bypass) {
-        PENDING.add(new Pending(self, other, bypass));
+        synchronized (LOCK) {
+            Pending pending = new Pending(self, other, bypass);
+            PENDING.add(pending);
+            if (resolvedPairs != null) {
+                applySingle(pending);
+            }
+        }
     }
 
     private static void resolvePending() {
-        if (resolvedPairs != null) return;
-        resolvedPairs = new HashMap<>();
-        bypasses = new HashMap<>();
-        for (Pending p : PENDING) {
-            MobTrait other = p.other().get();
-            resolvedPairs.computeIfAbsent(p.self(), k -> new HashSet<>()).add(other);
-            resolvedPairs.computeIfAbsent(other, k -> new HashSet<>()).add(p.self());
-            bypasses.put(Set.of(p.self(), other), p.bypass());
+        synchronized (LOCK) {
+            if (resolvedPairs != null) return;
+            resolvedPairs = new HashMap<>();
+            bypasses = new HashMap<>();
+            for (Pending p : PENDING) {
+                applySingle(p);
+            }
         }
+    }
+
+    private static void applySingle(Pending p) {
+        MobTrait other = p.other().get();
+        resolvedPairs.computeIfAbsent(p.self(), k -> new HashSet<>()).add(other);
+        resolvedPairs.computeIfAbsent(other, k -> new HashSet<>()).add(p.self());
+        bypasses.put(Set.of(p.self(), other), p.bypass());
     }
 
     private static boolean bypassed(MobTrait a, MobTrait b, LivingEntity target) {
@@ -91,6 +104,7 @@ public class TraitCompatibility {
             mob.refreshDimensions();
         }
     }
+
     public static void resolveMap(LivingEntity mob, Map<MobTrait, Integer> traits) {
         resolvePending();
         List<MobTrait> keys = new ArrayList<>(traits.keySet());
