@@ -1,5 +1,6 @@
 package net.kayn.fallen_traits.content.traits.legendary;
 
+import dev.xkmc.l2complements.init.registrate.LCEffects;
 import dev.xkmc.l2damagetracker.contents.attack.AttackCache;
 import dev.xkmc.l2hostility.content.capability.mob.CapStorageData;
 import dev.xkmc.l2hostility.content.capability.mob.MobTraitCap;
@@ -9,6 +10,7 @@ import dev.xkmc.l2hostility.content.traits.base.MobTrait;
 import dev.xkmc.l2hostility.content.traits.legendary.LegendaryTrait;
 import dev.xkmc.l2serial.serialization.SerialClass;
 import net.kayn.fallen_traits.init.FTConfig;
+import net.kayn.fallen_traits.init.FTTraits;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
@@ -25,6 +27,7 @@ public class DevourerTrait extends LegendaryTrait {
 
     @Override
     public void onHurtTarget(int level, LivingEntity attacker, AttackCache cache, TraitEffectCache traitCache) {
+        if (attacker.hasEffect(LCEffects.CURSE.get())) return;
         var event = cache.getLivingHurtEvent();
         if (event == null || event.getAmount() <= 0) return;
         double percent = level * FTConfig.COMMON.devourerDrainPercentPerLevel.get();
@@ -68,10 +71,8 @@ public class DevourerTrait extends LegendaryTrait {
 
     @SerialClass
     public static class Data extends CapStorageData {
-
         @SerialClass.SerialField
         public double bonusHealth = 0;
-
     }
 
 }
