@@ -20,6 +20,8 @@ public class FTConfig {
         public final ForgeConfigSpec.IntValue cloneSpawnIntervalTicks;
         public final ForgeConfigSpec.DoubleValue cloneHealth;
         public final ForgeConfigSpec.DoubleValue cloneExplosionDamage;
+        public final ForgeConfigSpec.DoubleValue cloneExplosionLevelScale;
+        public final ForgeConfigSpec.DoubleValue cloneExplosionMaxHealthPercentCap;
         public final ForgeConfigSpec.DoubleValue cloneExplosionRadius;
         public final ForgeConfigSpec.BooleanValue cloneGlowEnabled;
         public final ForgeConfigSpec.IntValue cloneLifetimeTicks;
@@ -183,12 +185,20 @@ public class FTConfig {
                         .defineInRange("cloneSpawnIntervalTicks", 50, 1, 72000);
 
                 cloneHealth = builder
-                        .comment("flat max health for clones, low so any hit kills them regardless of the original's health/traits")
+                        .comment("ignored, clones always die in one hit. Kept for backward compatibility")
                         .defineInRange("cloneHealth", 1.0, 1, 1000);
 
                 cloneExplosionDamage = builder
-                        .comment("max damage dealt to entities at the center of a clone's death explosion, falls off linearly to 0 at the radius edge")
+                        .comment("base max damage at the center of the explosion, before level scaling and health cap")
                         .defineInRange("cloneExplosionDamage", 6.0, 0, 1000);
+
+                cloneExplosionLevelScale = builder
+                        .comment("extra damage per mob level. 0 disables level scaling")
+                        .defineInRange("cloneExplosionLevelScale", 0.01, 0, 10);
+
+                cloneExplosionMaxHealthPercentCap = builder
+                        .comment("cap explosion damage at this fraction of the target's max health, so it cannot one-shot")
+                        .defineInRange("cloneExplosionMaxHealthPercentCap", 0.5, 0.01, 1.0);
 
                 cloneExplosionRadius = builder
                         .comment("radius in blocks of the clone's death explosion, does not break blocks")
@@ -199,7 +209,7 @@ public class FTConfig {
                         .define("cloneGlowEnabled", true);
 
                 cloneLifetimeTicks = builder
-                        .comment("clones are force-removed after this many ticks even if not killed, 0 disables this and relies on normal despawn rules")
+                        .comment("clones are force-removed after this many ticks even if not killed, 0 disables this")
                         .defineInRange("cloneLifetimeTicks", 1200, 0, 72000);
 
                 builder.pop();

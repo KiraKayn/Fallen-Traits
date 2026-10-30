@@ -5,10 +5,10 @@ import dev.xkmc.l2hostility.content.capability.mob.MobTraitCap;
 import dev.xkmc.l2hostility.content.logic.InheritContext;
 import dev.xkmc.l2hostility.content.traits.base.MobTrait;
 import dev.xkmc.l2hostility.events.MiscHandlers;
-import dev.xkmc.l2hostility.init.data.LHConfig;
 import dev.xkmc.l2hostility.init.registrate.LHTraits;
 import dev.xkmc.l2serial.serialization.SerialClass;
 import net.kayn.fallen_traits.init.FTConfig;
+import net.kayn.fallen_traits.init.FTTraits;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
@@ -33,6 +33,8 @@ public class CloneTrait extends MobTrait {
     public static final String CLONE_TAG = "fallen_traits_is_clone";
     public static final String CLONE_SPAWN_TICK_TAG = "fallen_traits_clone_spawn_tick";
     public static final String CLONE_ORIGINAL_LEVEL_TAG = "fallen_traits_clone_original_level";
+    public static final String CLONE_LAST_EXPLODE_TAG = "fallen_traits_clone_last_explode";
+    public static final String CLONE_OWNER_TAG = "fallen_traits_clone_owner";
     private static final String CLONE_TEAM = "fallen_traits_clone_glow";
 
     public CloneTrait(ChatFormatting style) {
@@ -90,8 +92,8 @@ public class CloneTrait extends MobTrait {
 
         clone.getPersistentData().putBoolean(CLONE_TAG, true);
         clone.getPersistentData().putLong(CLONE_SPAWN_TICK_TAG, clone.level().getGameTime());
+        clone.getPersistentData().putUUID(CLONE_OWNER_TAG, original.getUUID());
 
-        // Store the original mob's level on the clone
         if (MobTraitCap.HOLDER.isProper(original)) {
             int originalLevel = MobTraitCap.HOLDER.get(original).getLevel();
             clone.getPersistentData().putInt(CLONE_ORIGINAL_LEVEL_TAG, originalLevel);
@@ -124,18 +126,25 @@ public class CloneTrait extends MobTrait {
     public static void explode(LivingEntity clone) {
         if (!(clone.level() instanceof ServerLevel sl)) return;
 
+        long now = sl.getGameTime();
+        long lastExplode = clone.getPersistentData().getLong(CLONE_LAST_EXPLODE_TAG);
+        if (now - lastExplode < 5) {
+            clone.discard();
+            return;
+        }
+        clone.getPersistentData().putLong(CLONE_LAST_EXPLODE_TAG, now);
+
         double baseDamage = FTConfig.COMMON.cloneExplosionDamage.get();
         double radius = FTConfig.COMMON.cloneExplosionRadius.get();
+        double levelScale = FTConfig.COMMON.cloneExplosionLevelScale.get();
+        double healthCap = FTConfig.COMMON.cloneExplosionMaxHealthPercentCap.get();
 
         int originalLevel = clone.getPersistentData().getInt(CLONE_ORIGINAL_LEVEL_TAG);
-        if (originalLevel > 0) {
-            double damageFactor = LHConfig.COMMON.damageFactor.get();
-            if (LHConfig.COMMON.exponentialDamage.get()) {
-                baseDamage *= Math.pow(1.0 + damageFactor, originalLevel);
-            } else {
-                baseDamage *= 1.0 + (originalLevel * damageFactor);
-            }
-        }
+        double scaledDamage = baseDamage + (originalLevel * levelScale);
+
+        UUID ownerId = clone.getPersistentData().contains(CLONE_OWNER_TAG)
+                ? clone.getPersistentData().getUUID(CLONE_OWNER_TAG)
+                : null;
 
         Vec3 pos = clone.position().add(0, clone.getBbHeight() * 0.5, 0);
 
@@ -143,20 +152,33 @@ public class CloneTrait extends MobTrait {
                 2.0F, (1.0F + (sl.random.nextFloat() - sl.random.nextFloat()) * 0.2F) * 0.7F);
         sl.sendParticles(ParticleTypes.EXPLOSION, pos.x, pos.y, pos.z, 1, 0, 0, 0, 0);
 
-        final double finalDamage = baseDamage;
         AABB box = new AABB(pos, pos).inflate(radius);
-        for (LivingEntity target : sl.getEntitiesOfClass(LivingEntity.class, box, e -> e != clone && e.isAlive())) {
+        for (LivingEntity target : sl.getEntitiesOfClass(LivingEntity.class, box,
+                e -> e != clone && e.isAlive() && !e.isSpectator()
+                        && (ownerId == null || !e.getUUID().equals(ownerId))
+                        && !e.getPersistentData().getBoolean(CLONE_TAG)
+                        && !(MobTraitCap.HOLDER.isProper(e) && MobTraitCap.HOLDER.get(e).hasTrait(FTTraits.CLONE.get())))) {
             double dist = target.position().distanceTo(pos);
             if (dist > radius) continue;
-            float dmg = (float) (finalDamage * (1 - dist / radius));
-            if (dmg <= 0) continue;
-            target.hurt(sl.damageSources().explosion(null, clone), dmg);
+
+            double falloff = 1.0 - (dist / radius);
+            float damage = (float) (scaledDamage * falloff);
+
+            float maxAllowed = (float) (target.getMaxHealth() * healthCap);
+            damage = Math.min(damage, maxAllowed);
+
+            if (damage <= 0.5f) continue;
+
+            target.hurt(sl.damageSources().explosion(clone, clone), damage);
+
             Vec3 dir = target.position().subtract(pos);
             if (dir.lengthSqr() > 0.001) {
                 dir = dir.normalize();
-                target.setDeltaMovement(target.getDeltaMovement().add(dir.x * 0.5, 0.3, dir.z * 0.5));
+                target.setDeltaMovement(target.getDeltaMovement().add(dir.x * 0.3, 0.2, dir.z * 0.3));
             }
         }
+
+        clone.discard();
     }
 
     @Override

@@ -102,8 +102,7 @@ public class FTEvents {
         if (entity.level().isClientSide()) return;
         if (!entity.getPersistentData().getBoolean(CloneTrait.CLONE_TAG)) return;
 
-        // Clones always die in one hit regardless of damage
-        event.setAmount(Float.MAX_VALUE);
+        event.setAmount(Math.max(entity.getHealth() + 1f, 100f));
     }
 
     @SubscribeEvent
